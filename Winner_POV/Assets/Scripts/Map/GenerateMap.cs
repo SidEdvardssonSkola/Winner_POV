@@ -44,9 +44,9 @@ public class GenerateMap : MonoBehaviour
         for (int i = 0; i < startingPositions; i++)
         {
             xPosition = Screen.width * mapWidth / startingPositions * (i + 1);
-            DrawPaths nextStep = Instantiate(mapIcon, new Vector3(xPosition, Screen.height * startingHeight, 0), Quaternion.identity).GetComponent<DrawPaths>();
-            nextStep.gameObject.transform.SetParent(transform);
-            nextStep.ContinuePath(mapLength - 1, 1, stepLength, transform, mapIcon);
+            GameObject nextStep = Instantiate(mapIcon, new Vector3(xPosition, Screen.height * startingHeight, 0), Quaternion.identity);
+            nextStep.transform.SetParent(transform);
+            nextStep.GetComponent<DrawPaths>().ContinuePath(mapLength - 1, 1, stepLength, transform, mapIcon);
 
             nextStep.gameObject.GetComponent<Button>().enabled = true;
         }
