@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GenerateMap : MonoBehaviour
 {
@@ -46,6 +47,8 @@ public class GenerateMap : MonoBehaviour
             DrawPaths nextStep = Instantiate(mapIcon, new Vector3(xPosition, Screen.height * startingHeight, 0), Quaternion.identity).GetComponent<DrawPaths>();
             nextStep.gameObject.transform.SetParent(transform);
             nextStep.ContinuePath(mapLength - 1, 1, stepLength, transform, mapIcon);
+
+            nextStep.gameObject.GetComponent<Button>().enabled = true;
         }
     }
 }
