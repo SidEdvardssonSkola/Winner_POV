@@ -42,9 +42,10 @@ public class GenerateMap : MonoBehaviour
         float xPosition;
         for (int i = 0; i < startingPositions; i++)
         {
-            xPosition = Screen.width * mapWidth / startingPositions * (i + 1) ;
-            GameObject child = Instantiate(mapIcon, new Vector3(xPosition, Screen.height * startingHeight, 0), Quaternion.identity);
-            child.transform.SetParent(transform);
+            xPosition = Screen.width * mapWidth / startingPositions * (i + 1);
+            DrawPaths nextStep = Instantiate(mapIcon, new Vector3(xPosition, Screen.height * startingHeight, 0), Quaternion.identity).GetComponent<DrawPaths>();
+            nextStep.gameObject.transform.SetParent(transform);
+            nextStep.ContinuePath(mapLength - 1, 1, stepLength, transform, mapIcon);
         }
     }
 }
