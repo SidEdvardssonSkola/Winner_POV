@@ -6,12 +6,13 @@ public class bora : MonoBehaviour
     public float moveSpeed = 5f;
     public float runSpeed = 8f;
     public float jumpForce = 10f;
-    
+
     [Header("Wall Jump")]
-    public float wallJumpForce = 8f;
+    public float wallJumpForce = 10f;
     public float wallSlideSpeed = 2f;
-    public int maxWallJumps = 2;
-    
+    public float wallJumpDirectionForce = 8f;
+    public float wallJumpMomentumPreservation = 0.95f; // Multiplier for momentum preservation
+
     [Header("Dash")]
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
@@ -20,12 +21,14 @@ public class bora : MonoBehaviour
     private Rigidbody2D rb;
     private bool canJump = true;
     private bool isWallSliding;
-    private int wallJumpsLeft;
+    private bool canWallJump = false;
     private bool canDash = true;
     private bool isDashing;
     private float dashTimeLeft;
     private float dashCooldownTimer;
     private int facingDirection = 1;
+
+    private bool overrideVelocity; // Flag to prevent movement overriding
 
     void Start()
     {
@@ -40,14 +43,17 @@ public class bora : MonoBehaviour
             return;
         }
 
-        // Movement and Running
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : moveSpeed;
-        rb.velocity = new Vector2(moveX * currentSpeed, rb.velocity.y);
+        if (!overrideVelocity) // Skip movement updates when overriding velocity
+        {
+            // Movement and Running
+            float moveX = Input.GetAxisRaw("Horizontal");
+            float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : moveSpeed;
+            rb.velocity = new Vector2(moveX * currentSpeed, rb.velocity.y);
 
-        // Update facing direction
-        if (moveX != 0)
-            facingDirection = (int)Mathf.Sign(moveX);
+            // Update facing direction
+            if (moveX != 0)
+                facingDirection = (int)Mathf.Sign(moveX);
+        }
 
         // Normal Jump
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
@@ -56,16 +62,7 @@ public class bora : MonoBehaviour
         }
 
         // Wall Jump
-        if (isWallSliding)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
-            
-            if (Input.GetKeyDown(KeyCode.Space) && wallJumpsLeft > 0)
-            {
-                rb.velocity = new Vector2(-facingDirection * wallJumpForce, jumpForce);
-                wallJumpsLeft--;
-            }
-        }
+        HandleWallJump(Input.GetAxisRaw("Horizontal"));
 
         // Dash
         if (Input.GetKeyDown(KeyCode.LeftControl) && canDash)
@@ -78,6 +75,27 @@ public class bora : MonoBehaviour
             dashCooldownTimer -= Time.deltaTime;
         else
             canDash = true;
+    }
+
+    void HandleWallJump(float moveX)
+    {
+        if (isWallSliding)
+        {
+            bool holdingTowardsWall = (moveX * facingDirection) > 0;
+
+            if (holdingTowardsWall)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && canWallJump)
+            {
+                // Jump away from the wall
+                ApplyVelocity(new Vector2(-facingDirection * wallJumpDirectionForce, wallJumpForce), preserveMomentum: true);
+                canWallJump = false;
+                isWallSliding = false;
+            }
+        }
     }
 
     void StartDash()
@@ -103,13 +121,41 @@ public class bora : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Applies a specific velocity to the character, with an option to preserve momentum.
+    /// </summary>
+    /// <param name="velocity">The velocity to apply.</param>
+    /// <param name="preserveMomentum">Whether to preserve the character's momentum.</param>
+    void ApplyVelocity(Vector2 velocity, bool preserveMomentum = false)
+    {
+        if (preserveMomentum)
+        {
+            velocity.x *= wallJumpMomentumPreservation;
+            velocity.y *= wallJumpMomentumPreservation;
+        }
+
+        rb.velocity = velocity;
+        overrideVelocity = true;
+
+        // Reset override flag after a short delay
+        Invoke(nameof(ResetOverride), 0.2f);
+    }
+
+    /// <summary>
+    /// Resets the velocity override flag.
+    /// </summary>
+    void ResetOverride()
+    {
+        overrideVelocity = false;
+    }
+
     void OnCollisionStay2D(Collision2D collision)
     {
         // Check for wall sliding
         if (!canJump && Mathf.Abs(collision.GetContact(0).normal.x) > 0.5f)
         {
             isWallSliding = true;
-            wallJumpsLeft = maxWallJumps;
+            canWallJump = true;
         }
     }
 
@@ -120,13 +166,15 @@ public class bora : MonoBehaviour
         {
             canJump = true;
             isWallSliding = false;
-            wallJumpsLeft = maxWallJumps;
+            canWallJump = false;
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
+        // Reset states when leaving surfaces
         canJump = false;
         isWallSliding = false;
+        canWallJump = false;
     }
 }
