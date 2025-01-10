@@ -13,16 +13,15 @@ public class EnableNextPoints : MonoBehaviour
         button = GetComponent<Button>();   
     }
 
-    public void SetNextButtons(List<Button> buttonsToSet)
+    public void SetNextButtons(Button[] buttonsToSet)
     {
-        buttons = buttonsToSet.ToArray();
+        buttons = buttonsToSet;
     }
 
     public void EnableTheNextPoints()
     {
         button.interactable = false;
-
-        foreach (Button b in buttons)
+        foreach(Button b in buttons)
         {
             b.interactable = true;
         }
