@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DrawPaths : MonoBehaviour
 {
     Button button;
-    List<Button> buttons;
+    [SerializeField] GameObject lineDrawerObject;
     private void Start()
     {
         button = GetComponent<Button>();
@@ -15,12 +15,14 @@ public class DrawPaths : MonoBehaviour
 
     public void ContinuePath(int remainingSteps, int depth, float stepLength, Transform parent, GameObject mapIcon)
     {
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + (stepLength * Screen.width), 0);
-        DrawPaths nextStep = Instantiate(mapIcon, pos, Quaternion.identity).GetComponent<DrawPaths>();
-        nextStep.gameObject.transform.SetParent(parent);
+        Vector3 pos = new(transform.position.x, transform.position.y + stepLength, 0);
+        DrawPaths nextStep = Instantiate(mapIcon, pos, Quaternion.identity, parent).GetComponent<DrawPaths>();
 
-        buttons.Add(nextStep.gameObject.GetComponent<Button>());
-        gameObject.GetComponent<EnableNextPoints>().SetNextButtons(buttons);
+        LineDrawer lineDrawer = Instantiate(lineDrawerObject, transform.position, Quaternion.identity).GetComponent<LineDrawer>();
+        lineDrawer.DrawLine(transform.position, nextStep.transform.position);
+
+        Button[] nextSteps = {nextStep.GetComponent<Button>()};
+        GetComponent<EnableNextPoints>().SetNextButtons(nextSteps);
 
         if (remainingSteps > 0)
         {

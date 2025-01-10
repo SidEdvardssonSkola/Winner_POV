@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GenerateMap : MonoBehaviour
@@ -9,25 +12,19 @@ public class GenerateMap : MonoBehaviour
 
     // StepLenght = avståndet mellan två vertikala punkter
     // värdet är procenten av skärmens höjd
-    [SerializeField] private float stepLength = 0.25f;
+    [SerializeField] private float stepLength = 1.5f;
 
-    //mapWidth = hur långt åt sidan ikonerna kan generaras 
-    // värdet är skåärmens bredd i procent
-    [SerializeField] private float mapWidth = 0.75f;
+    //mapWidth = hur långt åt sidan ikonerna kan generaras
+    [SerializeField] private float mapWidth = 8.5f;
 
     [SerializeField] private int startingPositions = 3;
 
-    //startingHeight = höjden som första ikonerna kommer spawnas i procent av skärmens höjd
-    [SerializeField] private float startingHeight = 0.2f;
+    //startingHeight = höjden som första ikonerna kommer spawnas;
+    [SerializeField] private float startingHeight = -3.5f;
 
 
 
     [SerializeField] private GameObject mapIcon;
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -39,16 +36,26 @@ public class GenerateMap : MonoBehaviour
 
     private void GenerateTheMap()
     {
-        Debug.Log("Generating Map");
         float xPosition;
+
+        List<Button> startingButtons = new();
         for (int i = 0; i < startingPositions; i++)
         {
-            xPosition = Screen.width * mapWidth / startingPositions * (i + 1);
-            GameObject nextStep = Instantiate(mapIcon, new Vector3(xPosition, Screen.height * startingHeight, 0), Quaternion.identity);
-            nextStep.transform.SetParent(transform);
+            xPosition = mapWidth / startingPositions * (i + 1) - (mapWidth - mapWidth / startingPositions);
+
+            GameObject nextStep = Instantiate(mapIcon, new Vector3(xPosition, startingHeight, 0), Quaternion.identity, transform);
             nextStep.GetComponent<DrawPaths>().ContinuePath(mapLength - 1, 1, stepLength, transform, mapIcon);
 
-            nextStep.gameObject.GetComponent<Button>().enabled = true;
+            startingButtons.Add(nextStep.GetComponent<Button>());
+            nextStep.GetComponent<Button>().interactable = true;
+        }
+        foreach(Button b in startingButtons)
+        {
+            b.AddComponent<DisableOtherActiveButtons>();
+            b.GetComponent<DisableOtherActiveButtons>().SetButtonsToDisable(startingButtons.ToArray());
+            UnityAction addToOnClick;
+            addToOnClick = b.GetComponent<DisableOtherActiveButtons>().DisableButtons;
+            b.onClick.AddListener(addToOnClick);
         }
     }
 }
