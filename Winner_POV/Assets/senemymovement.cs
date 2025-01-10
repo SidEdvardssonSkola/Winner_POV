@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fenemymove : MonoBehaviour
+public class senemymovement : MonoBehaviour
 {
-
     public float speed;
     private GameObject player;
     public bool chase = false;
@@ -25,25 +24,17 @@ public class fenemymove : MonoBehaviour
             Chase();
         else
             ReturnStartPoint();
-        
+
         Flip();
     }
 
     private void Chase()
     {
-       
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-
-
         if (Vector2.Distance(transform.position, player.transform.position) <= distanceFromPlayer)
         {
-            
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, -speed * Time.deltaTime);
         }
-
-
-
-
     }
 
     private void ReturnStartPoint()
@@ -63,4 +54,5 @@ public class fenemymove : MonoBehaviour
         }
 
     }
+    
 }

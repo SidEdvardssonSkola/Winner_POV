@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class chasecontrol : MonoBehaviour
 {
-    public enemymove[] enemyarray;    
+    public fenemymove[] enemyarray;    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            foreach (enemymove enemy in enemyarray)
+            foreach (fenemymove enemy in enemyarray)
             {
                 enemy.chase = true;
             }
@@ -21,7 +21,7 @@ public class chasecontrol : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            foreach (enemymove enemy in enemyarray)
+            foreach (fenemymove enemy in enemyarray)
             {
                 enemy.chase = false;
             }
