@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -17,7 +18,7 @@ public class GenerateMap : MonoBehaviour
     //mapWidth = hur långt åt sidan ikonerna kan generaras
     [SerializeField] private float mapWidth = 8.5f;
 
-    [SerializeField] private int startingPositions = 3;
+    public int startingPositions = 3;
 
     //startingHeight = höjden som första ikonerna kommer spawnas;
     [SerializeField] private float startingHeight = -3.5f;
@@ -25,6 +26,8 @@ public class GenerateMap : MonoBehaviour
 
 
     [SerializeField] private GameObject mapIcon;
+
+    [SerializeField] private float speed = 5;
 
     void Update()
     {
@@ -42,9 +45,9 @@ public class GenerateMap : MonoBehaviour
         for (int i = 0; i < startingPositions; i++)
         {
             xPosition = mapWidth / startingPositions * (i + 1) - (mapWidth - mapWidth / startingPositions);
-
+            
             GameObject nextStep = Instantiate(mapIcon, new Vector3(xPosition, startingHeight, 0), Quaternion.identity, transform);
-            nextStep.GetComponent<DrawPaths>().ContinuePath(mapLength - 1, 1, stepLength, transform, mapIcon);
+            nextStep.GetComponent<DrawPaths>().ContinuePath(i * 2 + 1, mapLength - 1, 1, stepLength, transform, mapIcon, 0);
 
             startingButtons.Add(nextStep.GetComponent<Button>());
             nextStep.GetComponent<Button>().interactable = true;
