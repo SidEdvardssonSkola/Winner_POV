@@ -147,10 +147,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineDrawerObject: {fileID: 5208999601627739296, guid: b4a72bda700bc58489d9e74521ea0cd8, type: 3}
-  branchChance: 0.65
-  mergeChance: 0.4
-  maxBranchLength: 3
+  branchChance: 0.45
+  mergeChance: 0.35
+  maxBranchLength: 4
   branchOffset: 1.25
+  branchFrequency: 0
 --- !u!114 &924196580585216128
 MonoBehaviour:
   m_ObjectHideFlags: 0

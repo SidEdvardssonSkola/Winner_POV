@@ -11,8 +11,15 @@ public class MapIconManager : MonoBehaviour
 
     public void AddButtonToManager(Vector2 index, Button button)
     {
-        mapIconIndex.Add(index);
-        mapIcon.Add(button);
+        if (!mapIconIndex.Contains(index))
+        {
+            mapIconIndex.Add(index);
+            mapIcon.Add(button);
+        }
+        else
+        {
+            print("Button at " + index + " Already Exists!");
+        }
     }
 
     public Button GetButtonFromIndex(Vector2 index)

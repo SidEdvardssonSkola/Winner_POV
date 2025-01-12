@@ -26,4 +26,23 @@ public class EnableNextPoints : MonoBehaviour
             b.interactable = true;
         }
     }
+    public bool CheckIfPointLeadsTo(Vector2 destinationCoordinates, GameObject mapIconManager)
+    {
+        bool isLeadingToAskedDestination = false;
+        foreach(Button b in buttons)
+        {
+            if(b == mapIconManager.GetComponent<MapIconManager>().GetButtonFromIndex(destinationCoordinates))
+            {
+                isLeadingToAskedDestination = true;
+            }
+        }
+        if(isLeadingToAskedDestination)
+        {
+            return true;
+        }
+        else
+        {
+           return false;
+        }
+    }
 }

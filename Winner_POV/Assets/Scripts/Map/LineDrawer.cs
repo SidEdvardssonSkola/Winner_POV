@@ -34,5 +34,6 @@ public class LineDrawer : MonoBehaviour
 
             maxDots--;
         }
+        Destroy(gameObject);
     }
 }

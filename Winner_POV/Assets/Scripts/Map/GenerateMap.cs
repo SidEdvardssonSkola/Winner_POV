@@ -33,11 +33,11 @@ public class GenerateMap : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GenerateTheMap();
+            StartCoroutine(GenerateTheMap());
         }
     }
 
-    private void GenerateTheMap()
+    private IEnumerator GenerateTheMap()
     {
         float xPosition;
 
@@ -50,7 +50,8 @@ public class GenerateMap : MonoBehaviour
             nextStep.GetComponent<DrawPaths>().ContinuePath(i * 2 + 1, mapLength - 1, 1, stepLength, transform, mapIcon, 0);
 
             startingButtons.Add(nextStep.GetComponent<Button>());
-            nextStep.GetComponent<Button>().interactable = true;
+
+            yield return new WaitForSeconds(0.1f);
         }
         foreach(Button b in startingButtons)
         {
@@ -59,6 +60,8 @@ public class GenerateMap : MonoBehaviour
             UnityAction addToOnClick;
             addToOnClick = b.GetComponent<DisableOtherActiveButtons>().DisableButtons;
             b.onClick.AddListener(addToOnClick);
+
+            b.interactable = true;
         }
     }
 }
