@@ -407,12 +407,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapLength: 10
-  stepLength: 2.5
-  mapWidth: 8.5
+  stepLength: 3.5
+  mapWidth: 10
   startingPositions: 3
   startingHeight: -3.5
   mapIcon: {fileID: 2849959531238948500, guid: 335eb800dcde2da4ab860d19b7b4b439, type: 3}
-  speed: 5
 --- !u!114 &1693766874
 MonoBehaviour:
   m_ObjectHideFlags: 0

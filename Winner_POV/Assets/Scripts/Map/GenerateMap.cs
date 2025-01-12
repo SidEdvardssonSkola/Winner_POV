@@ -27,8 +27,6 @@ public class GenerateMap : MonoBehaviour
 
     [SerializeField] private GameObject mapIcon;
 
-    [SerializeField] private float speed = 5;
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
