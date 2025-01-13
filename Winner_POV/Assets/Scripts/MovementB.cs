@@ -70,7 +70,7 @@ public class bora : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && dashCooldownTimer <= 0)
+        if (Input.GetKey(KeyCode.LeftControl) && dashCooldownTimer <= 0)
         {
             StartDash();
             return;
@@ -166,7 +166,7 @@ public class bora : MonoBehaviour
 
         HandleWallJump(moveX);
 
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        if (Input.GetKey(KeyCode.Space) && canJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             canJump = false;
@@ -184,7 +184,7 @@ public class bora : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && canWallJump)
+            if (Input.GetKey(KeyCode.Space) && canWallJump)
             {
                 rb.velocity = new Vector2(-facingDirection * wallJumpDirectionForce, wallJumpForce);
                 
@@ -258,36 +258,58 @@ public class bora : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        // Check if the collision is with the ground
         if (collision.GetContact(0).normal.y > 0.5f)
         {
             canJump = true;
-            isWallSliding = false;
-            canWallJump = false;
+            isWallSliding = false; // Reset wall sliding if grounded
+            canWallJump = false;   // Reset wall jumping if grounded
             preservingMomentum = false;
+
+            isWallLeft = false;    // Reset wall states
+            isWallRight = false;
+
+            UpdateAnimations();
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
+        // Reset states when leaving a surface
         canJump = false;
         isWallSliding = false;
         isWallLeft = false;
         isWallRight = false;
-        
+
         UpdateAnimations();
     }
 
     void OnCollisionStay2D(Collision2D collision)
     {
+        // Check if grounded
+        if (collision.GetContact(0).normal.y > 0.5f)
+        {
+            canJump = true;
+            isWallSliding = false; // Prevent wall sliding while grounded
+            canWallJump = false;
+
+            isWallLeft = false;
+            isWallRight = false;
+
+            UpdateAnimations();
+            return; // Exit, as we're grounded
+        }
+
+        // Check if touching a wall (only applies if off the ground)
         if (!canJump && Mathf.Abs(collision.GetContact(0).normal.x) > 0.5f)
         {
             isWallSliding = true;
             canWallJump = true;
-            
-            // Determine which side the wall is on using collision normal
-            isWallLeft = collision.GetContact(0).normal.x > 0;  // Wall is on left if normal points right
-            isWallRight = collision.GetContact(0).normal.x < 0; // Wall is on right if normal points left
-            
+
+            // Determine which side the wall is on
+            isWallLeft = collision.GetContact(0).normal.x > 0;  // Wall is on left
+            isWallRight = collision.GetContact(0).normal.x < 0; // Wall is on right
+
             UpdateAnimations();
         }
     }
