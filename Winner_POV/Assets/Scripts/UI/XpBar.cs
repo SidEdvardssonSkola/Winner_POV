@@ -11,7 +11,7 @@ public class XpBar : MonoBehaviour
 
     private void Start()
     {
-        scale = new(0, transform.localScale.y, transform.localScale.z);
+        scale = new(transform.localScale.x, 0, transform.localScale.z);
         transform.localScale = scale;
     }
 
@@ -22,7 +22,7 @@ public class XpBar : MonoBehaviour
 
     public void UpdateXPBar()
     {
-        scale.x = xpManager.xp * maxSize / xpManager.xpThreshold;
+        scale.y = xpManager.xp * maxSize / xpManager.xpThreshold;
         transform.localScale = scale;
     }
 

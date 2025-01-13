@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5847055009644712094}
   - component: {fileID: 8442872485041246641}
   - component: {fileID: 924196580585216128}
+  - component: {fileID: 7472968247230449415}
   m_Layer: 5
   m_Name: Map Icon
   m_TagString: Untagged
@@ -162,5 +163,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c605fd5ddcdb0bc47b30385eb46c877f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7472968247230449415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2849959531238948500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1f8057260c824488ce45268b7b15f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
