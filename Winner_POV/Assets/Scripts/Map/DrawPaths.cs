@@ -1,15 +1,13 @@
 using System.Collections;
 
 using System.Collections.Generic;
-using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DrawPaths : MonoBehaviour
 {
     Button button;
+<<<<<<< HEAD
     [SerializeField] GameObject lineDrawerObject;
     [SerializeField] private float branchChance = 0.65f;
     [SerializeField] private float mergeChance = 0.4f;
@@ -18,20 +16,26 @@ public class DrawPaths : MonoBehaviour
 
     [Header("Branch Frequency = Antal Steg Innan en till Gren kan Skapas")]
     [SerializeField] private int branchFrequency = 2;
+=======
+    List<Button> buttons;
+>>>>>>> parent of 5248dee (test)
     private void Start()
     {
         button = GetComponent<Button>();
     }
 
-    //Metoden för oförgrenade stigar
-    public void ContinuePath(int file, int remainingSteps, int depth, float stepLength, Transform parent, GameObject mapIcon, int branchCooldown)
+    public void ContinuePath(int remainingSteps, int depth, float stepLength, Transform parent, GameObject mapIcon)
     {
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + (stepLength * Screen.width), 0);
+        DrawPaths nextStep = Instantiate(mapIcon, pos, Quaternion.identity).GetComponent<DrawPaths>();
+        nextStep.gameObject.transform.SetParent(parent);
 
-        parent.GetComponent<MapIconManager>().AddButtonToManager(new Vector2(file, depth), GetComponent<Button>());
-
+        buttons.Add(nextStep.gameObject.GetComponent<Button>());
+        gameObject.GetComponent<EnableNextPoints>().SetNextButtons(buttons);
 
         if (remainingSteps > 0)
         {
+<<<<<<< HEAD
             //Genererar nästa steg i huvudgrenen
 
             Vector3 pos = new(transform.position.x, transform.position.y + stepLength, 0);
@@ -256,6 +260,9 @@ public class DrawPaths : MonoBehaviour
         {
             LineDrawer lineDrawer = Instantiate(lineDrawerObject, transform.position, Quaternion.identity).GetComponent<LineDrawer>();
             lineDrawer.DrawLine(transform.position, b.transform.position);
+=======
+            nextStep.ContinuePath(remainingSteps - 1, depth + 1, stepLength, parent, mapIcon);
+>>>>>>> parent of 5248dee (test)
         }
     }
 }
