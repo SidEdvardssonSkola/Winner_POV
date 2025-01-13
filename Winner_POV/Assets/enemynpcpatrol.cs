@@ -30,5 +30,7 @@ public class enemynpcpatrol : MonoBehaviour
             // Switch target point
             currentPoint = currentPoint == pointB.transform ? pointA.transform : pointB.transform;
         }
+
+
     }
 }
