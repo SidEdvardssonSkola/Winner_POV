@@ -182,19 +182,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 134515558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a812d8c41ef00a4a923833434339135, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a03d66debaf49d4a802939f7ca361a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  runSpeed: 8
-  jumpForce: 5
-  wallJumpForce: 8
+  moveSpeed: 7
+  jumpForce: 10
+  wallJumpForce: 10
   wallSlideSpeed: 2
   wallJumpDirectionForce: 8
-  wallJumpMomentumPreservation: 0.95
-  dashSpeed: 7.5
-  dashDuration: 0.5
+  momentumDuration: 0.2
+  momentumControlMultiplier: 0.3
+  wallJumpBoostSpeed: 10
+  wallKeyDisableTime: 0.5
+  airControlForce: 40
+  airMaxSpeed: 8
+  fastFallMultiplier: 2
+  dashSpeed: 20
+  dashDuration: 0.2
   dashCooldown: 1
+  animator: {fileID: 0}
+  velocityDisplay: {fileID: 0}
+  spriteRenderer: {fileID: 134515562}
 --- !u!50 &134515560
 Rigidbody2D:
   serializedVersion: 4
