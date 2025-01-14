@@ -6,6 +6,7 @@ public class AnimationHandler : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     private bora movement;
+    private float lastNonZeroInput;  // Track last horizontal input
 
     void Start()
     {
@@ -18,9 +19,16 @@ public class AnimationHandler : MonoBehaviour
             spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    void LateUpdate()
     {
-        if (animator == null) return;
+        if (animator == null || movement == null) return;
+
+        // Get current horizontal input
+        float currentInput = Input.GetAxisRaw("Horizontal");
+        if (currentInput != 0)
+        {
+            lastNonZeroInput = currentInput;
+        }
 
         // Basic movement animations
         animator.SetBool("IsRun", Mathf.Abs(movement.Velocity.x) > 0.1f && movement.IsGrounded);
@@ -32,14 +40,14 @@ public class AnimationHandler : MonoBehaviour
         animator.SetBool("IsWallSlideLeft", movement.IsWallSliding && movement.IsWallLeft);
         animator.SetBool("IsWallSlideRight", movement.IsWallSliding && movement.IsWallRight);
 
-        // Facing direction
-        animator.SetBool("IsFacingLeft", movement.FacingDirection < 0);
-        animator.SetBool("IsFacingRight", movement.FacingDirection > 0);
+        // Facing direction based on last input
+        animator.SetBool("IsFacingLeft", lastNonZeroInput < 0);
+        animator.SetBool("IsFacingRight", lastNonZeroInput > 0);
 
-        // Handle sprite flipping
-        if (Mathf.Abs(movement.Velocity.x) > 0.1f)
+        // Flip sprite based on last input direction
+        if (lastNonZeroInput != 0)
         {
-            spriteRenderer.flipX = movement.Velocity.x < 0;
+            spriteRenderer.flipX = lastNonZeroInput < 0;
         }
     }
 } 
