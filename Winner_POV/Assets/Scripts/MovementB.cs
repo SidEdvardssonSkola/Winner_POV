@@ -45,6 +45,14 @@ public class bora : MonoBehaviour
     public UnityEvent OnLand;
     public UnityEvent OnWallJump;
 
+    [Header("Momentum Settings")]
+    public float momentumPreserveMultiplier = 1f; // 1 = full momentum, 0.5 = half momentum, etc.
+
+    [Header("Bunny Hop")]
+    public float bhopMultiplier = 1f;  // Control momentum preservation
+    private float lastVelocityBeforeLanding;  // Store the velocity
+    private float preservedSpeed;  // New variable to store the speed we want to preserve
+
     private Rigidbody2D rb;
     private bool canJump = true;
     private bool isWallSliding = false;
@@ -67,6 +75,12 @@ public class bora : MonoBehaviour
 
     public int FacingDirection => facingDirection;
     public bool CanJump => canJump;
+    public Vector2 Velocity => rb.velocity;
+    public bool IsGrounded => canJump;
+    public bool IsWallSliding => isWallSliding;
+    public bool IsWallLeft => isWallLeft;
+    public bool IsWallRight => isWallRight;
+    public bool IsDashing => isDashing;
 
     void Start()
     {
@@ -84,7 +98,7 @@ public class bora : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && dashCooldownTimer <= 0)
+        if (Input.GetKey(KeyCode.LeftControl) && dashCooldownTimer <= 0)
         {
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
@@ -113,6 +127,12 @@ public class bora : MonoBehaviour
             dashCooldownTimer -= Time.deltaTime;
 
         UpdateAnimations();
+
+        // Store velocity when in air
+        if (!canJump)
+        {
+            lastVelocityBeforeLanding = rb.velocity.x;
+        }
     }
 
     void HandleMovement()
@@ -183,7 +203,7 @@ public class bora : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && canJump)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = new Vector2(preservedSpeed, jumpForce);
             canJump = false;
             OnJump?.Invoke();
         }
@@ -298,10 +318,21 @@ public class bora : MonoBehaviour
             canJump = true;
             isWallSliding = false;
             canWallJump = false;
-            preservingMomentum = false;
 
             isWallLeft = false;
             isWallRight = false;
+
+            // Store the preserved speed when landing
+            if (Input.GetKey(KeyCode.Space))
+            {
+                preservedSpeed = lastVelocityBeforeLanding * bhopMultiplier;
+                Debug.Log($"Bhop Speed Stored: {preservedSpeed}");
+            }
+            else
+            {
+                preservedSpeed = 0;
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
 
             if (!wasGrounded)
             {
