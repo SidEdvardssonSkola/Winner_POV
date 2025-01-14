@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class chasecontrol : MonoBehaviour
 {
-    public fenemymove[] enemyarray;    
+    public fenemymove[] enemyarray;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,7 +10,7 @@ public class chasecontrol : MonoBehaviour
         {
             foreach (fenemymove enemy in enemyarray)
             {
-                enemy.chase = true;
+                enemy.SetChase(true);
             }
         }
     }
@@ -23,20 +21,8 @@ public class chasecontrol : MonoBehaviour
         {
             foreach (fenemymove enemy in enemyarray)
             {
-                enemy.chase = false;
+                enemy.SetChase(false);
             }
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
