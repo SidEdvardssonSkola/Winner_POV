@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 public class bora : MonoBehaviour
@@ -27,15 +28,22 @@ public class bora : MonoBehaviour
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
+    public LayerMask enemyLayer;
 
     [Header("Animation")]
-    public Animator animator; // Animator to control animations
+    public Animator animator;
 
     [Header("UI")]
     public TextMeshProUGUI velocityDisplay;
 
     [Header("References")]
-    public SpriteRenderer spriteRenderer; // Drag your sprite renderer here
+    public SpriteRenderer spriteRenderer;
+
+    [Header("Events")]
+    public UnityEvent OnDash;
+    public UnityEvent OnJump;
+    public UnityEvent OnLand;
+    public UnityEvent OnWallJump;
 
     private Rigidbody2D rb;
     private bool canJump = true;
@@ -46,6 +54,8 @@ public class bora : MonoBehaviour
     private float dashTimeLeft;
     private float dashCooldownTimer;
     private int facingDirection = 1;
+    private Vector2 dashDirection;
+    private int originalLayer;
 
     private bool preservingMomentum;
     private float momentumTimeLeft;
@@ -55,9 +65,13 @@ public class bora : MonoBehaviour
     private bool isWallLeft;
     private bool isWallRight;
 
+    public int FacingDirection => facingDirection;
+    public bool CanJump => canJump;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        originalLayer = gameObject.layer;
     }
 
     void Update()
@@ -70,21 +84,31 @@ public class bora : MonoBehaviour
             return;
         }
 
-        if (Input.GetKey(KeyCode.LeftControl) && dashCooldownTimer <= 0)
+        if (Input.GetKeyDown(KeyCode.LeftControl) && dashCooldownTimer <= 0)
         {
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
+            
+            if (horizontal != 0 || vertical != 0)
+            {
+                dashDirection = new Vector2(horizontal, vertical).normalized;
+            }
+            else
+            {
+                dashDirection = new Vector2(facingDirection, 0);
+            }
+            
             StartDash();
             return;
         }
 
         HandleMovement();
 
-        // Apply fast fall if holding S
         if (Input.GetKey(KeyCode.S) && rb.velocity.y < 0)
         {
             rb.velocity += Vector2.down * fastFallMultiplier * Time.deltaTime;
         }
 
-        // Update dash cooldown
         if (dashCooldownTimer > 0)
             dashCooldownTimer -= Time.deltaTime;
 
@@ -95,14 +119,12 @@ public class bora : MonoBehaviour
     {
         float moveX = Input.GetAxisRaw("Horizontal");
 
-        // Flip sprite based on movement direction
         if (moveX != 0)
         {
             spriteRenderer.flipX = moveX < 0;
             facingDirection = (int)Mathf.Sign(moveX);
         }
 
-        // Check for disabled wall-side key
         if (wallKeyDisableTimeLeft > 0)
         {
             wallKeyDisableTimeLeft -= Time.deltaTime;
@@ -112,7 +134,6 @@ public class bora : MonoBehaviour
             }
         }
 
-        // Wall jump momentum preservation
         if (preservingMomentum)
         {
             momentumTimeLeft -= Time.deltaTime;
@@ -122,17 +143,15 @@ public class bora : MonoBehaviour
             }
             else
             {
-                // Allow some control during momentum
                 float controlForce = moveX * airControlForce * momentumControlMultiplier;
                 rb.AddForce(new Vector2(controlForce, 0) * Time.deltaTime, ForceMode2D.Impulse);
 
-                // Determine target speed based on input direction
                 float targetSpeed;
-                if (facingDirection > 0) // Jumped from right wall
+                if (facingDirection > 0)
                 {
                     targetSpeed = (moveX < 0) ? wallJumpBoostSpeed : wallJumpDirectionForce;
                 }
-                else // Jumped from left wall
+                else
                 {
                     targetSpeed = (moveX > 0) ? wallJumpBoostSpeed : wallJumpDirectionForce;
                 }
@@ -147,18 +166,14 @@ public class bora : MonoBehaviour
             }
         }
 
-        // Ground movement
         if (canJump)
         {
             rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
         }
         else
         {
-            // Air movement
             float airForce = moveX * airControlForce;
             rb.AddForce(new Vector2(airForce, 0) * Time.deltaTime, ForceMode2D.Impulse);
-
-            // Clamp air velocity
             rb.velocity = new Vector2(
                 Mathf.Clamp(rb.velocity.x, -airMaxSpeed, airMaxSpeed),
                 rb.velocity.y);
@@ -170,6 +185,7 @@ public class bora : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             canJump = false;
+            OnJump?.Invoke();
         }
     }
 
@@ -191,14 +207,19 @@ public class bora : MonoBehaviour
                 preservingMomentum = true;
                 momentumTimeLeft = momentumDuration;
                 
-                // Disable movement towards the wall
                 wallKeyDisableTimeLeft = wallKeyDisableTime;
                 disabledKey = facingDirection > 0 ? KeyCode.D : KeyCode.A;
                 
                 isWallSliding = false;
                 canWallJump = false;
+                OnWallJump?.Invoke();
             }
         }
+    }
+
+    public void ResetDash()
+    {
+        dashCooldownTimer = 0f;
     }
 
     void StartDash()
@@ -208,7 +229,9 @@ public class bora : MonoBehaviour
         dashCooldownTimer = dashCooldown;
         rb.gravityScale = 0;
         
-        // Ensure animator gets updated immediately when dash starts
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), true);
+        
+        OnDash?.Invoke();
         UpdateAnimations();
     }
 
@@ -216,18 +239,31 @@ public class bora : MonoBehaviour
     {
         if (dashTimeLeft > 0)
         {
-            rb.velocity = new Vector2(facingDirection * dashSpeed, 0);
+            rb.velocity = dashDirection * dashSpeed;
             dashTimeLeft -= Time.deltaTime;
+
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 0.5f, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                ResetDash();
+                break;
+            }
         }
         else
         {
-            isDashing = false;
-            rb.gravityScale = 1;
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-            
-            // Ensure animator gets updated when dash ends
-            UpdateAnimations();
+            EndDash();
         }
+    }
+
+    void EndDash()
+    {
+        isDashing = false;
+        rb.gravityScale = 1;
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+        
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), false);
+        
+        UpdateAnimations();
     }
 
     void UpdateVelocityDisplay()
@@ -247,27 +283,30 @@ public class bora : MonoBehaviour
         animator.SetBool("IsDash", isDashing);
         animator.SetBool("IsIdle", Mathf.Abs(rb.velocity.x) < 0.1f && canJump);
         
-        // Normal facing direction
         animator.SetBool("IsFacingLeft", facingDirection < 0);
         animator.SetBool("IsFacingRight", facingDirection > 0);
         
-        // Wall slide based on wall position
         animator.SetBool("IsWallSlideLeft", isWallSliding && isWallLeft);
         animator.SetBool("IsWallSlideRight", isWallSliding && isWallRight);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Check if the collision is with the ground
         if (collision.GetContact(0).normal.y > 0.5f)
         {
+            bool wasGrounded = canJump;
             canJump = true;
-            isWallSliding = false; // Reset wall sliding if grounded
-            canWallJump = false;   // Reset wall jumping if grounded
+            isWallSliding = false;
+            canWallJump = false;
             preservingMomentum = false;
 
-            isWallLeft = false;    // Reset wall states
+            isWallLeft = false;
             isWallRight = false;
+
+            if (!wasGrounded)
+            {
+                OnLand?.Invoke();
+            }
 
             UpdateAnimations();
         }
@@ -275,7 +314,6 @@ public class bora : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        // Reset states when leaving a surface
         canJump = false;
         isWallSliding = false;
         isWallLeft = false;
@@ -286,29 +324,26 @@ public class bora : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        // Check if grounded
         if (collision.GetContact(0).normal.y > 0.5f)
         {
             canJump = true;
-            isWallSliding = false; // Prevent wall sliding while grounded
+            isWallSliding = false;
             canWallJump = false;
 
             isWallLeft = false;
             isWallRight = false;
 
             UpdateAnimations();
-            return; // Exit, as we're grounded
+            return;
         }
 
-        // Check if touching a wall (only applies if off the ground)
         if (!canJump && Mathf.Abs(collision.GetContact(0).normal.x) > 0.5f)
         {
             isWallSliding = true;
             canWallJump = true;
 
-            // Determine which side the wall is on
-            isWallLeft = collision.GetContact(0).normal.x > 0;  // Wall is on left
-            isWallRight = collision.GetContact(0).normal.x < 0; // Wall is on right
+            isWallLeft = collision.GetContact(0).normal.x > 0;
+            isWallRight = collision.GetContact(0).normal.x < 0;
 
             UpdateAnimations();
         }

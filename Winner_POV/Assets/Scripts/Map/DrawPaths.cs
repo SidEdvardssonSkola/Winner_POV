@@ -28,6 +28,7 @@ public class DrawPaths : MonoBehaviour
     {
 
         parent.GetComponent<MapIconManager>().AddButtonToManager(new Vector2(file, depth), GetComponent<Button>());
+        GetComponent<DefinePoint>().Define(depth, remainingSteps);
 
 
         if (remainingSteps > 0)
@@ -129,6 +130,7 @@ public class DrawPaths : MonoBehaviour
     {
 
         parent.GetComponent<MapIconManager>().AddButtonToManager(new Vector2(file, depth), GetComponent<Button>());
+        GetComponent<DefinePoint>().Define(depth, remainingSteps);
 
         if (remainingSteps > 0)
         {
