@@ -9,6 +9,8 @@ public class XpBar : MonoBehaviour
     [SerializeField] private float maxSize = 6;
     private Vector3 scale;
 
+    [SerializeField] private ParticleSystem particle;
+
     private void Start()
     {
         scale = new(transform.localScale.x, 0, transform.localScale.z);
@@ -24,6 +26,8 @@ public class XpBar : MonoBehaviour
     {
         scale.y = xpManager.xp * maxSize / xpManager.xpThreshold;
         transform.localScale = scale;
+
+        particle.Play();
     }
 
     private void OnDisable()
