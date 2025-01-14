@@ -199,11 +199,11 @@ public class bora : MonoBehaviour
             // For the first jump, maintain horizontal velocity
             if (preservedSpeed == 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             }
             else
             {
-                rb.velocity = new Vector2(preservedSpeed, jumpForce);
+                rb.linearVelocity = new Vector2(preservedSpeed, jumpForce);
             }
             
             canJump = false;
@@ -230,13 +230,13 @@ public class bora : MonoBehaviour
                 if (enableUpwardWallJumpBug && facingAwayFromWall)
                 {
                     // Jump straight up instead of away from wall
-                    rb.velocity = new Vector2(0, wallJumpForce * 1.2f);  // Slightly higher jump for fun
+                    rb.linearVelocity = new Vector2(0, wallJumpForce * 1.2f);  // Slightly higher jump for fun
                 }
                 else
                 {
                     // Normal wall jump away from wall
                     float jumpDirectionX = isWallRight ? -1 : 1;
-                    rb.velocity = new Vector2(jumpDirectionX * wallJumpDirectionForce, wallJumpForce);
+                    rb.linearVelocity = new Vector2(jumpDirectionX * wallJumpDirectionForce, wallJumpForce);
                 }
                 
                 preservingMomentum = true;
@@ -321,7 +321,7 @@ public class bora : MonoBehaviour
             // Reset velocity if not holding jump
             if (!Input.GetKey(KeyCode.Space))
             {
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
                 preservedSpeed = 0;  // Make sure preserved speed is reset
             }
             else
