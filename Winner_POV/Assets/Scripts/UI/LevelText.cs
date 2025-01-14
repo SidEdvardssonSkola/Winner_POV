@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class LevelText : MonoBehaviour
 {
     [SerializeField] private XpSystem xpManager;
+    [SerializeField] ParticleSystem particle;
     private TextMeshProUGUI text;
 
     void Start()
@@ -22,6 +23,7 @@ public class LevelText : MonoBehaviour
     public void UpdateText()
     {
         text.text = "Level: " + xpManager.level;
+        particle.Play();
     }
 
     private void OnDisable()

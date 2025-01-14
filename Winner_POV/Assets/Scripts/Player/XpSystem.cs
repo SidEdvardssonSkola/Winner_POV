@@ -21,12 +21,12 @@ public class XpSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            GiveXP(10);
+            GiveXP(100, 2.5f);
         }
     }
-    public void GiveXP(float ammountToGive)
+    public void GiveXP(float giveAmmount)
     {
-        xp += ammountToGive;
+        xp += giveAmmount;
 
         while (xp >= xpThreshold)
         {
@@ -42,5 +42,39 @@ public class XpSystem : MonoBehaviour
         }
 
         onXpChange.Invoke();
+    }
+
+    public void GiveXP(float totalgiveAmmount, float applyDurationInSeconds)
+    {
+        StartCoroutine(ApplyXPOverTime(totalgiveAmmount, applyDurationInSeconds));
+    }
+
+    private IEnumerator ApplyXPOverTime(float totalgiveAmmount, float applyDurationInSeconds)
+    {
+        float timesToLoop = applyDurationInSeconds * 10;
+        float xpSpill = timesToLoop - Mathf.Floor(timesToLoop);
+        timesToLoop = Mathf.Floor(timesToLoop);
+
+        for (int i = 0; i < timesToLoop; i++)
+        {
+            xp += totalgiveAmmount / timesToLoop;
+
+            while (xp >= xpThreshold)
+            {
+                level += 1;
+                levelUpPoints += 1;
+
+                xp -= xpThreshold;
+                xpThreshold *= xpThresholdScaling;
+
+                onLevelUp.Invoke();
+
+                print("Level Up! New Level is " + level + "!");
+            }
+
+            onXpChange.Invoke();
+            yield return new WaitForSeconds(0.1f);
+        }
+        GiveXP(xpSpill * (totalgiveAmmount / timesToLoop));
     }
 }

@@ -177,3 +177,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1f8057260c824488ce45268b7b15f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnWeight:
+  - name: Enemy Spawnweight
+    value: 100
+  - name: Campfire Spawnweight
+    value: 25
+  - name: Miniboss Spawnweight
+    value: 15
+  - name: Boss Spawnweight
+    value: 0
+  - name: Lootroom Spawnweight
+    value: 0
+  - name: Shop Spawnweight
+    value: 0

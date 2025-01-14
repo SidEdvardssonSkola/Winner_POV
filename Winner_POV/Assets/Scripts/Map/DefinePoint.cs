@@ -1,11 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
+public class PointSpawnWeight
+{
+    public string name;
+    public int value;
+}
+
 public class DefinePoint : MonoBehaviour
 {
+    [Header("Spawnweight Gäller Bara för Slumpade Punkter")]
+    [SerializeField] private PointSpawnWeight[] spawnWeight;
+
     private Image image;
+
     enum PointTypes
     {
         Enemy = 0,
@@ -27,7 +40,7 @@ public class DefinePoint : MonoBehaviour
 
         if (remainingSteps == Mathf.Round(totalSteps / 2))
         {
-            if (Random.Range(1, 4) < 3)
+            if (UnityEngine.Random.Range(1, 4) < 3)
             {
                 //miniboss
                 SetPointTo(PointTypes.Miniboss);
@@ -37,7 +50,7 @@ public class DefinePoint : MonoBehaviour
 
         if (remainingSteps == Mathf.Round(totalSteps / 2) - 1)
         {
-            if (Random.Range(1, 4) < 3)
+            if (UnityEngine.Random.Range(1, 4) < 3)
             {
                 //campfire
                 SetPointTo(PointTypes.Campfire);
@@ -52,7 +65,17 @@ public class DefinePoint : MonoBehaviour
             return;
         }
 
-        //annars slump
+        List<int> realSpawnWeight = new();
+        int loops = 0;
+        for (int i = 0; i < spawnWeight.Length; i++)
+        {
+            realSpawnWeight.Add(spawnWeight[loops].value);
+
+            loops++;
+        }
+
+        int randomNumber = CustomRandom.WeightedRandom(realSpawnWeight.ToArray());
+        SetPointTo((PointTypes)randomNumber);
     }
 
     private void SetPointTo(PointTypes pointType)
