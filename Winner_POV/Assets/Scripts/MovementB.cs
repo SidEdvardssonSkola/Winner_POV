@@ -75,7 +75,7 @@ public class bora : MonoBehaviour
 
     public int FacingDirection => facingDirection;
     public bool CanJump => canJump;
-    public Vector2 Velocity => rb.velocity;
+    public Vector2 Velocity => rb.linearVelocity;
     public bool IsGrounded => canJump;
     public bool IsWallSliding => isWallSliding;
     public bool IsWallLeft => isWallLeft;
@@ -118,9 +118,9 @@ public class bora : MonoBehaviour
 
         HandleMovement();
 
-        if (Input.GetKey(KeyCode.S) && rb.velocity.y < 0)
+        if (Input.GetKey(KeyCode.S) && rb.linearVelocity.y < 0)
         {
-            rb.velocity += Vector2.down * fastFallMultiplier * Time.deltaTime;
+            rb.linearVelocity += Vector2.down * fastFallMultiplier * Time.deltaTime;
         }
 
         if (dashCooldownTimer > 0)
@@ -131,7 +131,7 @@ public class bora : MonoBehaviour
         // Store velocity when in air
         if (!canJump)
         {
-            lastVelocityBeforeLanding = rb.velocity.x;
+            lastVelocityBeforeLanding = rb.linearVelocity.x;
         }
     }
 
@@ -177,33 +177,33 @@ public class bora : MonoBehaviour
                 }
 
                 float minSpeed = targetSpeed * (momentumTimeLeft / momentumDuration);
-                float currentXVel = Mathf.Abs(rb.velocity.x);
+                float currentXVel = Mathf.Abs(rb.linearVelocity.x);
                 
                 if (currentXVel < minSpeed)
                 {
-                    rb.velocity = new Vector2(-facingDirection * minSpeed, rb.velocity.y);
+                    rb.linearVelocity = new Vector2(-facingDirection * minSpeed, rb.linearVelocity.y);
                 }
             }
         }
 
         if (canJump)
         {
-            rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(moveX * moveSpeed, rb.linearVelocity.y);
         }
         else
         {
             float airForce = moveX * airControlForce;
             rb.AddForce(new Vector2(airForce, 0) * Time.deltaTime, ForceMode2D.Impulse);
-            rb.velocity = new Vector2(
-                Mathf.Clamp(rb.velocity.x, -airMaxSpeed, airMaxSpeed),
-                rb.velocity.y);
+            rb.linearVelocity = new Vector2(
+                Mathf.Clamp(rb.linearVelocity.x, -airMaxSpeed, airMaxSpeed),
+                rb.linearVelocity.y);
         }
 
         HandleWallJump(moveX);
 
         if (Input.GetKey(KeyCode.Space) && canJump)
         {
-            rb.velocity = new Vector2(preservedSpeed, jumpForce);
+            rb.linearVelocity = new Vector2(preservedSpeed, jumpForce);
             canJump = false;
             OnJump?.Invoke();
         }
@@ -217,12 +217,12 @@ public class bora : MonoBehaviour
 
             if (holdingTowardsWall)
             {
-                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y, -wallSlideSpeed, float.MaxValue));
             }
 
             if (Input.GetKey(KeyCode.Space) && canWallJump)
             {
-                rb.velocity = new Vector2(-facingDirection * wallJumpDirectionForce, wallJumpForce);
+                rb.linearVelocity = new Vector2(-facingDirection * wallJumpDirectionForce, wallJumpForce);
                 
                 preservingMomentum = true;
                 momentumTimeLeft = momentumDuration;
@@ -259,7 +259,7 @@ public class bora : MonoBehaviour
     {
         if (dashTimeLeft > 0)
         {
-            rb.velocity = dashDirection * dashSpeed;
+            rb.linearVelocity = dashDirection * dashSpeed;
             dashTimeLeft -= Time.deltaTime;
 
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 0.5f, enemyLayer);
@@ -279,7 +279,7 @@ public class bora : MonoBehaviour
     {
         isDashing = false;
         rb.gravityScale = 1;
-        rb.velocity = new Vector2(rb.velocity.x, 0);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
         
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), false);
         
@@ -290,7 +290,7 @@ public class bora : MonoBehaviour
     {
         if (velocityDisplay)
         {
-            velocityDisplay.text = $"Velocity: X = {rb.velocity.x:F2}, Y = {rb.velocity.y:F2}";
+            velocityDisplay.text = $"Velocity: X = {rb.linearVelocity.x:F2}, Y = {rb.linearVelocity.y:F2}";
         }
     }
 
@@ -298,10 +298,10 @@ public class bora : MonoBehaviour
     {
         if (animator == null) return;
 
-        animator.SetBool("IsRun", Mathf.Abs(rb.velocity.x) > 0.1f && canJump);
+        animator.SetBool("IsRun", Mathf.Abs(rb.linearVelocity.x) > 0.1f && canJump);
         animator.SetBool("IsJump", !canJump);
         animator.SetBool("IsDash", isDashing);
-        animator.SetBool("IsIdle", Mathf.Abs(rb.velocity.x) < 0.1f && canJump);
+        animator.SetBool("IsIdle", Mathf.Abs(rb.linearVelocity.x) < 0.1f && canJump);
         
         animator.SetBool("IsFacingLeft", facingDirection < 0);
         animator.SetBool("IsFacingRight", facingDirection > 0);
@@ -331,7 +331,7 @@ public class bora : MonoBehaviour
             else
             {
                 preservedSpeed = 0;
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             }
 
             if (!wasGrounded)

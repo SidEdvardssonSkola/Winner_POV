@@ -74,7 +74,7 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("Uppercut Attack!");
 
         // Apply upward force to the player
-        rb.velocity = new Vector2(rb.velocity.x, uppercutForce);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, uppercutForce);
 
         // Detect enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -91,7 +91,7 @@ public class PlayerAttack : MonoBehaviour
             Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
             if (enemyRb != null)
             {
-                enemyRb.velocity = new Vector2(enemyRb.velocity.x, uppercutForce * uppercutEnemyMultiplier);
+                enemyRb.linearVelocity = new Vector2(enemyRb.linearVelocity.x, uppercutForce * uppercutEnemyMultiplier);
             }
         }
     }
@@ -119,7 +119,7 @@ public class PlayerAttack : MonoBehaviour
             Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
             if (enemyRb != null)
             {
-                enemyRb.velocity = new Vector2(enemyRb.velocity.x, dashKnockUpForce);
+                enemyRb.linearVelocity = new Vector2(enemyRb.linearVelocity.x, dashKnockUpForce);
             }
         }
     }

@@ -22,7 +22,7 @@ public class enemynpcpatrol : MonoBehaviour
         Vector2 direction = (currentPoint.position - transform.position).normalized;
 
         // Move the Rigidbody in the direction
-        rb.velocity = direction * speed;
+        rb.linearVelocity = direction * speed;
 
         // Check if close enough to switch target points
         if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f)

@@ -52,7 +52,7 @@ public class EnemyShoot : MonoBehaviour
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.velocity = direction * projectileSpeed; // Apply the velocity
+                rb.linearVelocity = direction * projectileSpeed; // Apply the velocity
             }
 
             // Destroy the projectile after its lifetime

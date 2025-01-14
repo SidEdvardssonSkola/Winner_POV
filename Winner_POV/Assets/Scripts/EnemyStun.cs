@@ -17,7 +17,7 @@ public class EnemyStun : MonoBehaviour
         if (isStunned && Time.time >= stunEndTime)
         {
             isStunned = false;
-            rb.velocity = Vector2.zero; // Stop movement after stun
+            rb.linearVelocity = Vector2.zero; // Stop movement after stun
             // Optionally: Change the enemy's state back to normal here
         }
     }
@@ -35,7 +35,7 @@ public class EnemyStun : MonoBehaviour
     {
         if (isStunned)
         {
-            rb.velocity = Vector2.zero; // Prevent enemy from moving while stunned
+            rb.linearVelocity = Vector2.zero; // Prevent enemy from moving while stunned
         }
     }
 }
