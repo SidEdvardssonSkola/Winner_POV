@@ -2,18 +2,23 @@ using UnityEngine;
 
 public class fenemymove : MonoBehaviour
 {
-    public float speed = 2f; // Movement speed
-    public float stopDistance = 1f; // Distance to stop from the player
-    public float yAlignSpeed = 3f; // Speed for aligning on the Y-axis
+    public float speed = 2f; // Overall movement speed
     public float aggroRange = 10f; // Aggro range for the enemy to start chasing
+    public float chaseDelay = 1f; // Delay before chasing starts again
+    public float xOffset = 1.5f; // Distance offset on the X-axis from the player
 
     private GameObject player; // Reference to the player
-    public bool chase = false; // Whether the enemy is chasing
+    private bool isChasing = false; // Whether the enemy is chasing
+    private bool chaseOverridden = false; // If chase state is overridden
+    private Vector2 lastPlayerPosition; // Track player's last known position
+    private float lastPlayerMoveTime; // Timestamp of the last significant player movement
     public Transform startingpoint; // Starting position of the enemy
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+            lastPlayerPosition = player.transform.position;
     }
 
     void Update()
@@ -21,12 +26,22 @@ public class fenemymove : MonoBehaviour
         if (player == null)
             return;
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        if (!chaseOverridden)
+        {
+            float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-        // Enable chase if player is within aggro range
-        chase = distanceToPlayer <= aggroRange;
+            // Check if the player's position has changed significantly
+            if (Vector2.Distance(player.transform.position, lastPlayerPosition) > 0.1f)
+            {
+                lastPlayerMoveTime = Time.time; // Reset the delay timer
+                lastPlayerPosition = player.transform.position;
+            }
 
-        if (chase)
+            // Enable chase if player is within aggro range and delay has passed
+            isChasing = distanceToPlayer <= aggroRange && Time.time >= lastPlayerMoveTime + chaseDelay;
+        }
+
+        if (isChasing)
             Chase();
         else
             ReturnStartPoint();
@@ -34,38 +49,41 @@ public class fenemymove : MonoBehaviour
         Flip();
     }
 
+    public void SetChase(bool value)
+    {
+        chaseOverridden = true;
+        isChasing = value;
+
+        // Reset override after a frame if set to false
+        if (!value)
+            chaseOverridden = false;
+    }
+
     private void Chase()
     {
         float deltaTime = Time.deltaTime;
 
-        // Align Y position first
-        if (Mathf.Abs(transform.position.y - player.transform.position.y) > 0.1f)
-        {
-            float yDirection = player.transform.position.y > transform.position.y ? 1 : -1;
-            transform.position += new Vector3(0, yAlignSpeed * yDirection * deltaTime, 0);
-        }
-        else
-        {
-            // After aligning Y, approach on the X-axis if not within stopDistance
-            float distanceToPlayerX = Mathf.Abs(transform.position.x - player.transform.position.x);
+        // Calculate target position with an X-axis offset from the player
+        Vector2 targetPosition = player.transform.position;
+        targetPosition.x += (player.transform.position.x > transform.position.x ? -xOffset : xOffset);
 
-            if (distanceToPlayerX > stopDistance)
-            {
-                float xDirection = player.transform.position.x > transform.position.x ? 1 : -1;
-                transform.position += new Vector3(speed * xDirection * deltaTime, 0, 0);
-            }
-        }
+        // Smooth movement towards the target position
+        Vector2 newPosition = Vector2.MoveTowards(transform.position, targetPosition, speed * deltaTime);
+        transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
     }
 
     private void ReturnStartPoint()
     {
-        // Return to the starting position
-        transform.position = Vector2.MoveTowards(transform.position, startingpoint.position, speed * Time.deltaTime);
+        // Smooth movement back to the starting position
+        Vector2 newPosition = Vector2.MoveTowards(transform.position, startingpoint.position, speed * Time.deltaTime);
+        transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
     }
 
     private void Flip()
     {
         // Flip sprite to face the player
+        if (player == null) return;
+
         if (transform.position.x > player.transform.position.x)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
