@@ -164,6 +164,10 @@ MonoBehaviour:
   momentumControlMultiplier: 0.3
   wallJumpBoostSpeed: 10
   wallKeyDisableTime: 0.1
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  enableUpwardWallJumpBug: 1
   airControlForce: 40
   airMaxSpeed: 8
   fastFallMultiplier: 50
@@ -173,9 +177,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  animator: {fileID: 0}
   velocityDisplay: {fileID: 319904038}
-  spriteRenderer: {fileID: 172287835}
   OnDash:
     m_PersistentCalls:
       m_Calls: []
@@ -1526,79 +1528,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1001 &495670172
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2033575427343333356, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_Name
-      value: startpos
-      objectReference: {fileID: 0}
-    - target: {fileID: 2033575427343333356, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3574032702014325191, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4361699257548862070, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887509581572502730, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887509581572502730, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887509581572502730, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.07235568
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887509581572502730, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887509581572502730, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887509581572502730, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887509581572502730, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887509581572502730, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887509581572502730, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887509581572502730, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9113322916152743446, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c137559541172f14c8e92bef5c5c713d, type: 3}
 --- !u!1 &505598537
 GameObject:
   m_ObjectHideFlags: 0
@@ -5703,4 +5632,3 @@ SceneRoots:
   - {fileID: 373987132}
   - {fileID: 1353034736}
   - {fileID: 1518787073}
-  - {fileID: 495670172}
