@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &16894605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5906,6 +5906,7 @@ GameObject:
   - component: {fileID: 665529499}
   - component: {fileID: 665529498}
   - component: {fileID: 665529497}
+  - component: {fileID: 665529500}
   m_Layer: 5
   m_Name: + Vitality Button
   m_TagString: Untagged
@@ -5976,7 +5977,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 665529498}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 665529500}
+        m_TargetAssemblyTypeName: UpgradeStat, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &665529498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6015,6 +6028,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665529495}
   m_CullTransparentMesh: 1
+--- !u!114 &665529500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665529495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b580cfddaf1fa4aade7afa4fc02032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelUpSystem: {fileID: 1490060985}
+  xpManager: {fileID: 1490060983}
 --- !u!1 &969359155
 GameObject:
   m_ObjectHideFlags: 0
@@ -11161,6 +11188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xpManager: {fileID: 1490060983}
+  levelManager: {fileID: 1490060985}
 --- !u!114 &1157337251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11688,6 +11716,7 @@ GameObject:
   - component: {fileID: 1395609020}
   - component: {fileID: 1395609019}
   - component: {fileID: 1395609018}
+  - component: {fileID: 1395609022}
   m_Layer: 5
   m_Name: Continue Button
   m_TagString: Untagged
@@ -11727,7 +11756,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 103cb612330de334aa69d57e2ca29895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToToggle: []
+  objectsToToggle:
+  - {fileID: 2030712182}
+  - {fileID: 665529495}
+  - {fileID: 1395609016}
+  - {fileID: 16894604}
 --- !u!114 &1395609019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11771,7 +11804,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1395609020}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1395609022}
+        m_TargetAssemblyTypeName: ToggleGameObject, Assembly-CSharp
+        m_MethodName: ShowObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1395609018}
+        m_TargetAssemblyTypeName: ToggleGameObject, Assembly-CSharp
+        m_MethodName: HideObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1395609020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11810,6 +11867,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395609016}
   m_CullTransparentMesh: 1
+--- !u!114 &1395609022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395609016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103cb612330de334aa69d57e2ca29895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToToggle:
+  - {fileID: 1307638631}
+  - {fileID: 46865710}
+  - {fileID: 473954701}
 --- !u!1 &1445403034
 GameObject:
   m_ObjectHideFlags: 0
@@ -11954,6 +12027,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1490060984}
   - component: {fileID: 1490060983}
+  - component: {fileID: 1490060985}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: Untagged
@@ -11999,6 +12073,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1490060985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490060982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08942ce49199c404292e97760111882f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Strength: 1
+  Vitality: 1
+  onStrengthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onVitalityChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1512232267
 GameObject:
   m_ObjectHideFlags: 0
@@ -16902,6 +16996,7 @@ GameObject:
   - component: {fileID: 1629960184}
   - component: {fileID: 1629960186}
   - component: {fileID: 1629960185}
+  - component: {fileID: 1629960187}
   m_Layer: 5
   m_Name: Vitality Text
   m_TagString: Untagged
@@ -17025,6 +17120,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629960183}
   m_CullTransparentMesh: 1
+--- !u!114 &1629960187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629960183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f305a42d09165a74d85f560e7acea29c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelManager: {fileID: 1490060985}
 --- !u!1 &1693766872
 GameObject:
   m_ObjectHideFlags: 0
@@ -17399,6 +17507,7 @@ GameObject:
   - component: {fileID: 2030712186}
   - component: {fileID: 2030712185}
   - component: {fileID: 2030712184}
+  - component: {fileID: 2030712187}
   m_Layer: 5
   m_Name: + Strength Button
   m_TagString: Untagged
@@ -17469,7 +17578,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2030712185}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2030712187}
+        m_TargetAssemblyTypeName: UpgradeStat, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2030712185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17508,6 +17629,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030712182}
   m_CullTransparentMesh: 1
+--- !u!114 &2030712187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030712182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b580cfddaf1fa4aade7afa4fc02032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelUpSystem: {fileID: 1490060985}
+  xpManager: {fileID: 0}
 --- !u!1 &2123153669
 GameObject:
   m_ObjectHideFlags: 0
