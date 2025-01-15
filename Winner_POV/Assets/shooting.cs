@@ -9,6 +9,7 @@ public class EnemyShoot : MonoBehaviour
     public float projectileLifetime = 5f; // Time before the projectile disappears
     public float aggroRange = 10f; // Aggro range for the enemy to start shooting
     public float shootYTolerance = 0.5f; // How much Y-axis tolerance the enemy has to be aligned with the player
+    public float shootOffset = 0f; // Horizontal offset for the shooting position
 
     private GameObject player; // Reference to the player
     private float lastShotTime; // Time of the last shot
@@ -24,7 +25,7 @@ public class EnemyShoot : MonoBehaviour
             return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-
+        
         // Check if the player is within aggro range and if the enemy is aligned with the player on the Y-axis
         if (distanceToPlayer <= aggroRange && Mathf.Abs(transform.position.y - player.transform.position.y) <= shootYTolerance)
         {
@@ -42,17 +43,17 @@ public class EnemyShoot : MonoBehaviour
             // Instantiate the projectile
             GameObject projectile = Instantiate(projectilePrefab, firePoint.transform.position, Quaternion.identity);
 
-            // Calculate the direction towards the player on the X-axis (purely horizontal)
-            Vector2 direction = new Vector2(player.transform.position.x > transform.position.x ? 1 : -1, 0);
+            // Calculate the base direction toward the player
+            //Vector2 direction = (player.transform.position - firePoint.transform.position).normalized;
+           float direction = player.transform.position.x - firePoint.transform.position.x > 0f ? 1f : -1f;
 
-            // Log the direction for debugging purposes
-            Debug.Log("Shooting in direction: " + direction);
-
-            // Set the projectile's velocity using the direction and speed
+            // Set the projectile's velocity using the modified direction and speed
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.velocity = direction * projectileSpeed; // Apply the velocity
+                var velocity = rb.velocity;
+                velocity.x = direction * projectileSpeed;
+                rb.velocity = velocity;
             }
 
             // Destroy the projectile after its lifetime

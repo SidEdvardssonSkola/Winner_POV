@@ -5,41 +5,29 @@ public class fenemymove : MonoBehaviour
     public float speed = 2f; // Overall movement speed
     public float aggroRange = 10f; // Aggro range for the enemy to start chasing
     public float chaseDelay = 1f; // Delay before chasing starts again
-    public float xOffset = 1.5f; // Distance offset on the X-axis from the player
+    public float xOffset = 3f; // Distance offset on the X-axis from the player
 
     private GameObject player; // Reference to the player
     private bool isChasing = false; // Whether the enemy is chasing
-    private bool chaseOverridden = false; // If chase state is overridden
-    private Vector2 lastPlayerPosition; // Track player's last known position
-    private float lastPlayerMoveTime; // Timestamp of the last significant player movement
     public Transform startingpoint; // Starting position of the enemy
-
+    private Rigidbody2D rb;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-            lastPlayerPosition = player.transform.position;
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         if (player == null)
-            return;
-
-        if (!chaseOverridden)
         {
-            float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-
-            // Check if the player's position has changed significantly
-            if (Vector2.Distance(player.transform.position, lastPlayerPosition) > 0.1f)
-            {
-                lastPlayerMoveTime = Time.time; // Reset the delay timer
-                lastPlayerPosition = player.transform.position;
-            }
-
-            // Enable chase if player is within aggro range and delay has passed
-            isChasing = distanceToPlayer <= aggroRange && Time.time >= lastPlayerMoveTime + chaseDelay;
+            return;
         }
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
+
+        // Enable chase if player is within aggro range and delay has passed
+        isChasing = distanceToPlayer <= aggroRange;
 
         if (isChasing)
             Chase();
@@ -47,24 +35,17 @@ public class fenemymove : MonoBehaviour
             ReturnStartPoint();
 
         Flip();
+
+        rb.velocity = Vector2.zero;
     }
 
-    public void SetChase(bool value)
-    {
-        chaseOverridden = true;
-        isChasing = value;
-
-        // Reset override after a frame if set to false
-        if (!value)
-            chaseOverridden = false;
-    }
-
+    private Vector2 targetPosition = new Vector2();
     private void Chase()
     {
         float deltaTime = Time.deltaTime;
 
         // Calculate target position with an X-axis offset from the player
-        Vector2 targetPosition = player.transform.position;
+        targetPosition.Set(player.transform.position.x, player.transform.position.y);
         targetPosition.x += (player.transform.position.x > transform.position.x ? -xOffset : xOffset);
 
         // Smooth movement towards the target position
