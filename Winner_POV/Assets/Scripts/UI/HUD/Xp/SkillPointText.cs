@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class SkillPointText : MonoBehaviour
 {
     [SerializeField] private XpSystem xpManager;
+    [SerializeField] private LevelUpSystem levelManager;
     private TextMeshProUGUI text;
 
     void Start()
@@ -15,6 +16,9 @@ public class SkillPointText : MonoBehaviour
     private void Awake()
     {
         xpManager.onLevelUp.AddListener(UpdateText);
+        levelManager.onStrengthChange.AddListener(UpdateText);
+        levelManager.onVitalityChange.AddListener(UpdateText);
+
     }
 
     public void UpdateText()
@@ -32,5 +36,7 @@ public class SkillPointText : MonoBehaviour
     private void OnDisable()
     {
         xpManager.onLevelUp.RemoveListener(UpdateText);
+        levelManager.onStrengthChange.RemoveListener(UpdateText);
+        levelManager.onVitalityChange.RemoveListener(UpdateText);
     }
 }

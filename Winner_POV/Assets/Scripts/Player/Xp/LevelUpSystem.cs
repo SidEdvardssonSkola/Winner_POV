@@ -14,10 +14,12 @@ public class LevelUpSystem : MonoBehaviour
     public void LevelUpStrength(int levels)
     {
         Strength += levels;
+        onStrengthChange.Invoke();
     }
 
     public void LevelUpVitality(int levels)
     {
         Vitality += levels;
+        onVitalityChange.Invoke();
     }
 }
