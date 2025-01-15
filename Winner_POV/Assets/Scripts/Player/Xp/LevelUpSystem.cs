@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class LevelUpSystem : MonoBehaviour
 {
+    [SerializeField] private PlayerHealth playerHealth;
+
     public int Strength = 1;
     public int Vitality = 1;
 
@@ -20,6 +22,7 @@ public class LevelUpSystem : MonoBehaviour
     public void LevelUpVitality(int levels)
     {
         Vitality += levels;
+        playerHealth.ChangeMaxHealth();
         onVitalityChange.Invoke();
     }
 }

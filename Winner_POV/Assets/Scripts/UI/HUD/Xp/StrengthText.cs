@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class StrengthText : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private LevelUpSystem levelManager;
+    private TextMeshProUGUI text;
+    private void Awake()
     {
-        
+        text = GetComponent<TextMeshProUGUI>();
+        levelManager.onStrengthChange.AddListener(UpdateText);;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateText()
     {
-        
+        text.text = "Strength: " + levelManager.Strength;
+    }
+
+    private void OnDisable()
+    {
+        levelManager.onStrengthChange.RemoveListener(UpdateText);
     }
 }

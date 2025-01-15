@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,10 +15,14 @@ public class PointSpawnWeight
 
 public class DefinePoint : MonoBehaviour
 {
-    [Header("Spawnweight Gäller Bara för Slumpade Punkter")]
+    [Header("Spawnweight Only Applies to Randomized Points on the map")]
     [SerializeField] private PointSpawnWeight[] spawnWeight;
 
+    [Header("Name Shall Refer to the Parent of The Canvas")]
+    [SerializeField] private string map = "map";
+
     private Image image;
+    private Button button;
 
     enum PointTypes
     {
@@ -81,6 +86,7 @@ public class DefinePoint : MonoBehaviour
     private void SetPointTo(PointTypes pointType)
     {
         image = GetComponent<Image>();
+        button = GetComponent<Button>();
 
         switch ((int)pointType)
         {
@@ -91,7 +97,7 @@ public class DefinePoint : MonoBehaviour
 
             //campfire
             case 1:
-                image.color = Color.yellow;
+                Campfire();
                 break;
 
             //miniboss
@@ -114,5 +120,19 @@ public class DefinePoint : MonoBehaviour
                 image.color = Color.cyan;
                 break;
         }
+    }
+
+    [SerializeField] private string CampfireUiName = "Campfire";
+    private void Campfire()
+    {
+        image.color = Color.yellow;
+
+        ToggleGameObject hide = gameObject.AddComponent<ToggleGameObject>();
+        hide.objectsToToggle = new GameObject[] { GameObject.Find(map) };
+        button.onClick.AddListener(hide.HideObjects);
+
+        ToggleGameObject show = gameObject.AddComponent<ToggleGameObject>();
+        show.objectsToToggle = new GameObject[] { GameObject.Find(CampfireUiName).GetComponent<GetGameObject>().GetObject() };
+        button.onClick.AddListener(show.ShowObjects);
     }
 }

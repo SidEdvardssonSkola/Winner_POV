@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ToggleGameObject : MonoBehaviour
 {
-    [SerializeField] private GameObject[] objectsToToggle;
+    public GameObject[] objectsToToggle;
     public void ToggleObjects()
     {
         foreach (GameObject o in objectsToToggle)
         {
-            if (o.active)
+            if (o)
             {
                 o.SetActive(false);
             }

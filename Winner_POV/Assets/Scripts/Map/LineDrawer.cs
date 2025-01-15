@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class LineDrawer : MonoBehaviour
@@ -8,7 +9,8 @@ public class LineDrawer : MonoBehaviour
     [SerializeField] private float lineSpacing = 1f;
     [SerializeField] int maxDots = 25;
 
-    Transform parent;
+    [SerializeField] private string mapName = "map";
+
     public void DrawLine(Vector2 pos1, Vector2 pos2)
     {
         transform.position = pos1;
@@ -29,8 +31,7 @@ public class LineDrawer : MonoBehaviour
             transform.Translate(0, lineSpacing, 0);
             elapsedDistance += lineSpacing;
 
-            parent = GameObject.Find("map").GetComponent<Transform>();
-            Instantiate(lineObject, transform.position, transform.rotation, parent);
+            Instantiate(lineObject, transform.position, transform.rotation, GameObject.Find(mapName).GetComponent<Transform>());
 
             maxDots--;
         }
