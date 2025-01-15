@@ -14,6 +14,6 @@ public class movem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * hspeed, 0);
+        rb.linearVelocity = new Vector2(Input.GetAxisRaw("Horizontal") * hspeed, 0);
     }
 }
