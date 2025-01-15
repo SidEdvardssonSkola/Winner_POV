@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class XpSystem : MonoBehaviour
 {
     public int level = 1;
-    private int levelUpPoints = 0;
+    public int levelUpPoints = 0;
 
     [Header("XP Threshold = Startvärdet för Antal XP som Krävs för att Levla Upp")]
     [SerializeField] public float xpThreshold = 100;
