@@ -1,24 +1,26 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class fenemymove : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
-    public float speed = 2f; // Overall movement speed
+    public float speed = 2f; // Movement speed for X-axis
+    public float yAlignSpeed = 3f; // Speed for Y-axis movement
     public float aggroRange = 10f; // Aggro range for the enemy to start chasing
+    public float stopDistance = 1f; // Distance to stop from the player
+    public Transform startingPoint; // Starting position of the enemy
     public float chaseDelay = 1f; // Delay before chasing starts again
-    public float xOffset = 1.5f; // Distance offset on the X-axis from the player
 
     private GameObject player; // Reference to the player
     private bool isChasing = false; // Whether the enemy is chasing
-    private bool chaseOverridden = false; // If chase state is overridden
-    private Vector2 lastPlayerPosition; // Track player's last known position
     private float lastPlayerMoveTime; // Timestamp of the last significant player movement
-    public Transform startingpoint; // Starting position of the enemy
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-            lastPlayerPosition = player.transform.position;
+        //if (player != null)
+       // {
+            lastPlayerMoveTime = Time.time;
+        //}
     }
 
     void Update()
@@ -26,71 +28,99 @@ public class fenemymove : MonoBehaviour
         if (player == null)
             return;
 
-        if (!chaseOverridden)
+        // Calculate the distance between the player and the enemy
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
+
+        // Check if the player has moved significantly to enable chasing
+        if (distanceToPlayer <= aggroRange && Time.time >= lastPlayerMoveTime + chaseDelay)
         {
-            float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-
-            // Check if the player's position has changed significantly
-            if (Vector2.Distance(player.transform.position, lastPlayerPosition) > 0.1f)
-            {
-                lastPlayerMoveTime = Time.time; // Reset the delay timer
-                lastPlayerPosition = player.transform.position;
-            }
-
-            // Enable chase if player is within aggro range and delay has passed
-            isChasing = distanceToPlayer <= aggroRange && Time.time >= lastPlayerMoveTime + chaseDelay;
+            isChasing = true;
+        }
+        else if (distanceToPlayer > aggroRange)
+        {
+            isChasing = false;
         }
 
+        // Perform chasing or return to start point based on the situation
         if (isChasing)
-            Chase();
+        {
+            ChasePlayer();
+        }
         else
-            ReturnStartPoint();
+        {
+            ReturnToStartingPoint();
+        }
 
-        Flip();
+        FlipTowardsPlayer(); // Flip the enemy to face the player
+
     }
 
+
+    // Handle chasing the player
     public void SetChase(bool value)
     {
-        chaseOverridden = true;
         isChasing = value;
-
-        // Reset override after a frame if set to false
-        if (!value)
-            chaseOverridden = false;
     }
-
-    private void Chase()
+    private void ChasePlayer()
     {
-        float deltaTime = Time.deltaTime;
-
-        // Calculate target position with an X-axis offset from the player
-        Vector2 targetPosition = player.transform.position;
-        targetPosition.x += (player.transform.position.x > transform.position.x ? -xOffset : xOffset);
-
-        // Smooth movement towards the target position
-        Vector2 newPosition = Vector2.MoveTowards(transform.position, targetPosition, speed * deltaTime);
-        transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
-    }
-
-    private void ReturnStartPoint()
-    {
-        // Smooth movement back to the starting position
-        Vector2 newPosition = Vector2.MoveTowards(transform.position, startingpoint.position, speed * Time.deltaTime);
-        transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
-    }
-
-    private void Flip()
-    {
-        // Flip sprite to face the player
-        if (player == null) return;
-
-        if (transform.position.x > player.transform.position.x)
+        Vector2 playerOffset = player.transform.position - transform.position;
+        var targetPos = new Vector3(player.transform.position.x, player.transform.position.y, 0);
+        if (playerOffset.x > 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            targetPos.x -= stopDistance;
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            targetPos.x += stopDistance;
+        }
+
+        var targetOffset = targetPos - transform.position;
+
+        // Calculate the direction to the player on both X and Y axes simultaneously
+        Vector2 directionToPlayer = targetOffset.normalized;
+
+        // Move the enemy towards the player on both axes
+        Vector3 movement = new Vector3(directionToPlayer.x * speed * Time.deltaTime, directionToPlayer.y * yAlignSpeed * Time.deltaTime, 0);
+
+        transform.position += movement;
+
+        //// Stop moving towards the player on the X-axis if within stopDistance
+        //if (Mathf.Abs(transform.position.x - player.transform.position.x) > stopDistance)
+        //{
+        //    transform.position += movement;
+        //}
+        //else
+        //{
+        //    // If too close on X, only move on Y axis to align vertically
+        //    transform.position += new Vector3(0, movement.y, 0);
+        //}
+
+        // Update the last player move time
+        lastPlayerMoveTime = Time.time;
+    }
+
+    // Return to the starting point if the player isn't in range
+    private void ReturnToStartingPoint()
+    {
+        Vector2 directionToStart = (startingPoint.position - transform.position).normalized;
+        Vector3 movement = new Vector3(directionToStart.x * speed * Time.deltaTime, directionToStart.y * yAlignSpeed * Time.deltaTime, 0);
+        transform.position += movement;
+    }
+
+    // Flip the enemy to face the player
+    private void FlipTowardsPlayer()
+    {
+        if (player == null) return;
+
+        // Flip based on the X position of the player relative to the enemy
+        if (transform.position.x > player.transform.position.x)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0); // Face left
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0); // Face right
         }
     }
 }

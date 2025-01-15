@@ -4,33 +4,50 @@ using UnityEngine;
 
 public class enemynpcpatrol : MonoBehaviour
 {
-    public GameObject pointA;
-    public GameObject pointB;
+    public GameObject pointA; // First target point
+    public GameObject pointB; // Second target point
     private Rigidbody2D rb;
-    private Transform currentPoint;
-    public float speed;
+    private Transform currentPoint; // The point that the enemy is currently heading towards
+    public float speed = 3f; // Speed of movement
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentPoint = pointB.transform; // Start moving towards pointB
+        currentPoint = pointA.transform; // Start moving towards pointA
     }
 
     void Update()
     {
+        // Move the enemy towards the current target point
+        MoveTowardsTarget();
+
+        // Check if the enemy is close enough to the current point to switch targets
+        if (Vector2.Distance(transform.position, currentPoint.position) < 0.1f)
+        {
+            // Switch target point when close enough
+            SwitchTarget();
+        }
+    }
+
+    private void MoveTowardsTarget()
+    {
         // Calculate direction to the current point
         Vector2 direction = (currentPoint.position - transform.position).normalized;
 
-        // Move the Rigidbody in the direction
+        // Set the velocity to move the enemy towards the current target point
         rb.velocity = direction * speed;
+    }
 
-        // Check if close enough to switch target points
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f)
+    private void SwitchTarget()
+    {
+        // Switch between pointA and pointB
+        if (currentPoint == pointA.transform)
         {
-            // Switch target point
-            currentPoint = currentPoint == pointB.transform ? pointA.transform : pointB.transform;
+            currentPoint = pointB.transform; // Move towards pointB
         }
-
-
+        else
+        {
+            currentPoint = pointA.transform; // Move towards pointA
+        }
     }
 }
