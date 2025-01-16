@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 888480931957540736}
   - component: {fileID: 6752970844231851210}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ Transform:
   m_GameObject: {fileID: 6039553253304202955}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.84, y: 1.06, z: 0.07235568}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -123,8 +123,9 @@ GameObject:
   - component: {fileID: 5307057338237977932}
   - component: {fileID: 3232940062002055188}
   - component: {fileID: 9023901007995164841}
-  m_Layer: 0
-  m_Name: Circle
+  - component: {fileID: 5853705326758878674}
+  m_Layer: 7
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +141,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.22, y: 0.07, z: -0.07235568}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 888480931957540736}
@@ -187,13 +188,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 0.62596446, g: 0.6320754, b: 0.11031505, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -233,7 +234,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
 --- !u!50 &5307057338237977932
 Rigidbody2D:
   serializedVersion: 4
@@ -242,14 +243,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7109842543663642799}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -259,7 +260,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &3232940062002055188
 MonoBehaviour:
@@ -291,12 +292,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  aggroRange: 10
-  attackRange: 1
+  aggroRange: 30
+  attackRange: 15
   attackDamage: 10
-  attackDelay: 1
+  attackDelay: 5
   projectilePrefab: {fileID: 7927786967548621749, guid: b5dc3ce191c69754180721cf8041ed96, type: 3}
-  shootingPoint: {fileID: 0}
+  shootingPoint: {fileID: 2207513729579787769}
+--- !u!114 &5853705326758878674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7109842543663642799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a7221198446184a8eeae7695046f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  onKilled:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9027523651255391105
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2207513729579787769}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: shootingspot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

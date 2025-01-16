@@ -12,13 +12,10 @@ public class MeleeEnemy : MonoBehaviour
     void Update()
     {
         // Check for the player within range and attack if possible
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange);
-        foreach (Collider collider in hitColliders)
+        Collider2D hitCollider = Physics2D.OverlapCircle(transform.position, attackRange);
+        if (hitCollider.CompareTag("Player"))
         {
-            if (collider.CompareTag("Player"))
-            {
-                TryAttack(collider.gameObject);
-            }
+            TryAttack(hitCollider.gameObject);
         }
     }
 

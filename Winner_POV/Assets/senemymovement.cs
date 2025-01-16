@@ -39,7 +39,7 @@ public class EnemyMove : MonoBehaviour
 
         Flip();
 
-        rb.velocity = Vector2.zero;
+        //rb.velocity = Vector2.zero;
     }
 
     private void Chase()

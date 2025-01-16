@@ -36,9 +36,11 @@ public class DefinePoint : MonoBehaviour
         Shop = 5
     }
 
+    private int pointDepth;
     public void Define(int depth, int remainingSteps)
     {
         int totalSteps = remainingSteps + depth;
+        pointDepth = depth;
         if (remainingSteps == 0)
         {
             SetPointTo(PointTypes.Campfire);
@@ -125,11 +127,13 @@ public class DefinePoint : MonoBehaviour
     }
 
     [SerializeField] private string CampfireUiName = "Campfire";
+    [SerializeField] private string combatEnvironmentName = "Combat";
     private void Campfire()
     {
         image.color = Color.yellow;
 
         ToggleGameObject hide = gameObject.AddComponent<ToggleGameObject>();
+
         hide.objectsToToggle = new GameObject[] { GameObject.Find(map) };
         button.onClick.AddListener(hide.HideObjects);
 
@@ -142,11 +146,31 @@ public class DefinePoint : MonoBehaviour
 
     private void Enemy()
     {
+        ToggleGameObject hide = gameObject.AddComponent<ToggleGameObject>();
+        hide.objectsToToggle = new GameObject[] { GameObject.Find(map) };
+        button.onClick.AddListener(hide.HideObjects);
+
+        ToggleGameObject show = gameObject.AddComponent<ToggleGameObject>();
+        show.objectsToToggle = new GameObject[] { GameObject.Find(combatEnvironmentName).GetComponent<GetGameObject>().GetObject() };
+        button.onClick.AddListener(show.ShowObjects);
+
+        gameObject.AddComponent<CombatEncounter>();
+
         image.sprite = enemyIcon;
     }
 
     private void MiniBoss()
     {
+        ToggleGameObject hide = gameObject.AddComponent<ToggleGameObject>();
+        hide.objectsToToggle = new GameObject[] { GameObject.Find(map) };
+        button.onClick.AddListener(hide.HideObjects);
+
+        ToggleGameObject show = gameObject.AddComponent<ToggleGameObject>();
+        show.objectsToToggle = new GameObject[] { GameObject.Find(combatEnvironmentName).GetComponent<GetGameObject>().GetObject() };
+        button.onClick.AddListener(show.ShowObjects);
+
+        gameObject.AddComponent<CombatEncounter>();
+
         image.color = Color.red;
         image.sprite = enemyIcon;
     }
