@@ -16,9 +16,16 @@ public class PlayerHealth : MonoBehaviour
 
     public UnityEvent OnHealthChange;
 
+    [SerializeField] private ParticleSystem hitEffect;
+
     private void Start()
     {
         maxHealth = startingMaxHealth;
+    }
+
+    private void Awake()
+    {
+        isIframeActive = false;
     }
 
     private void Update()
@@ -42,10 +49,24 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChange.Invoke();
     }
 
+    [SerializeField] private float iframesInSeconds = 0.1f;
+    private bool isIframeActive = false;
     public void ChangeHealth(float ammount)
     {
         float oldHealth = health;
-        health = Mathf.Clamp(health + ammount, 0, maxHealth);
+
+        if (ammount < 0 && !isIframeActive)
+        {
+            isIframeActive = true;
+            Invoke(nameof(ResetIframes), iframesInSeconds);
+            health = Mathf.Clamp(health + ammount, 0, maxHealth);
+
+            hitEffect.Play();
+        }
+        else if (ammount > 0)
+        {
+            health = Mathf.Clamp(health + ammount, 0, maxHealth);
+        }
 
         if (health <= 0)
         {
@@ -53,5 +74,34 @@ public class PlayerHealth : MonoBehaviour
         }
 
         OnHealthChange.Invoke();
+    }
+
+    public void ChangeHealth(float ammount, bool ignoreIframes)
+    {
+        float oldHealth = health;
+
+        if (ammount < 0)
+        {
+            Invoke(nameof(ResetIframes), iframesInSeconds);
+            health = Mathf.Clamp(health + ammount, 0, maxHealth);
+
+            hitEffect.Play();
+        }
+        else if (ammount > 0)
+        {
+            health = Mathf.Clamp(health + ammount, 0, maxHealth);
+        }
+
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        OnHealthChange.Invoke();
+    }
+
+    public void ResetIframes()
+    {
+        isIframeActive = false;
     }
 }
