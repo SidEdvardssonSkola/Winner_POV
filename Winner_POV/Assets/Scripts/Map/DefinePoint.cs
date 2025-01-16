@@ -23,6 +23,9 @@ public class DefinePoint : MonoBehaviour
     private Image image;
     private Button button;
 
+    [SerializeField] private Sprite campfireIcon;
+    [SerializeField] private Sprite enemyIcon;
+
     enum PointTypes
     {
         Enemy = 0,
@@ -91,7 +94,7 @@ public class DefinePoint : MonoBehaviour
         {
             //enemy
             case 0:
-                image.color = Color.red;
+                Enemy();
                 break;
 
             //campfire
@@ -101,7 +104,7 @@ public class DefinePoint : MonoBehaviour
 
             //miniboss
             case 2:
-                image.color = Color.magenta;
+                MiniBoss();
                 break;
 
             //boss
@@ -133,5 +136,18 @@ public class DefinePoint : MonoBehaviour
         ToggleGameObject show = gameObject.AddComponent<ToggleGameObject>();
         show.objectsToToggle = new GameObject[] { GameObject.Find(CampfireUiName).GetComponent<GetGameObject>().GetObject() };
         button.onClick.AddListener(show.ShowObjects);
+
+        image.sprite = campfireIcon;
+    }
+
+    private void Enemy()
+    {
+        image.sprite = enemyIcon;
+    }
+
+    private void MiniBoss()
+    {
+        image.color = Color.red;
+        image.sprite = enemyIcon;
     }
 }
