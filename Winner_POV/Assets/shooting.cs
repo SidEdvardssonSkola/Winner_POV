@@ -1,63 +1,98 @@
 using UnityEngine;
 
-public class EnemyShoot : MonoBehaviour
+public class shooting : MonoBehaviour
 {
-    public GameObject projectilePrefab; // Prefab for the projectile
-    public GameObject firePoint; // GameObject for the fire point
-    public float shootInterval = 2f; // Time between each shot
-    public float projectileSpeed = 10f; // Speed of the projectile
-    public float projectileLifetime = 5f; // Time before the projectile disappears
-    public float aggroRange = 10f; // Aggro range for the enemy to start shooting
-    public float shootYTolerance = 0.5f; // How much Y-axis tolerance the enemy has to be aligned with the player
-    public float shootOffset = 0f; // Horizontal offset for the shooting position
+    public float speed = 2f; // Movement speed of the enemy
+    public float aggroRange = 10f; // Range within which the enemy will start chasing
+    public float attackRange = 1f; // Range within which the enemy can attack
+    public int attackDamage = 10; // Amount of damage dealt by the enemy's attack
+    public float attackDelay = 1f; // Delay between attacks to prevent spamming
+    private float lastAttackTime = 0f; // Time of the last attack
+
+    public GameObject projectilePrefab; // Reference to the projectile prefab
+    public Transform shootingPoint; // The point where the projectile will be shot from
 
     private GameObject player; // Reference to the player
-    private float lastShotTime; // Time of the last shot
+    private bool isChasing = false; // Whether the enemy is currently chasing the player
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player"); // Find the player by tag
     }
 
     void Update()
     {
-        if (player == null || firePoint == null)
-            return;
+        if (player == null)
+            return; // If no player is found, exit the function
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        
-        // Check if the player is within aggro range and if the enemy is aligned with the player on the Y-axis
-        if (distanceToPlayer <= aggroRange && Mathf.Abs(transform.position.y - player.transform.position.y) <= shootYTolerance)
+        // Calculate the distance between the enemy and the player
+        float distanceToPlayer = Mathf.Abs(transform.position.x - player.transform.position.x);
+
+        // If the player is within the aggro range, start chasing
+        isChasing = distanceToPlayer <= aggroRange;
+
+        if (isChasing)
         {
-            Shoot();
+            MoveTowardsPlayer(); // Move the enemy towards the player
+
+            // If the player is within attack range and the attack delay has passed, shoot a projectile
+            if (distanceToPlayer <= attackRange && Time.time >= lastAttackTime + attackDelay)
+            {
+                AttackPlayer(); // Attack the player by shooting a projectile
+            }
         }
     }
 
-    private void Shoot()
+    private void MoveTowardsPlayer()
     {
-        // Check if enough time has passed to shoot again
-        if (Time.time - lastShotTime >= shootInterval)
+        // Get the X direction to move in
+        float direction = player.transform.position.x > transform.position.x ? 1 : -1;
+
+        // Move the enemy towards the player along the X-axis
+        transform.position = new Vector3(transform.position.x + direction * speed * Time.deltaTime, transform.position.y, transform.position.z);
+    }
+
+    private void AttackPlayer()
+    {
+        lastAttackTime = Time.time; // Update the last attack time to prevent spamming
+        Debug.Log("Enemy attacks the player!");
+
+        // Only shoot if the player is within aggro range
+        if (projectilePrefab != null && shootingPoint != null)
         {
-            lastShotTime = Time.time;
-
-            // Instantiate the projectile
-            GameObject projectile = Instantiate(projectilePrefab, firePoint.transform.position, Quaternion.identity);
-
-            // Calculate the base direction toward the player
-            //Vector2 direction = (player.transform.position - firePoint.transform.position).normalized;
-           float direction = player.transform.position.x > firePoint.transform.position.x  ? 1f : -1f;
-
-            // Set the projectile's velocity using the modified direction and speed
-            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                var velocity = rb.velocity;
-                velocity.x = direction * projectileSpeed;
-                rb.velocity = velocity;
-            }
-
-            // Destroy the projectile after its lifetime
-            Destroy(projectile, projectileLifetime);
+            ShootProjectile();
         }
+    }
+
+    private void ShootProjectile()
+    {
+        // Instantiate the projectile at the shooting point
+        GameObject projectile = Instantiate(projectilePrefab, shootingPoint.position, Quaternion.identity);
+
+        // Get the direction towards the player on the X-axis only (ignore Y-axis movement)
+        float direction = (player.transform.position.x > transform.position.x) ? 1f : -1f;
+
+        // Apply velocity to the projectile to move it along the X-axis
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            // Set the velocity along the X-axis only (no vertical movement)
+            rb.velocity = new Vector2(direction * 5f, 0); // 5f is the speed of the projectile
+        }
+
+        // Ensure the projectile faces the correct direction based on the enemy's position
+        if (transform.position.x > player.transform.position.x)
+        {
+            // Flip the projectile's rotation to face left (180 degrees on the Y-axis)
+            projectile.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            // Keep the projectile's rotation as is (no flip)
+            projectile.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        // Optional: You can also add a timer to destroy the projectile after a certain time
+        Destroy(projectile, 5f); // Destroy projectile after 5 seconds (to prevent clutter)
     }
 }
