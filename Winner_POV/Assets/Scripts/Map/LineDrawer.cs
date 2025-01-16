@@ -24,7 +24,7 @@ public class LineDrawer : MonoBehaviour
         }
 
         float distance = Mathf.Sqrt((pos2.x - pos1.x) * (pos2.x - pos1.x) + (pos2.y - pos1.y) * (pos2.y - pos1.y));
-        float elapsedDistance = 0f;
+        float elapsedDistance = lineSpacing;
 
         while (distance > elapsedDistance || maxDots < 1)
         {

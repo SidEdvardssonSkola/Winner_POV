@@ -153,6 +153,7 @@ MonoBehaviour:
   maxBranchLength: 4
   branchOffset: 1.45
   branchFrequency: 0
+  bossIcon: {fileID: 6935348719562497810, guid: 1d77152aea1b5534885e1b04064f88e5, type: 3}
 --- !u!114 &924196580585216128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,3 +191,5 @@ MonoBehaviour:
     value: 0
   - name: Shop Spawnweight
     value: 0
+  map: map
+  CampfireUiName: Campfire

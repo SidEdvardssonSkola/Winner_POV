@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -45,6 +46,11 @@ public class PlayerHealth : MonoBehaviour
     {
         float oldHealth = health;
         health = Mathf.Clamp(health + ammount, 0, maxHealth);
+
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
 
         OnHealthChange.Invoke();
     }

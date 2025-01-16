@@ -27,12 +27,9 @@ public class GenerateMap : MonoBehaviour
 
     [SerializeField] private GameObject mapIcon;
 
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(GenerateTheMap());
-        }
+        StartCoroutine(GenerateTheMap());
     }
 
     private IEnumerator GenerateTheMap()

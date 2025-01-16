@@ -6,6 +6,10 @@ public class MapPanning : MonoBehaviour
 {
     [SerializeField] private float panSpeed = 5.5f;
     [SerializeField] private float panThreshold = 0.15f;
+
+    [SerializeField] private float minYPos;
+    [SerializeField] private float maxYPos;
+    private float yPos;
     private int panDirection = 0;
     private void Update()
     {
@@ -21,6 +25,9 @@ public class MapPanning : MonoBehaviour
         {
             panDirection = 0;
         }
-        transform.Translate(0 * Time.deltaTime, panSpeed * -panDirection * Time.deltaTime, 0);
+        yPos += panSpeed * -panDirection * Time.deltaTime;
+        yPos = Mathf.Clamp(yPos, minYPos, maxYPos);
+
+        transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
     }
 }

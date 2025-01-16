@@ -121,7 +121,7 @@ public class DrawPaths : MonoBehaviour
         }
         else
         {
-            EndPath(stepLength);
+            EndPath(stepLength, file, depth, parent.gameObject);
         }
     }
 
@@ -168,14 +168,20 @@ public class DrawPaths : MonoBehaviour
         }
         else
         {
-            EndPath(stepLength);
+            EndPath(stepLength, file, depth, parent.gameObject);
         }
     }
 
-    private void EndPath(float stepLength)
+    [SerializeField] private Button bossIcon;
+    private void EndPath(float stepLength, int file, int depth, GameObject parent)
     {
-        LineDrawer lineDrawer = Instantiate(lineDrawerObject, transform.position, Quaternion.identity).GetComponent<LineDrawer>();
-        lineDrawer.DrawLine(transform.position, new Vector2(0, transform.position.y + stepLength));
+        if (file == 1)
+        {
+            RegisterButtonToRegistry boss;
+            boss = Instantiate(bossIcon.gameObject, new Vector3(0, transform.position.y + stepLength, 0), Quaternion.identity, parent.transform).GetComponent<RegisterButtonToRegistry>();
+            boss.Register(1, depth + 1);
+        }
+        StartCoroutine(MergePath(parent, file, depth, true));
     }
 
     private IEnumerator MergePath(GameObject parent, int file, int depth)
@@ -255,6 +261,23 @@ public class DrawPaths : MonoBehaviour
 
         //ritar linjer till punkterna
         foreach(Button b in nextSteps)
+        {
+            LineDrawer lineDrawer = Instantiate(lineDrawerObject, transform.position, Quaternion.identity).GetComponent<LineDrawer>();
+            lineDrawer.DrawLine(transform.position, b.transform.position);
+        }
+    }
+
+    private IEnumerator MergePath(GameObject parent, int file, int depth, bool isBossMerge)
+    {
+        yield return new WaitForSeconds(0.3f);
+        Button[] nextSteps;
+
+        Vector2 mergePointCoordinates = new(1, depth + 1);
+        nextSteps = new Button[] { parent.GetComponent<MapIconManager>().GetButtonFromIndex(mergePointCoordinates) };
+        GetComponent<EnableNextPoints>().SetNextButtons(nextSteps);
+
+        //ritar linjer till punkterna
+        foreach (Button b in nextSteps)
         {
             LineDrawer lineDrawer = Instantiate(lineDrawerObject, transform.position, Quaternion.identity).GetComponent<LineDrawer>();
             lineDrawer.DrawLine(transform.position, b.transform.position);
