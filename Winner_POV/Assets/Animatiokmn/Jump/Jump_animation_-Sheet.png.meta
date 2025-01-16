@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 433d1fb616252964793c05dbb19b326c
+guid: 71e8d2fa1d1f0e641b650d08d3a5ac4c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,8 +48,8 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 9
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
-  spriteBorder: {x: 1, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -98,7 +98,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player Idle 48x48_0
+      name: Jump_animation_-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 48
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5f05fddb0ca6f24e982acf910aeb8d4
-      internalID: -399301457
+      spriteID: 61b30f4633297314ba07e6f702ff2fb6
+      internalID: 2013736154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Idle 48x48_1
+      name: Jump_animation_-Sheet_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 800
         y: 0
-        width: 48
-        height: 48
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f25baf5c6f2f4554fb48769442948c06
-      internalID: -1703854222
+      spriteID: 07a222a0a1a4f80439aa8aee3f5a506b
+      internalID: -516399090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Idle 48x48_2
+      name: Jump_animation_-Sheet_2
       rect:
         serializedVersion: 2
-        x: 96
+        x: 1600
         y: 0
-        width: 48
-        height: 48
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd72ef0a71dde3c44a21e003356f37d6
-      internalID: 508516761
+      spriteID: d193ec13d9dfe2649a283aae52014785
+      internalID: 1180902972
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Idle 48x48_3
+      name: Jump_animation_-Sheet_3
       rect:
         serializedVersion: 2
-        x: 144
+        x: 2400
         y: 0
-        width: 48
-        height: 48
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 168feecdf011aac45aeccb9875bd3e37
-      internalID: 134978564
+      spriteID: 6abcf392e8917714c85fc63c62fb979e
+      internalID: 691483098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Idle 48x48_4
+      name: Jump_animation_-Sheet_4
       rect:
         serializedVersion: 2
-        x: 192
+        x: 3200
         y: 0
-        width: 48
-        height: 48
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 831d785217bfa044ebd618744da43498
-      internalID: 1194228475
+      spriteID: f0a5298e22aa6d244a864d5a9d59ef27
+      internalID: 2042862956
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Idle 48x48_5
+      name: Jump_animation_-Sheet_5
       rect:
         serializedVersion: 2
-        x: 240
+        x: 4000
         y: 0
-        width: 48
-        height: 48
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,92 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a1bb129411990a4b9995a5cf818feac
-      internalID: -1999868527
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Idle 48x48_6
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b83f3203a66001741a307c5bb0389446
-      internalID: -86307445
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Idle 48x48_7
-      rect:
-        serializedVersion: 2
-        x: 337
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2f9d30b9127cfd64999122b3c6357ef8
-      internalID: -357098350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Idle 48x48_8
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ffac5c6b887a0a348b7d539fc6867035
-      internalID: 969877815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Idle 48x48_9
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 615f5eba22708524d9819e0319baa124
-      internalID: -1779749300
+      spriteID: 4bf372e38a88fc3469abc1bc5a5e7451
+      internalID: 125415079
       vertices: []
       indices: 
       edges: []
@@ -330,16 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player Idle 48x48_0: -399301457
-      Player Idle 48x48_1: -1703854222
-      Player Idle 48x48_2: 508516761
-      Player Idle 48x48_3: 134978564
-      Player Idle 48x48_4: 1194228475
-      Player Idle 48x48_5: -1999868527
-      Player Idle 48x48_6: -86307445
-      Player Idle 48x48_7: -357098350
-      Player Idle 48x48_8: 969877815
-      Player Idle 48x48_9: -1779749300
+      Jump_animation_-Sheet_0: 2013736154
+      Jump_animation_-Sheet_1: -516399090
+      Jump_animation_-Sheet_2: 1180902972
+      Jump_animation_-Sheet_3: 691483098
+      Jump_animation_-Sheet_4: 2042862956
+      Jump_animation_-Sheet_5: 125415079
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
