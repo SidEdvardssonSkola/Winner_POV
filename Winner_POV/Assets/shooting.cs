@@ -45,7 +45,7 @@ public class EnemyShoot : MonoBehaviour
 
             // Calculate the base direction toward the player
             //Vector2 direction = (player.transform.position - firePoint.transform.position).normalized;
-           float direction = player.transform.position.x - firePoint.transform.position.x > 0f ? 1f : -1f;
+           float direction = player.transform.position.x > firePoint.transform.position.x  ? 1f : -1f;
 
             // Set the projectile's velocity using the modified direction and speed
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
