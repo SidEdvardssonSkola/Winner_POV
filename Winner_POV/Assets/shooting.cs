@@ -92,7 +92,26 @@ public class shooting : MonoBehaviour
             projectile.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        // Optional: You can also add a timer to destroy the projectile after a certain time
-        Destroy(projectile, 5f); // Destroy projectile after 5 seconds (to prevent clutter)
+        // Add collision detection directly in this script
+        ProjectileBehavior projectileBehavior = projectile.AddComponent<ProjectileBehavior>();
+        projectileBehavior.damageAmount = attackDamage;
+    }
+}
+
+public class ProjectileBehavior : MonoBehaviour
+{
+    public int damageAmount;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.ChangeHealth(-damageAmount);
+            }
+            Destroy(gameObject); // Destroy the projectile on impact
+        }
     }
 }

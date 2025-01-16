@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 888480931957540736}
   - component: {fileID: 6752970844231851210}
-  - component: {fileID: 1574912717031052921}
   m_Layer: 0
   m_Name: trigger
   m_TagString: Untagged
@@ -78,20 +77,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.02069}
   m_EdgeRadius: 0
---- !u!114 &1574912717031052921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3775521331189740949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a266633c83d7eb742930c56b1cfb28fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyarray:
-  - {fileID: 3232940062002055188}
 --- !u!1 &6039553253304202955
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,13 +290,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10978ead784ff5418a12f24a828bf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 7927786967548621749, guid: b5dc3ce191c69754180721cf8041ed96, type: 3}
-  firePoint: {fileID: 9027523651255391105}
-  shootInterval: 2
-  projectileSpeed: 10
-  projectileLifetime: 5
+  speed: 2
   aggroRange: 10
-  shootYTolerance: 0.5
+  attackRange: 1
+  attackDamage: 10
+  attackDelay: 1
+  projectilePrefab: {fileID: 7927786967548621749, guid: b5dc3ce191c69754180721cf8041ed96, type: 3}
+  shootingPoint: {fileID: 0}
 --- !u!1 &9027523651255391105
 GameObject:
   m_ObjectHideFlags: 0
