@@ -8,10 +8,15 @@ public class CombatEncounterManager : MonoBehaviour
     [SerializeField] private GameObject map;
     [SerializeField] private GameObject environment;
 
+    [SerializeField] private Transform player;
+    [SerializeField] private Vector3 playerSpawnPos;
+
     private GameObject currentEncounter;
     public float enemyScaling;
     public void SpawnRandomEncounter(float scaling)
     {
+        player.position = playerSpawnPos;
+
         enemyScaling = scaling;
 
         int randomNumber = Random.Range(0, combatEncounters.Length);
