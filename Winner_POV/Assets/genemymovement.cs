@@ -27,10 +27,11 @@ public class genemymovement : MonoBehaviour
             MoveTowardsPlayer(); // Move the enemy towards the player
     }
 
+    public float direction;
     private void MoveTowardsPlayer()
     {
         // Get the X direction to move in
-        float direction = player.transform.position.x > transform.position.x ? 1 : -1;
+        direction = player.transform.position.x > transform.position.x ? 1 : -1;
 
         // Move the enemy towards the player along the X-axis
         transform.position = new Vector3(transform.position.x + direction * speed * Time.deltaTime, transform.position.y, transform.position.z);
