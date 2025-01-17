@@ -6,6 +6,16 @@ using UnityEngine.UI;
 public class SpawnBoss : MonoBehaviour
 {
     Button button;
+    private bool playSoundWhenEnabled = false;
+
+    private void OnEnable()
+    {
+        if (playSoundWhenEnabled)
+        {
+            GetComponent<AudioSource>().Play();
+        }    
+    }
+
     private void Start()
     {
         button = GetComponent<Button>();
@@ -28,5 +38,7 @@ public class SpawnBoss : MonoBehaviour
 
         Transform player = GameObject.Find("Player (1)").GetComponent<Transform>();
         player.transform.position = spawnPos;
+
+        playSoundWhenEnabled = true;
     }
 }

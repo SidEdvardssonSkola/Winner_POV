@@ -5,6 +5,7 @@ using UnityEngine;
 public class HurtEnemy : MonoBehaviour
 {
     [SerializeField] private float damage = 25;
+    [SerializeField] private CameraShake screenShake;
     private float actualDamage;
 
     private void Start()
@@ -21,6 +22,7 @@ public class HurtEnemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            screenShake.ShakeScreen(0.2f, 0.25f);
             collision.gameObject.GetComponent<EnemyHealth>().ChangeHealth(-actualDamage);
         }
     }

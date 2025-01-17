@@ -16540,6 +16540,7 @@ GameObject:
   - component: {fileID: 570486851}
   - component: {fileID: 570486854}
   - component: {fileID: 570486855}
+  - component: {fileID: 570486856}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -16682,6 +16683,18 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: cef860b038593eb4b80be8dbb6a63b08, type: 2}
+--- !u!114 &570486856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570486850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f064b928eddde74f9fde0718835e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &652964637
 GameObject:
   m_ObjectHideFlags: 0
@@ -34326,16 +34339,16 @@ CompositeCollider2D:
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
-    - - {x: 2.0440829, y: -1.146731}
-      - {x: 2.6238735, y: -0.91795284}
-      - {x: 1.9792619, y: 0.7215616}
-      - {x: 2.0041585, y: 0.7443776}
-      - {x: 1.9446304, y: 0.8095924}
-      - {x: 1.9248791, y: 0.85974693}
-      - {x: 1.9057267, y: 0.8522086}
-      - {x: 0.7168863, y: 2.1545274}
-      - {x: 0.2568411, y: 1.7336222}
-      - {x: 1.4069685, y: 0.473667}
+    - - {x: 4.0881767, y: -2.2934892}
+      - {x: 5.2477574, y: -1.8359324}
+      - {x: 3.9585097, y: 1.4431108}
+      - {x: 4.0083365, y: 1.4887339}
+      - {x: 3.889263, y: 1.6191802}
+      - {x: 3.8497849, y: 1.7195052}
+      - {x: 3.8114657, y: 1.7044039}
+      - {x: 1.433793, y: 4.3090754}
+      - {x: 0.5136612, y: 3.4672666}
+      - {x: 2.8139348, y: 0.9473388}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -34380,6 +34393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
+  screenShake: {fileID: 570486856}
 --- !u!95 &1544861014
 Animator:
   serializedVersion: 5
@@ -35649,6 +35663,7 @@ MonoBehaviour:
   - {fileID: 6150746256107655865, guid: 9ed5a6ce02319624797bbd8dd9d817fb, type: 3}
   - {fileID: 6150746256107655865, guid: f6d1af398c84cc146af379d1d3fcfe42, type: 3}
   - {fileID: 6150746256107655865, guid: 939c430c1196bb14399f6654acab88a1, type: 3}
+  - {fileID: 6150746256107655865, guid: 03eda256b7517d642866bf1077be94a7, type: 3}
   map: {fileID: 473954701}
   environment: {fileID: 1124574523}
   player: {fileID: 1248141428}
