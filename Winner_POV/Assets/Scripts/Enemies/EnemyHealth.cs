@@ -21,6 +21,16 @@ public class EnemyHealth : MonoBehaviour
 
         maxHealth *= manager.enemyScaling;
         xpGiveAmmount *= manager.enemyScaling;
+
+        if (GetComponent<shooting>() != null)
+        {
+            GetComponent<shooting>().attackDamage = (int)Mathf.Round(GetComponent<shooting>().attackDamage * manager.enemyScaling);
+        }
+        else if (GetComponent<MeleeEnemy>() != null)
+        {
+            GetComponent<MeleeEnemy>().damageAmount = (int)Mathf.Round(GetComponent<MeleeEnemy>().damageAmount * manager.enemyScaling);
+        }
+
         health = maxHealth;
     }
 
