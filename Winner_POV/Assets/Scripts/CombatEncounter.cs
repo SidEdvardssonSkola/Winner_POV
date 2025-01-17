@@ -18,6 +18,6 @@ public class CombatEncounter : MonoBehaviour
 
     public void PrepareEncounter()
     {
-        GameObject.Find("Encounter Manager").GetComponent<CombatEncounterManager>().SpawnRandomEncounter();
+        GameObject.Find("Encounter Manager").GetComponent<CombatEncounterManager>().SpawnRandomEncounter(scaling);
     }
 }

@@ -20,4 +20,9 @@ public class SpawnBoss : MonoBehaviour
 
         button.onClick.AddListener(hide.HideObjects);
     }
+
+    public void DisableButton()
+    {
+        button.enabled = false;
+    }
 }

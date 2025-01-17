@@ -26,6 +26,8 @@ public class DefinePoint : MonoBehaviour
     [SerializeField] private Sprite campfireIcon;
     [SerializeField] private Sprite enemyIcon;
 
+    [SerializeField] private float enemyScaling = 1.12f;
+
     enum PointTypes
     {
         Enemy = 0,
@@ -154,7 +156,8 @@ public class DefinePoint : MonoBehaviour
         show.objectsToToggle = new GameObject[] { GameObject.Find(combatEnvironmentName).GetComponent<GetGameObject>().GetObject() };
         button.onClick.AddListener(show.ShowObjects);
 
-        gameObject.AddComponent<CombatEncounter>();
+        CombatEncounter combatEncounter = gameObject.AddComponent<CombatEncounter>();
+        combatEncounter.SetScaling(Mathf.Pow(enemyScaling, pointDepth - 1));
 
         image.sprite = enemyIcon;
     }
@@ -169,7 +172,8 @@ public class DefinePoint : MonoBehaviour
         show.objectsToToggle = new GameObject[] { GameObject.Find(combatEnvironmentName).GetComponent<GetGameObject>().GetObject() };
         button.onClick.AddListener(show.ShowObjects);
 
-        gameObject.AddComponent<CombatEncounter>();
+        CombatEncounter combatEncounter = gameObject.AddComponent<CombatEncounter>();
+        combatEncounter.SetScaling(Mathf.Pow(enemyScaling, pointDepth + 1));
 
         image.color = Color.red;
         image.sprite = enemyIcon;

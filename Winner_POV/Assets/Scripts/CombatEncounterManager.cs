@@ -9,8 +9,11 @@ public class CombatEncounterManager : MonoBehaviour
     [SerializeField] private GameObject environment;
 
     private GameObject currentEncounter;
-    public void SpawnRandomEncounter()
+    public float enemyScaling;
+    public void SpawnRandomEncounter(float scaling)
     {
+        enemyScaling = scaling;
+
         int randomNumber = Random.Range(0, combatEncounters.Length);
         currentEncounter = Instantiate(combatEncounters[randomNumber]);
     }
@@ -30,8 +33,8 @@ public class CombatEncounterManager : MonoBehaviour
         print(remainingEnemies);
         if (remainingEnemies <= 0)
         {
-            map.SetActive(true); 
             environment.SetActive(false);
+            map.SetActive(true);
 
             Destroy(currentEncounter);
         }

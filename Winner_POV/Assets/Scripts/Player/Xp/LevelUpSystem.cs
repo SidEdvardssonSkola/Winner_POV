@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class LevelUpSystem : MonoBehaviour
 {
     [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private HurtEnemy attack;
 
     public int Strength = 1;
     public int Vitality = 1;
@@ -16,6 +17,7 @@ public class LevelUpSystem : MonoBehaviour
     public void LevelUpStrength(int levels)
     {
         Strength += levels;
+        attack.UpgradeDamage(Strength);
         onStrengthChange.Invoke();
     }
 

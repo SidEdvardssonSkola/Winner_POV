@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 3028197271929115309}
   m_Layer: 7
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,7 +235,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.07
 --- !u!50 &5307057338237977932
 Rigidbody2D:
   serializedVersion: 4
@@ -276,9 +276,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  aggroRange: 10
+  aggroRange: 40
   chaseDelay: 1
-  xOffset: 1.5
+  xOffset: 10
   startingpoint: {fileID: 1261733144776880893}
 --- !u!114 &9023901007995164841
 MonoBehaviour:
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10978ead784ff5418a12f24a828bf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 5
   aggroRange: 30
   attackRange: 15
   attackDamage: 10
