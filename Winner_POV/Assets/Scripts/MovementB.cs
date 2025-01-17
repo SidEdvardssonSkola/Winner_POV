@@ -179,7 +179,7 @@ public class bora : MonoBehaviour
                 rb.velocity.y);
         }
 
-        HandleWallJump(moveX);
+        //HandleWallJump(moveX);
 
         if (Input.GetKey(KeyCode.Space) && canJump)
         {
@@ -286,8 +286,8 @@ public class bora : MonoBehaviour
         animator.SetBool("IsFacingLeft", facingDirection < 0);
         animator.SetBool("IsFacingRight", facingDirection > 0);
         
-        animator.SetBool("IsWallSlideLeft", isWallSliding && isWallLeft);
-        animator.SetBool("IsWallSlideRight", isWallSliding && isWallRight);
+        //animator.SetBool("IsWallSlideLeft", isWallSliding && isWallLeft);
+        //animator.SetBool("IsWallSlideRight", isWallSliding && isWallRight);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

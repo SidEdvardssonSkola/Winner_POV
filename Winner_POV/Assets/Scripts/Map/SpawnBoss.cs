@@ -21,8 +21,12 @@ public class SpawnBoss : MonoBehaviour
         button.onClick.AddListener(hide.HideObjects);
     }
 
-    public void DisableButton()
+    [SerializeField] private Vector3 spawnPos;
+    public void WhenClicked()
     {
         button.enabled = false;
+
+        Transform player = GameObject.Find("Player (1)").GetComponent<Transform>();
+        player.transform.position = spawnPos;
     }
 }

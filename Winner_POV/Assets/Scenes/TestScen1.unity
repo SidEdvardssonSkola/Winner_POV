@@ -11365,8 +11365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a7221198446184a8eeae7695046f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpGiveAmmount: 20
-  maxHealth: 350
+  xpGiveAmmount: 100
+  maxHealth: 1000
   onKilled:
     m_PersistentCalls:
       m_Calls: []
@@ -28300,7 +28300,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -28343,7 +28343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpForce: 12
+  jumpForce: 15
   wallJumpForce: 10
   wallSlideSpeed: 2
   wallJumpDirectionForce: 8
@@ -34280,7 +34280,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.35389927, y: -0.85341007, z: -0.353494, w: 0.14658988}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 310672895}
@@ -35040,7 +35040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5825ac8f9872e488ebcd1c8756728d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 35
   isDPS: 0
 --- !u!1 &1693766872
 GameObject:

@@ -17,13 +17,6 @@ public class XpSystem : MonoBehaviour
     public UnityEvent onXpChange;
     public UnityEvent onLevelUp;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            GiveXP(100, 2.5f);
-        }
-    }
     public void GiveXP(float giveAmmount)
     {
         xp += giveAmmount;

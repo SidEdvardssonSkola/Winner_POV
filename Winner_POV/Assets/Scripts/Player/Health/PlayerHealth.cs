@@ -28,18 +28,6 @@ public class PlayerHealth : MonoBehaviour
         isIframeActive = false;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            ChangeHealth(10);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            ChangeHealth(-10);
-        }
-    }
-
     public void ChangeMaxHealth()
     {
         float healthPercentage = health / maxHealth;
