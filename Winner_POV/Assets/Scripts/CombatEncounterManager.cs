@@ -38,10 +38,26 @@ public class CombatEncounterManager : MonoBehaviour
         print(remainingEnemies);
         if (remainingEnemies <= 0)
         {
+
             environment.SetActive(false);
             map.SetActive(true);
 
             Destroy(currentEncounter);
+        
+            EndEncounter();
         }
+    }
+
+    private void EndEncounter()
+    {
+        environment.SetActive(false);
+        map.SetActive(true);
+
+        foreach (GameObject o in GameObject.FindGameObjectsWithTag("Projectile"))
+        {
+            Destroy(o);
+        }
+
+        Destroy(currentEncounter);
     }
 }

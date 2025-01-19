@@ -20,10 +20,18 @@ public class HurtEnemy : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+
         if (collision.gameObject.CompareTag("Enemy"))
         {
             screenShake.ShakeScreen(0.2f, 0.25f);
             collision.gameObject.GetComponent<EnemyHealth>().ChangeHealth(-actualDamage);
+
+            if (collision.gameObject.GetComponent<IDamageable>() != null)
+            {
+                screenShake.ShakeScreen(0.2f, 0.25f);
+                collision.gameObject.GetComponent<IDamageable>().ChangeHealth(-actualDamage);
+
+            }
         }
     }
 }
