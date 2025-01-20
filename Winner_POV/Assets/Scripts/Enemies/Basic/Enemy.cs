@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     #region Start Functions
     private void Awake()
     {
+        idleBaseReference = Instantiate(idleBase);
+        chaseBaseReference = Instantiate(chaseBase);
+        attackBaseReference = Instantiate(attackBase);
+
         enemyStateMachine = new();
 
         idleState = new(this, enemyStateMachine);
@@ -18,10 +22,14 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
         attackState = new(this, enemyStateMachine);
     }
 
-    private void Start()
+    public virtual void Start()
     {
         Health = MaxHealth;
         Rb = gameObject.GetComponent<Rigidbody2D>();
+
+        idleBaseReference.Init(gameObject, this);
+        chaseBaseReference.Init(gameObject, this);
+        attackBaseReference.Init(gameObject, this);
 
         enemyStateMachine.Init(idleState);
     }
@@ -34,7 +42,7 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     [field: SerializeField] public float MaxHealth { get; set; } = 100f;
     public float Health { get; set; }
 
-    [field: SerializeField] public float IFramesInSeconds { get; set; } = 0.1f;
+    [field: SerializeField] public float IFramesInSeconds { get; set; } = 0.25f;
     public bool IsIFrameActive { get; set; }
 
     [field: SerializeField] public UnityEvent OnDeath { get; set; }
@@ -82,6 +90,7 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     public void Die()
     {
         OnDeath?.Invoke();
+        Destroy(gameObject);
     }
     #endregion
 
@@ -143,6 +152,14 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     public IdleState idleState { get; set; }
     public ChaseState chaseState { get; set; }
     public AttackState attackState { get; set; }
+
+    [SerializeField] private IdleBase idleBase;
+    [SerializeField] private ChaseBase chaseBase;
+    [SerializeField] private AttackBase attackBase;
+
+    public IdleBase idleBaseReference { get; set; }
+    public ChaseBase chaseBaseReference { get; set; }
+    public AttackBase attackBaseReference { get; set; }
 
     public void SetStatus(int newStatus)
     {

@@ -6,8 +6,10 @@ public class TestEnemy : Enemy
 {
     private SpriteRenderer spriteRenderer;
     private Color originalcolor;
-    private void Start()
-    {
+    public override void Start()
+    { 
+        base.Start();
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalcolor = spriteRenderer.color;
 

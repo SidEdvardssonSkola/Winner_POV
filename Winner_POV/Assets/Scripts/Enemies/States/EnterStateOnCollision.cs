@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnterStateOnCollision : MonoBehaviour
 {
-    [SerializeField] private string oppTag;
-
     [SerializeField] private int _enterState = 1;
     [SerializeField] private int _exitState = 0;
 
@@ -18,7 +16,7 @@ public class EnterStateOnCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(oppTag))
+        if (collision.gameObject.CompareTag("Player"))
         {
             enemy.SetStatus(_enterState);
         }
@@ -26,7 +24,7 @@ public class EnterStateOnCollision : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(oppTag))
+        if (collision.gameObject.CompareTag("Player"))
         {
             enemy.SetStatus(_exitState);
         }

@@ -12,17 +12,18 @@ public class IdleState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
-        Debug.Log("Entering idle");
+        enemy.idleBaseReference.OnStateEnter();
     }
 
     public override void ExitState()
     {
         base.ExitState();
-        Debug.Log("Exiting idle");
+        enemy.idleBaseReference.OnStateExit();
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        enemy.idleBaseReference.OnStateUpdate();
     }
 }

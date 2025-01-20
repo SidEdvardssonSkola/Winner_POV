@@ -24,14 +24,7 @@ public class HurtEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             screenShake.ShakeScreen(0.2f, 0.25f);
-            collision.gameObject.GetComponent<EnemyHealth>().ChangeHealth(-actualDamage);
-
-            if (collision.gameObject.GetComponent<IDamageable>() != null)
-            {
-                screenShake.ShakeScreen(0.2f, 0.25f);
-                collision.gameObject.GetComponent<IDamageable>().ChangeHealth(-actualDamage);
-
-            }
+            collision.gameObject.GetComponent<IDamageable>().ChangeHealth(-actualDamage);
         }
     }
 }
