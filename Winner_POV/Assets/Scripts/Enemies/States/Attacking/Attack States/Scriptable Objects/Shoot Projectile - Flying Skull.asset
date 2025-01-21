@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 7927786967548621749, guid: b5dc3ce191c69754180721cf8041ed96, type: 3}
   shootCooldown: 3.5
-  floatiness: 10
+  floatiness: 1

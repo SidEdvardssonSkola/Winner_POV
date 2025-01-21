@@ -8,12 +8,14 @@ public class Projectile : MonoBehaviour, IDamageable
 
     private Rigidbody2D rb;
 
-    public UnityEvent OnDeath { get; set;  }
-    public UnityEvent OnDamageTaken { get; set; }
+    [field: SerializeField] public UnityEvent OnDeath { get; set;  }
+    [field: SerializeField] public UnityEvent OnDamageTaken { get; set; }
     [field: SerializeField] public float MaxHealth { get; set; } = 25f;
     public float Health { get; set; }
     [field: SerializeField] public float IFramesInSeconds { get; set; } = 0.25f;
     public bool IsIFrameActive { get; set; } = false;
+
+    [SerializeField] private GameObject particle;
 
     void Start()
     {
@@ -49,6 +51,9 @@ public class Projectile : MonoBehaviour, IDamageable
         {
             IsIFrameActive = true;
             Invoke(nameof(RemoveIFrames), IFramesInSeconds);
+
+            Instantiate(particle, transform.position, Quaternion.identity);
+
             OnDamageTaken.Invoke();
 
             if (Health <= 0)
@@ -72,6 +77,8 @@ public class Projectile : MonoBehaviour, IDamageable
         if (ammount < 0)
         {
             OnDamageTaken.Invoke();
+
+            Instantiate(particle, transform.position, Quaternion.identity);
 
             if (Health <= 0)
             {

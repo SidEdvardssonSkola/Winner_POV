@@ -164,8 +164,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileSpeed: 10
   lifetime: 5
+  <OnDeath>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnDamageTaken>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   <MaxHealth>k__BackingField: 25
   <IFramesInSeconds>k__BackingField: 0.25
+  particle: {fileID: 4623758544541146020, guid: 6d52be1aff1838545a78ec29a6e31734, type: 3}
 --- !u!95 &-970889735061536842
 Animator:
   serializedVersion: 5
