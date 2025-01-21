@@ -8,6 +8,7 @@ public class ShootProjectile : AttackBase
 {
     [SerializeField] private GameObject projectile;
 
+    [SerializeField] private float damage = 20;
     [SerializeField] private float shootCooldown = 5.5f;
     private float timer = 0;
 
@@ -49,7 +50,7 @@ public class ShootProjectile : AttackBase
             
             Projectile p = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
             p.transform.Rotate(new Vector3(0, 0, Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x)));
-            p.Init(direction);
+            p.Init(direction, damage);
         }
     }
 }

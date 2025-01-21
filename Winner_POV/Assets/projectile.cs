@@ -6,6 +6,8 @@ public class Projectile : MonoBehaviour, IDamageable
     public float projectileSpeed = 10f; // Speed of the projectile
     public float lifetime = 5f; // Time before the projectile disappears
 
+    private float damage = 0;
+
     private Rigidbody2D rb;
 
     [field: SerializeField] public UnityEvent OnDeath { get; set;  }
@@ -24,20 +26,25 @@ public class Projectile : MonoBehaviour, IDamageable
         Destroy(gameObject, lifetime); // Destroy the projectile after a set time
     }
 
-    public void Init(Vector2 direction)
+    public void Init(Vector2 direction, float damage)
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = direction * projectileSpeed;
+
+        this.damage = damage;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
+            collision.gameObject.GetComponent<PlayerHealth>().ChangeHealth(-damage);
             Destroy(gameObject); // Destroy the projectile if it hits the player
         }
-        else if (!collision.collider.CompareTag("Enemy"))
-        {
+        else if (!collision.gameObject.CompareTag("Enemy"))
+        { 
+            Instantiate(particle, transform.position, Quaternion.identity);
+        
             Destroy(gameObject); // Destroy projectile if it hits a wall
         }
     }

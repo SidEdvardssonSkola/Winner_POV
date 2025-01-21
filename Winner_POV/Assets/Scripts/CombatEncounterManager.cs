@@ -23,27 +23,26 @@ public class CombatEncounterManager : MonoBehaviour
         currentEncounter = Instantiate(combatEncounters[randomNumber]);
     }
 
-    private int remainingEnemies = 0;
-    public void AddEnemyToCounter(EnemyHealth enemy)
+    public void AddEnemyToCounter(IDamageable enemy)
     {
-        remainingEnemies++;
-        print(remainingEnemies);
-
-        enemy.onKilled.AddListener(RemoveEnemyFromCounter);
+        enemy.OnDeath.AddListener(CheckIfEncounterIsOver);
     }
 
-    public void RemoveEnemyFromCounter()
+    public void CheckIfEncounterIsOver()
     {
-        remainingEnemies--;
-        print(remainingEnemies);
-        if (remainingEnemies <= 0)
-        {
+        CancelInvoke(nameof(Check));
+        Invoke(nameof(Check), 0.5f);
+    }
 
+    private void Check()
+    {
+        if (GameObject.FindWithTag("Enemy") == null)
+        {
             environment.SetActive(false);
             map.SetActive(true);
 
             Destroy(currentEncounter);
-        
+
             EndEncounter();
         }
     }

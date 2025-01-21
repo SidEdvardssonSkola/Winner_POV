@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 8512182060191802909}
   - component: {fileID: -2085217407513054152}
   - component: {fileID: -970889735061536842}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: shot
-  m_TagString: Enemy
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 1664
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1

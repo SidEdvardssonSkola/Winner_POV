@@ -26,5 +26,10 @@ public class HurtEnemy : MonoBehaviour
             screenShake.ShakeScreen(0.2f, 0.25f);
             collision.gameObject.GetComponent<IDamageable>().ChangeHealth(-actualDamage);
         }
+        else if (collision.gameObject.CompareTag("Projectile"))
+        {
+            screenShake.ShakeScreen(0.1f, 0.15f);
+            collision.gameObject.GetComponent<IDamageable>().ChangeHealth(-actualDamage);
+        }
     }
 }

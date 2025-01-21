@@ -26,12 +26,19 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     {
         Health = MaxHealth;
         Rb = gameObject.GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
 
         idleBaseReference.Init(gameObject, this);
         chaseBaseReference.Init(gameObject, this);
         attackBaseReference.Init(gameObject, this);
 
         enemyStateMachine.Init(idleState);
+
+        if (GameObject.FindWithTag("Encounter Manager") != null)
+        {
+            GameObject.FindWithTag("Encounter Manager").GetComponent<CombatEncounterManager>().AddEnemyToCounter(this);
+        }
     }
     #endregion
 
@@ -87,9 +94,28 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
         }
     }
 
+    private Color originalColor;
+    private SpriteRenderer spriteRenderer;
+    public void Flash()
+    {
+        spriteRenderer.color = Color.red;
+
+        Invoke(nameof(UnFlash), IFramesInSeconds);
+    }
+    private void UnFlash()
+    {
+        CancelInvoke(nameof(UnFlash));
+        spriteRenderer.color = originalColor;
+    }
+
+    private bool isDead = false;
     public void Die()
     {
-        OnDeath?.Invoke();
+        if (!isDead)
+        {
+            isDead = true;
+            OnDeath?.Invoke();
+        }
         Destroy(gameObject);
     }
     #endregion

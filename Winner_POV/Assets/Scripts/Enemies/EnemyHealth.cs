@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private float xpGiveAmmount = 20;
 
@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         manager = GameObject.Find("Encounter Manager").GetComponent<CombatEncounterManager>();
-        manager.AddEnemyToCounter(GetComponent<EnemyHealth>());
+        manager.AddEnemyToCounter(GetComponent<IDamageable>());
 
         maxHealth *= manager.enemyScaling;
         xpGiveAmmount *= manager.enemyScaling;
@@ -36,6 +36,14 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] private float iFramesInSeconds = 0.1f;
     private bool isIFrameActive = false;
+
+    public UnityEvent OnDeath { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public UnityEvent OnDamageTaken { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public float MaxHealth { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public float Health { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public float IFramesInSeconds { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public bool IsIFrameActive { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     public void  ChangeHealth(float ammount)
     {
         if (ammount < 0)
@@ -68,5 +76,20 @@ public class EnemyHealth : MonoBehaviour
     {
         isIFrameActive = false;
         CancelInvoke(nameof(ResetIFrames));
+    }
+
+    public void RemoveIFrames()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void ChangeHealth(float ammount, bool ignoreIframes)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Die()
+    {
+        throw new System.NotImplementedException();
     }
 }

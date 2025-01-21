@@ -21,16 +21,4 @@ public class TestEnemy : Enemy
     {
         enemyStateMachine.currentState.FrameUpdate();
     }
-
-    public void Flash()
-    {
-        spriteRenderer.color = Color.red;
-
-        Invoke(nameof(UnFlash), IFramesInSeconds);
-    }
-    private void UnFlash()
-    {
-        CancelInvoke(nameof(UnFlash));
-        spriteRenderer.color = originalcolor;
-    }
 }
