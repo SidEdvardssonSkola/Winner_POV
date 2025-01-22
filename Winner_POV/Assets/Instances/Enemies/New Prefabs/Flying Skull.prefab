@@ -122,6 +122,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  healthBarGameObject: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
+  healthBarOffset: {x: 0, y: 2.5, z: 0}
   <Speed>k__BackingField: 20
   <Acceleration>k__BackingField: 5
   <IsFacingRight>k__BackingField: 0

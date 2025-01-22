@@ -4,6 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - healthBarGameObject: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
   - idleBase: {fileID: 11400000, guid: f275fed96a9599e4fa7bcb72a8aaaf2d, type: 2}
   - chaseBase: {fileID: 11400000, guid: d6e0e5fa597f3e746947b37f2d0effda, type: 2}
   - attackBase: {fileID: 11400000, guid: db545d94d6623f640bf49642c59c7dcf, type: 2}

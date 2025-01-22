@@ -290,6 +290,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  healthBarGameObject: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
+  healthBarOffset: {x: 0, y: 2.5, z: 0}
   <Speed>k__BackingField: 10
   <Acceleration>k__BackingField: 5
   <IsFacingRight>k__BackingField: 1
@@ -939,6 +941,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  healthBarGameObject: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
+  healthBarOffset: {x: 0, y: 2.5, z: 0}
   <Speed>k__BackingField: 25
   <Acceleration>k__BackingField: 15
   <IsFacingRight>k__BackingField: 1
@@ -7201,6 +7205,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3354856348632584809, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354856348632584809, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237793692250667175, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: m_Radius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6250849747213559297, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6250849747213559297, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707149861915977696, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: m_Radius
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8782510520733161107, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
       propertyPath: m_Name
       value: Draining Guy
@@ -7275,6 +7303,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7413626398960074846, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
+      propertyPath: healthBarGameObject
+      value: 
+      objectReference: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
     - target: {fileID: 7413857707690522976, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
       propertyPath: m_Name
       value: Plague Doctor

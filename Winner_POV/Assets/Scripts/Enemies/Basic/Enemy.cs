@@ -39,6 +39,13 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
         {
             GameObject.FindWithTag("Encounter Manager").GetComponent<CombatEncounterManager>().AddEnemyToCounter(this);
         }
+
+        healthBar = Instantiate(healthBarGameObject, transform.position + healthBarOffset, Quaternion.identity, transform).GetComponent<MeasurementBar>();
+        if (healthBar != null)
+        {
+            healthBar.gameObject.transform.localScale = new(2 / transform.localScale.x, 0.3f / transform.localScale.y, 1);
+            OnDamageTaken.AddListener(() => healthBar.UpdateBar(Health / MaxHealth));
+        }
     }
     #endregion
 
@@ -54,6 +61,10 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
 
     [field: SerializeField] public UnityEvent OnDeath { get; set; }
     [field: SerializeField] public UnityEvent OnDamageTaken { get; set; }
+
+    [SerializeField] private GameObject healthBarGameObject;
+    [SerializeField] private Vector3 healthBarOffset = new(0, 2.5f, 0);
+    private MeasurementBar healthBar;
 
     public void ChangeHealth(float ammount)
     {
@@ -187,7 +198,10 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     public ChaseBase chaseBaseReference { get; set; }
     public AttackBase attackBaseReference { get; set; }
 
-    public void SetStatus(int newStatus)
+    bool isAggroed = false;
+    bool isAttacking = false;
+
+    public void SetStatus(int newStatus, bool isActive)
     {
         switch (newStatus)
         {
@@ -196,11 +210,13 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
                 break;
 
             case 1:
+                isAggroed = isActive;
                 enemyStateMachine.ChangeState(chaseState);
                 break;
 
             case 2:
                 enemyStateMachine.ChangeState(attackState);
+                isAttacking = isActive;
                 break;
         }
     }
