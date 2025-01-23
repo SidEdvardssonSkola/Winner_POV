@@ -205,11 +205,14 @@ MonoBehaviour:
         m_CallState: 2
   healthBarGameObject: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
   healthBarOffset: {x: 0, y: 2.5, z: 0}
+  damagePopup: {fileID: 4318490056698701258, guid: 9516ce5a96704c1409966dd97b95c9e1, type: 3}
+  minPopupOffset: {x: -1, y: 1}
+  maxPopupOffset: {x: 1, y: 2}
   <Speed>k__BackingField: 25
   <Acceleration>k__BackingField: 15
   <IsFacingRight>k__BackingField: 0
   idleBase: {fileID: 11400000, guid: f275fed96a9599e4fa7bcb72a8aaaf2d, type: 2}
-  chaseBase: {fileID: 11400000, guid: 18dfbcd47846ac84980fe2fbbde6dc16, type: 2}
+  chaseBase: {fileID: 11400000, guid: 430f5febd5e778342b02ad9984130fcd, type: 2}
   attackBase: {fileID: 11400000, guid: 3e0d7ada071cab8468e298bf1baea892, type: 2}
 --- !u!50 &8128670994077949121
 Rigidbody2D:

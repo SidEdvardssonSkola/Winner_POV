@@ -148,10 +148,6 @@ public class DefinePoint : MonoBehaviour
 
     private void Enemy()
     {
-        ToggleGameObject hide = gameObject.AddComponent<ToggleGameObject>();
-        hide.objectsToToggle = new GameObject[] { GameObject.Find(map) };
-        button.onClick.AddListener(hide.HideObjects);
-
         ToggleGameObject show = gameObject.AddComponent<ToggleGameObject>();
         show.objectsToToggle = new GameObject[] { GameObject.Find(combatEnvironmentName).GetComponent<GetGameObject>().GetObject() };
         button.onClick.AddListener(show.ShowObjects);
@@ -164,10 +160,6 @@ public class DefinePoint : MonoBehaviour
 
     private void MiniBoss()
     {
-        ToggleGameObject hide = gameObject.AddComponent<ToggleGameObject>();
-        hide.objectsToToggle = new GameObject[] { GameObject.Find(map) };
-        button.onClick.AddListener(hide.HideObjects);
-
         ToggleGameObject show = gameObject.AddComponent<ToggleGameObject>();
         show.objectsToToggle = new GameObject[] { GameObject.Find(combatEnvironmentName).GetComponent<GetGameObject>().GetObject() };
         button.onClick.AddListener(show.ShowObjects);

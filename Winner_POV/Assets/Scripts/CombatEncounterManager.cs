@@ -11,13 +11,32 @@ public class CombatEncounterManager : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Vector3 playerSpawnPos;
 
+    [SerializeField] private Animator transition;
+
+    private bool isTransitionDone = false;
+
     private GameObject currentEncounter;
     public float enemyScaling;
+
     public void SpawnRandomEncounter(float scaling)
     {
+        enemyScaling = scaling;
+
+        isTransitionDone = false;
+        transition.SetTrigger("Play Transition");
+        StartCoroutine(FinishEncounterSpawn());
+    }
+    private IEnumerator FinishEncounterSpawn()
+    {
+        while (isTransitionDone == false)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        isTransitionDone = false;
+
         player.position = playerSpawnPos;
 
-        enemyScaling = scaling;
+        map.SetActive(false);
 
         int randomNumber = Random.Range(0, combatEncounters.Length);
         currentEncounter = Instantiate(combatEncounters[randomNumber]);
@@ -38,25 +57,38 @@ public class CombatEncounterManager : MonoBehaviour
     {
         if (GameObject.FindWithTag("Enemy") == null)
         {
-            environment.SetActive(false);
-            map.SetActive(true);
-
-            Destroy(currentEncounter);
-
             EndEncounter();
         }
     }
 
     private void EndEncounter()
     {
-        environment.SetActive(false);
-        map.SetActive(true);
+        isTransitionDone = false;
+        transition.SetTrigger("Play Transition");
 
         foreach (GameObject o in GameObject.FindGameObjectsWithTag("Projectile"))
         {
             Destroy(o);
         }
 
+        StartCoroutine(FinishEncounterEnd());
+    }
+    private IEnumerator FinishEncounterEnd()
+    {
+        while (isTransitionDone == false)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        isTransitionDone = false;
+
+        environment.SetActive(false);
+        map.SetActive(true);
+
         Destroy(currentEncounter);
+    }
+
+    public void SetTransitionDone()
+    {
+        isTransitionDone = true;
     }
 }

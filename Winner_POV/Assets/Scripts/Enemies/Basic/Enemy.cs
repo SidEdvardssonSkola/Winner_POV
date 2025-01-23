@@ -46,6 +46,8 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
             healthBar.gameObject.transform.localScale = new(2 / transform.localScale.x, 0.3f / transform.localScale.y, 1);
             OnDamageTaken.AddListener(() => healthBar.UpdateBar(Health / MaxHealth));
         }
+
+        cameraPunch = GameObject.FindWithTag("MainCamera").GetComponent<CameraPunchIn>();
     }
     #endregion
 
@@ -66,6 +68,12 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     [SerializeField] private Vector3 healthBarOffset = new(0, 2.5f, 0);
     private MeasurementBar healthBar;
 
+    [SerializeField] private GameObject damagePopup;
+    [SerializeField] private Vector2 minPopupOffset = new(-1, 1);
+    [SerializeField] private Vector2 maxPopupOffset = new(1, 2);
+
+    private CameraPunchIn cameraPunch;
+
     public void ChangeHealth(float ammount)
     {
         Health += ammount;
@@ -76,11 +84,23 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
             Invoke(nameof(RemoveIFrames), IFramesInSeconds);
             OnDamageTaken.Invoke();
 
+            if (damagePopup != null)
+            {
+                CreateDamagePopup((int)Mathf.Round(ammount));
+            }
+
             if (Health <= 0 )
             {
                 Die();
             }
         }
+    }
+
+    private void CreateDamagePopup(int damage)
+    {
+        Vector3 offset = new(UnityEngine.Random.Range(minPopupOffset.x, maxPopupOffset.x), UnityEngine.Random.Range(minPopupOffset.y, maxPopupOffset.y), -1);
+        DamagePopup popup = Instantiate(damagePopup, transform.position + offset, Quaternion.identity).GetComponent<DamagePopup>();
+        popup.SetText(damage);
     }
 
     public void RemoveIFrames()
@@ -125,6 +145,7 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
         if (!isDead)
         {
             isDead = true;
+            cameraPunch.StartEffect(0.1f, 0.25f);
             OnDeath?.Invoke();
         }
         Destroy(gameObject);
@@ -201,9 +222,9 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     bool isAggroed = false;
     bool isAttacking = false;
 
-    public void SetStatus(int newStatus, bool isActive)
+    public void SetStatus(int status, bool isActive)
     {
-        switch (newStatus)
+        switch (status)
         {
             case 0:
                 enemyStateMachine.ChangeState(idleState);

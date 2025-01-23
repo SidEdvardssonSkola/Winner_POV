@@ -129,7 +129,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BossRoar
-  m_Speed: 0.5
+  m_Speed: 0.167
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5683688523970723725}

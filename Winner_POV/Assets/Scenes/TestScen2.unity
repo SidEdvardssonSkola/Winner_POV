@@ -224,9 +224,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 1370448469
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -292,6 +292,9 @@ MonoBehaviour:
         m_CallState: 2
   healthBarGameObject: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
   healthBarOffset: {x: 0, y: 2.5, z: 0}
+  damagePopup: {fileID: 4318490056698701258, guid: 9516ce5a96704c1409966dd97b95c9e1, type: 3}
+  minPopupOffset: {x: -1, y: 1}
+  maxPopupOffset: {x: 1, y: 2}
   <Speed>k__BackingField: 10
   <Acceleration>k__BackingField: 5
   <IsFacingRight>k__BackingField: 1
@@ -336,9 +339,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1370448469
+  m_SortingLayer: 2
+  m_SortingOrder: -1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -499,9 +502,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 1370448469
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -876,9 +879,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1370448469
+  m_SortingLayer: 2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.15566039, g: 0.7024619, b: 1, a: 1}
   m_FlipX: 0
@@ -943,6 +946,9 @@ MonoBehaviour:
         m_CallState: 2
   healthBarGameObject: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
   healthBarOffset: {x: 0, y: 2.5, z: 0}
+  damagePopup: {fileID: 4318490056698701258, guid: 9516ce5a96704c1409966dd97b95c9e1, type: 3}
+  minPopupOffset: {x: -1, y: 1}
+  maxPopupOffset: {x: 1, y: 2}
   <Speed>k__BackingField: 25
   <Acceleration>k__BackingField: 15
   <IsFacingRight>k__BackingField: 1
@@ -6416,9 +6422,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 1370448469
+  m_SortingLayer: 2
+  m_SortingOrder: -1
   m_Sprite: {fileID: -1731119585, guid: 9428ce2433a94da49a69f629babd9945, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6479,6 +6485,9 @@ GameObject:
   - component: {fileID: 1677813578}
   - component: {fileID: 1677813581}
   - component: {fileID: 1677813582}
+  - component: {fileID: 1677813584}
+  - component: {fileID: 1677813583}
+  - component: {fileID: 1677813585}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6583,7 +6592,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -6616,6 +6625,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f064b928eddde74f9fde0718835e823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1677813583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677813577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: cef860b038593eb4b80be8dbb6a63b08, type: 2}
+--- !u!114 &1677813584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677813577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05726787d60d6274b84df8f068026dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1677813585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677813577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79321890827829345886bc2449108873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1251762555}
+  offset: {x: 0, y: 2}
+  followDamping: 8
 --- !u!1 &1770417360
 GameObject:
   m_ObjectHideFlags: 0
@@ -6880,7 +6933,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6976,9 +7029,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: 1370448469
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7061,9 +7114,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: 1370448469
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7165,6 +7218,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 373780766850018136, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 373780766850018136, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 373780766850018136, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1370448469
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772708147685824046, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: damagePopup
+      value: 
+      objectReference: {fileID: 4318490056698701258, guid: 9516ce5a96704c1409966dd97b95c9e1, type: 3}
+    - target: {fileID: 1772708147685824046, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: maxPopupOffset.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772708147685824046, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: maxPopupOffset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772708147685824046, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: minPopupOffset.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772708147685824046, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: minPopupOffset.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3028317717889024166, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.36
@@ -7246,6 +7331,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4119668566095577132, guid: 88dcc51ef026da743a890fd6e01e7836, type: 3}
+      propertyPath: damagePopup
+      value: 
+      objectReference: {fileID: 4318490056698701258, guid: 9516ce5a96704c1409966dd97b95c9e1, type: 3}
     - target: {fileID: 6863152739483263011, guid: 88dcc51ef026da743a890fd6e01e7836, type: 3}
       propertyPath: m_Name
       value: Flying Skull
@@ -7303,10 +7392,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5781768278031036547, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781768278031036547, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781768278031036547, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1370448469
+      objectReference: {fileID: 0}
+    - target: {fileID: 7413626398960074846, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
+      propertyPath: chaseBase
+      value: 
+      objectReference: {fileID: 11400000, guid: 430f5febd5e778342b02ad9984130fcd, type: 2}
+    - target: {fileID: 7413626398960074846, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
+      propertyPath: attackBase
+      value: 
+      objectReference: {fileID: 11400000, guid: c9ab542e62b0d6f488a2d211ec843c13, type: 2}
+    - target: {fileID: 7413626398960074846, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
+      propertyPath: damagePopup
+      value: 
+      objectReference: {fileID: 4318490056698701258, guid: 9516ce5a96704c1409966dd97b95c9e1, type: 3}
     - target: {fileID: 7413626398960074846, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
       propertyPath: healthBarGameObject
       value: 
       objectReference: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
+    - target: {fileID: 7413626398960074846, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
+      propertyPath: <Speed>k__BackingField
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7413626398960074846, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
+      propertyPath: <Acceleration>k__BackingField
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7413857707690522976, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
       propertyPath: m_Name
       value: Plague Doctor

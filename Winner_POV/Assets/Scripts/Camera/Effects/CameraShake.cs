@@ -19,7 +19,7 @@ public class CameraShake : MonoBehaviour
     {
         while (elapsedTime < duration)
         {
-            elapsedTime += Time.unscaledDeltaTime;
+            elapsedTime += Time.deltaTime;
             transform.position = pos + new Vector3(Random.Range(-intensity, intensity), Random.Range(-intensity, intensity), 0);
 
             yield return null;

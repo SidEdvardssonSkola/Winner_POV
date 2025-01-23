@@ -7,6 +7,20 @@ public class EnableNextPoints : MonoBehaviour
 {
     Button[] buttons;
     Button button;
+    private bool shouldEnableNextButtonsOnNextAwake = false;
+
+    private void OnEnable()
+    {
+        if (shouldEnableNextButtonsOnNextAwake)
+        {
+            shouldEnableNextButtonsOnNextAwake = false;
+
+            foreach (Button b in buttons)
+            {
+                b.interactable = true;
+            }
+        }
+    }
 
     void Start()
     {
@@ -21,10 +35,7 @@ public class EnableNextPoints : MonoBehaviour
     public void EnableTheNextPoints()
     {
         button.interactable = false;
-        foreach(Button b in buttons)
-        {
-            b.interactable = true;
-        }
+        shouldEnableNextButtonsOnNextAwake = true;
     }
     public bool CheckIfPointLeadsTo(Vector2 destinationCoordinates, GameObject mapIconManager)
     {
