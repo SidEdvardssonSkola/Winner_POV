@@ -40764,8 +40764,12 @@ MonoBehaviour:
   combatEncounters:
   - {fileID: 6150746256107655865, guid: 9ed5a6ce02319624797bbd8dd9d817fb, type: 3}
   - {fileID: 6150746256107655865, guid: f6d1af398c84cc146af379d1d3fcfe42, type: 3}
+  - {fileID: 3598858157962400572, guid: 04e21ae8da95e2747859f00b2ba22bdb, type: 3}
   - {fileID: 6150746256107655865, guid: 939c430c1196bb14399f6654acab88a1, type: 3}
   - {fileID: 6150746256107655865, guid: 03eda256b7517d642866bf1077be94a7, type: 3}
+  eliteCombatEncounters:
+  - {fileID: 6952250983853138592, guid: 88b0a75e8b3e6f843b1a99e77e716e3b, type: 3}
+  - {fileID: 4563598930165309064, guid: 1dacd76e663374f438cbea7c0ec460dc, type: 3}
   map: {fileID: 473954701}
   environment: {fileID: 1124574523}
   player: {fileID: 1248141428}

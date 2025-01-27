@@ -1,0 +1,222 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4563598930165309064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 884619851063454264}
+  m_Layer: 0
+  m_Name: Elite Enemy Encounter 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &884619851063454264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4563598930165309064}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3218574952893223803}
+  - {fileID: 5144340072120585886}
+  - {fileID: 2708119749445841477}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2449250676951970768
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 884619851063454264}
+    m_Modifications:
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.377566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.1187735
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076604438757261137, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_Name
+      value: Spawn Shooting Enemy Elite (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+--- !u!4 &5144340072120585886 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+  m_PrefabInstance: {fileID: 2449250676951970768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4831252004655664907
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 884619851063454264}
+    m_Modifications:
+    - target: {fileID: 7392978238317100366, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1143479
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.2461195
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076604438757261137, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+      propertyPath: m_Name
+      value: Spawn Flying Enemy Elite
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+--- !u!4 &2708119749445841477 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7392978238317100366, guid: 0ca489920aa7d84488d68567cb6ad063, type: 3}
+  m_PrefabInstance: {fileID: 4831252004655664907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5346773675410386485
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 884619851063454264}
+    m_Modifications:
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.592002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.8412952
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076604438757261137, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+      propertyPath: m_Name
+      value: Spawn Shooting Enemy Elite
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+--- !u!4 &3218574952893223803 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7392978238317100366, guid: 21a4f76a9c6ae8349853e93db5244213, type: 3}
+  m_PrefabInstance: {fileID: 5346773675410386485}
+  m_PrefabAsset: {fileID: 0}

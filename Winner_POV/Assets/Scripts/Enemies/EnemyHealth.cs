@@ -65,7 +65,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         {
             isAlive = false;
 
-            GameObject.Find("Player (1)").GetComponent<XpSystem>().GiveXP(xpGiveAmmount, 2.5f);
+            GameObject.FindWithTag("Player").GetComponent<XpSystem>().GiveXP(xpGiveAmmount, 2.5f);
 
             onKilled.Invoke();
             Destroy(gameObject);

@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8128670994077949121}
   - component: {fileID: 8066386066753931635}
   m_Layer: 7
-  m_Name: Plague Doctor
+  m_Name: Plague Doctor Elite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.82, y: 0.36, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5847380034141197999}
@@ -161,7 +161,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1129692985, guid: 688a1726aa2571541a6bd1ed537140ea, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.688462, g: 1, b: 0.5801887, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -183,8 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b19c5036b1b0b54a9d917186e91bf2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 100
-  healthIncreasePerLevelInPercent: 1.12
+  <MaxHealth>k__BackingField: 150
+  healthIncreasePerLevelInPercent: 1.15
   <IFramesInSeconds>k__BackingField: 0.25
   <OnDeath>k__BackingField:
     m_PersistentCalls:
@@ -206,7 +206,7 @@ MonoBehaviour:
         m_CallState: 2
   healthBarGameObject: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
   healthBarOffset: {x: 0, y: 2.5, z: 0}
-  xpGiveAmmount: 50
+  xpGiveAmmount: 100
   damagePopup: {fileID: 4318490056698701258, guid: 9516ce5a96704c1409966dd97b95c9e1, type: 3}
   minPopupOffset: {x: -1, y: 1}
   maxPopupOffset: {x: 1, y: 2}

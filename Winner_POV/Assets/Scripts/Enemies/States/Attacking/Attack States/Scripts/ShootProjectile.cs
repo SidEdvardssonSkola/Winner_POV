@@ -8,7 +8,6 @@ public class ShootProjectile : AttackBase
 {
     [SerializeField] private GameObject projectile;
 
-    [SerializeField] private float damage = 20;
     [SerializeField] private float shootCooldown = 5.5f;
     private float timer = 0;
 

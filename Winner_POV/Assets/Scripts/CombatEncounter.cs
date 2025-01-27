@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class CombatEncounter : MonoBehaviour
 {
-    private float scaling = 1;
-    public void SetScaling(float newScaling)
+    int scaling;
+    bool isElite;
+    public CombatEncounter(int _scaling, bool _isElite)
     {
-        scaling = newScaling;
+        scaling = _scaling;
+        isElite = _isElite;
     }
 
     private void Start()
@@ -18,6 +20,13 @@ public class CombatEncounter : MonoBehaviour
 
     public void PrepareEncounter()
     {
-        GameObject.Find("Encounter Manager").GetComponent<CombatEncounterManager>().SpawnRandomEncounter(scaling);
+        if (isElite)
+        {
+            GameObject.Find("Encounter Manager").GetComponent<CombatEncounterManager>().SpawnRandomEliteEncounter(scaling);
+        }
+        else
+        {
+            GameObject.Find("Encounter Manager").GetComponent<CombatEncounterManager>().SpawnRandomEncounter(scaling);
+        }
     }
 }

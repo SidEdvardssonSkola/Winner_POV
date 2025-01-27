@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 50
+  healthIncreasePerLevelInPercent: 1.12
   <IFramesInSeconds>k__BackingField: 0.25
   <OnDeath>k__BackingField:
     m_PersistentCalls:
@@ -124,6 +125,7 @@ MonoBehaviour:
         m_CallState: 2
   healthBarGameObject: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
   healthBarOffset: {x: 0, y: 2.5, z: 0}
+  xpGiveAmmount: 50
   damagePopup: {fileID: 4318490056698701258, guid: 9516ce5a96704c1409966dd97b95c9e1, type: 3}
   minPopupOffset: {x: -1, y: 1}
   maxPopupOffset: {x: 1, y: 2}

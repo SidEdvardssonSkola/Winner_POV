@@ -24,6 +24,13 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
 
     public virtual void Start()
     {
+        GameObject encounterManager = GameObject.FindWithTag("Encounter Manager");
+        if (encounterManager != null)
+        {
+            MaxHealth *= Mathf.Pow(healthIncreasePerLevelInPercent, encounterManager.GetComponent<CombatEncounterManager>().enemyScaling);
+            xpGiveAmmount *= Mathf.Pow(healthIncreasePerLevelInPercent, encounterManager.GetComponent<CombatEncounterManager>().enemyScaling);
+        }
+
         Health = MaxHealth;
         Rb = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -56,6 +63,7 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     [field: Header("Health")]
 
     [field: SerializeField] public float MaxHealth { get; set; } = 100f;
+    [SerializeField] private float healthIncreasePerLevelInPercent = 1.12f;
     public float Health { get; set; }
 
     [field: SerializeField] public float IFramesInSeconds { get; set; } = 0.25f;
@@ -67,6 +75,8 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     [SerializeField] private GameObject healthBarGameObject;
     [SerializeField] private Vector3 healthBarOffset = new(0, 2.5f, 0);
     private MeasurementBar healthBar;
+
+    [SerializeField] private float xpGiveAmmount = 50f;
 
     [SerializeField] private GameObject damagePopup;
     [SerializeField] private Vector2 minPopupOffset = new(-1, 1);
@@ -144,6 +154,8 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     {
         if (!isDead)
         {
+            GameObject.FindWithTag("Player").GetComponent<XpSystem>().GiveXP(xpGiveAmmount, 2.5f);
+
             isDead = true;
             cameraPunch.StartEffect(0.1f, 0.25f);
             OnDeath?.Invoke();

@@ -10,6 +10,9 @@ public class AttackBase : ScriptableObject
 
     protected Transform playerTransform;
 
+    [SerializeField] protected float damage = 10f;
+    [SerializeField] protected float damageIncreasePerLevelInPercent = 1.12f;
+
     public virtual void Init(GameObject gameObject, Enemy enemy)
     {
         this.gameObject = gameObject;
@@ -17,6 +20,12 @@ public class AttackBase : ScriptableObject
         this.enemy = enemy;
 
         playerTransform = GameObject.FindWithTag("Player").transform;
+
+        GameObject encounterManager = GameObject.FindWithTag("Encounter Manager");
+        if (encounterManager != null)
+        {
+            damage *= Mathf.Pow(damageIncreasePerLevelInPercent, encounterManager.GetComponent<CombatEncounterManager>().enemyScaling);
+        }
     }
 
     public virtual void OnStateEnter() { }

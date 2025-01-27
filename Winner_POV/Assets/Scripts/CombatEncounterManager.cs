@@ -5,6 +5,8 @@ using UnityEngine;
 public class CombatEncounterManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] combatEncounters;
+    [SerializeField] private GameObject[] eliteCombatEncounters;
+
     [SerializeField] private GameObject map;
     [SerializeField] private GameObject environment;
 
@@ -40,6 +42,30 @@ public class CombatEncounterManager : MonoBehaviour
 
         int randomNumber = Random.Range(0, combatEncounters.Length);
         currentEncounter = Instantiate(combatEncounters[randomNumber]);
+    }
+
+    public void SpawnRandomEliteEncounter(float scaling)
+    {
+        enemyScaling = scaling;
+
+        isTransitionDone = false;
+        transition.SetTrigger("Play Transition");
+        StartCoroutine(FinishEliteEncounterSpawn());
+    }
+    private IEnumerator FinishEliteEncounterSpawn()
+    {
+        while (isTransitionDone == false)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        isTransitionDone = false;
+
+        player.position = playerSpawnPos;
+
+        map.SetActive(false);
+
+        int randomNumber = Random.Range(0, eliteCombatEncounters.Length);
+        currentEncounter = Instantiate(eliteCombatEncounters[randomNumber]);
     }
 
     public void AddEnemyToCounter(IDamageable enemy)

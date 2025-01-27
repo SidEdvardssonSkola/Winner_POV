@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a0546db662f0b4684dd12aee8beec2, type: 3}
   m_Name: HP Drain
   m_EditorClassIdentifier: 
-  dPS: 10
+  damage: 10
+  damageIncreasePerLevelInPercent: 1.12
   appliesPerSecond: 5

@@ -9,7 +9,6 @@ public class DrainPlayerHP : AttackBase
     private PlayerHealth playerHealth;
 
     private float timer = 0;
-    [SerializeField] private float dPS = 10;
     [SerializeField] private float appliesPerSecond = 5;
     private float damagePerApply;
     private float waitBetweenApplies;
@@ -19,7 +18,7 @@ public class DrainPlayerHP : AttackBase
         base.Init(gameObject, enemy);
 
         playerHealth = playerTransform.GetComponent<PlayerHealth>();
-        damagePerApply = dPS / appliesPerSecond;
+        damagePerApply = damage / appliesPerSecond;
         waitBetweenApplies = 1 / appliesPerSecond;
     }
 
