@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shoot Projectile at Player - Plague Doctor
   m_EditorClassIdentifier: 
   damage: 20
-  damageIncreasePerLevelInPercent: 1.12
+  damageIncreasePerLevelInPercent: 1.16
   projectile: {fileID: 7927786967548621749, guid: b5dc3ce191c69754180721cf8041ed96, type: 3}
   shootCooldown: 2.5
   floatiness: 0

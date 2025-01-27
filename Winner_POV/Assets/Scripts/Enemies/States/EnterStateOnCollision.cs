@@ -9,10 +9,11 @@ public class EnterStateOnCollision : MonoBehaviour
     [SerializeField] private int _exitState = 0;
 
     private Enemy enemy;
-
+    
     private void Start()
-    {
+    { 
         enemy = GetComponentInParent<Enemy>();
+        GetComponent<CircleCollider2D>().enabled = true;
     }
 
     private void OnDrawGizmosSelected()
@@ -31,6 +32,7 @@ public class EnterStateOnCollision : MonoBehaviour
                 Gizmos.color = Color.red;
                 break;
         }
+
         Gizmos.DrawWireSphere(transform.position, GetComponent<CircleCollider2D>().radius * transform.lossyScale.x);
     }
 

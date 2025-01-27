@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
-  healthIncreasePerLevelInPercent: 1.12
+  healthIncreasePerLevelInPercent: 1.2
   <IFramesInSeconds>k__BackingField: 0.25
   <OnDeath>k__BackingField:
     m_PersistentCalls:
@@ -258,7 +258,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7118676946618660045}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -285,7 +285,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 0.75
 --- !u!114 &3334234217084766615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +340,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9061246154439369803}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -367,7 +367,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 1.5
 --- !u!114 &2795814181700183048
 MonoBehaviour:
   m_ObjectHideFlags: 0

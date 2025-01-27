@@ -151,7 +151,7 @@ public class DefinePoint : MonoBehaviour
         button.onClick.AddListener(show.ShowObjects);
 
         CombatEncounter combatEncounter = gameObject.AddComponent<CombatEncounter>();
-        combatEncounter = new(pointDepth - 1, false);
+        combatEncounter.Init(pointDepth - 1, false);
 
         image.sprite = enemyIcon;
     }
@@ -163,7 +163,7 @@ public class DefinePoint : MonoBehaviour
         button.onClick.AddListener(show.ShowObjects);
 
         CombatEncounter combatEncounter = gameObject.AddComponent<CombatEncounter>();
-        combatEncounter = new(pointDepth - 1, true);
+        combatEncounter.Init(pointDepth + 2, true);
 
         image.color = Color.red;
         image.sprite = enemyIcon;

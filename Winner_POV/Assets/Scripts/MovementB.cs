@@ -84,7 +84,7 @@ public class bora : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && dashCooldownTimer <= 0)
+        if (Input.GetKeyDown(KeyCode.LeftControl) && dashCooldownTimer <= 0 || Input.GetKeyDown(KeyCode.LeftShift) && dashCooldownTimer <= 0)
         {
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");

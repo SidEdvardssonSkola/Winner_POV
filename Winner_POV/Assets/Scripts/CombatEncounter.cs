@@ -7,7 +7,7 @@ public class CombatEncounter : MonoBehaviour
 {
     int scaling;
     bool isElite;
-    public CombatEncounter(int _scaling, bool _isElite)
+    public void Init(int _scaling, bool _isElite)
     {
         scaling = _scaling;
         isElite = _isElite;
