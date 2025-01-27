@@ -20,7 +20,7 @@ public class CombatEncounterManager : MonoBehaviour
     private GameObject currentEncounter;
     public float enemyScaling;
 
-    public void SpawnRandomEncounter(float scaling)
+    public void SpawnRandomEncounter(int scaling)
     {
         enemyScaling = scaling;
 
@@ -44,7 +44,7 @@ public class CombatEncounterManager : MonoBehaviour
         currentEncounter = Instantiate(combatEncounters[randomNumber]);
     }
 
-    public void SpawnRandomEliteEncounter(float scaling)
+    public void SpawnRandomEliteEncounter(int scaling)
     {
         enemyScaling = scaling;
 
