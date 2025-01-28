@@ -23,6 +23,10 @@ public class ChaseState : EnemyState
 
     public override void FrameUpdate()
     {
+        if (enemy.isDead)
+        {
+            return;
+        }
         base.FrameUpdate();
         enemy.chaseBaseReference.OnStateUpdate();
     }

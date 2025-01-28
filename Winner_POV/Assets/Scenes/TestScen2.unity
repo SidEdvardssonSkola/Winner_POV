@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
+  healthIncreasePerLevelInPercent: 1.12
   <IFramesInSeconds>k__BackingField: 0.25
   <OnDeath>k__BackingField:
     m_PersistentCalls:
@@ -292,9 +293,11 @@ MonoBehaviour:
         m_CallState: 2
   healthBarGameObject: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
   healthBarOffset: {x: 0, y: 2.5, z: 0}
+  xpGiveAmmount: 50
   damagePopup: {fileID: 4318490056698701258, guid: 9516ce5a96704c1409966dd97b95c9e1, type: 3}
   minPopupOffset: {x: -1, y: 1}
   maxPopupOffset: {x: 1, y: 2}
+  isDead: 0
   <Speed>k__BackingField: 10
   <Acceleration>k__BackingField: 5
   <IsFacingRight>k__BackingField: 1
@@ -925,6 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
+  healthIncreasePerLevelInPercent: 1.12
   <IFramesInSeconds>k__BackingField: 0.25
   <OnDeath>k__BackingField:
     m_PersistentCalls:
@@ -946,9 +950,11 @@ MonoBehaviour:
         m_CallState: 2
   healthBarGameObject: {fileID: 2396663028613890345, guid: 806d9b91191157d43b423953f38dce8d, type: 3}
   healthBarOffset: {x: 0, y: 2.5, z: 0}
+  xpGiveAmmount: 50
   damagePopup: {fileID: 4318490056698701258, guid: 9516ce5a96704c1409966dd97b95c9e1, type: 3}
   minPopupOffset: {x: -1, y: 1}
   maxPopupOffset: {x: 1, y: 2}
+  isDead: 0
   <Speed>k__BackingField: 25
   <Acceleration>k__BackingField: 15
   <IsFacingRight>k__BackingField: 1
@@ -6472,6 +6478,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1561654848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7413857707690522976, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
+  m_PrefabInstance: {fileID: 8476164666360629097}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1561654849
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561654848}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 792667e529be3fa44b70a410f16cccbf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1677813577
 GameObject:
   m_ObjectHideFlags: 0
@@ -7331,6 +7363,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2067882270796480956, guid: 88dcc51ef026da743a890fd6e01e7836, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067882270796480956, guid: 88dcc51ef026da743a890fd6e01e7836, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067882270796480956, guid: 88dcc51ef026da743a890fd6e01e7836, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4119668566095577132, guid: 88dcc51ef026da743a890fd6e01e7836, type: 3}
       propertyPath: damagePopup
       value: 
@@ -7404,6 +7448,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1370448469
       objectReference: {fileID: 0}
+    - target: {fileID: 5781768278031036547, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7413626398960074846, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
       propertyPath: chaseBase
       value: 
@@ -7475,7 +7523,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7413857707690522976, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1561654849}
   m_SourcePrefab: {fileID: 100100000, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

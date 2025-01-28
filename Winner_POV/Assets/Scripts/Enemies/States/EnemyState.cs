@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class EnemyState
@@ -7,10 +8,10 @@ public class EnemyState
     protected Enemy enemy;
     protected EnemyStateMachine enemyStateMachine;
 
-    public EnemyState(Enemy enemy, EnemyStateMachine enemyStateMachine)
+    public EnemyState(Enemy _enemy, EnemyStateMachine _enemyStateMachine)
     {
-        this.enemy = enemy;
-        this.enemyStateMachine = enemyStateMachine;
+        enemy = _enemy;
+        enemyStateMachine = _enemyStateMachine;
     }
 
     public virtual void EnterState()

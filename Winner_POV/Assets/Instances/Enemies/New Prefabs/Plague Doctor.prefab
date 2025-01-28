@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 7413626398960074846}
   - component: {fileID: 8128670994077949121}
   - component: {fileID: 8066386066753931635}
+  - component: {fileID: 8755282993347662144}
   m_Layer: 7
   m_Name: Plague Doctor
   m_TagString: Enemy
@@ -210,6 +211,7 @@ MonoBehaviour:
   damagePopup: {fileID: 4318490056698701258, guid: 9516ce5a96704c1409966dd97b95c9e1, type: 3}
   minPopupOffset: {x: -1, y: 1}
   maxPopupOffset: {x: 1, y: 2}
+  isDead: 0
   <Speed>k__BackingField: 25
   <Acceleration>k__BackingField: 15
   <IsFacingRight>k__BackingField: 0
@@ -278,6 +280,27 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0034778914, y: -0.033619247}
   m_Size: {x: 0.21441078, y: 0.6503018}
   m_Direction: 0
+--- !u!95 &8755282993347662144
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7413857707690522976}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 792667e529be3fa44b70a410f16cccbf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8854538046758781242
 GameObject:
   m_ObjectHideFlags: 0

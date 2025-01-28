@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Timeline;
 
 public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
 {
@@ -87,6 +88,7 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     public void ChangeHealth(float ammount)
     {
         Health += ammount;
+        Health = Mathf.Clamp(Health, 0, MaxHealth);
 
         if (ammount < 0 && !IsIFrameActive)
         {
@@ -149,7 +151,8 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
         spriteRenderer.color = originalColor;
     }
 
-    private bool isDead = false;
+    [HideInInspector] public bool isDead = false;
+    private bool isAnimationDone = false;
     public void Die()
     {
         if (!isDead)
@@ -158,9 +161,62 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
 
             isDead = true;
             cameraPunch.StartEffect(0.1f, 0.25f);
-            OnDeath?.Invoke();
+
+            StartCoroutine(FinishDeath());
         }
+    }
+
+    private IEnumerator FinishDeath()
+    {
+        try
+        {
+            Animator animator = GetComponent<Animator>();
+            bool triggerExists = false;
+
+            for (int i = 0; i < animator.parameters.Length; i++)
+            {
+                if (animator.parameters[i].name == "Die")
+                {
+                    triggerExists = true;
+                    break;
+                }
+            }
+
+            if (triggerExists)
+            {
+                animator.SetTrigger("Die");
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+        catch
+        {
+            Destroy(gameObject);
+        }
+
+        float safetyTimer = 7.5f;
+        while (!isAnimationDone)
+        {
+            safetyTimer -= Time.deltaTime;
+
+            if (safetyTimer <= 0)
+            {
+                break;
+            }
+
+            yield return null;
+        }
+        isAnimationDone = false;
+
+        OnDeath?.Invoke();
         Destroy(gameObject);
+    }
+
+    public void SetAnimationDone()
+    {
+        isAnimationDone = true;
     }
     #endregion
 

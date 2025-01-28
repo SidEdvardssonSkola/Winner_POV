@@ -24,6 +24,10 @@ public class AttackState : EnemyState
 
     public override void FrameUpdate()
     {
+        if (enemy.isDead)
+        {
+            return;
+        }
         base.FrameUpdate();
         enemy.attackBaseReference.OnStateUpdate();
     }

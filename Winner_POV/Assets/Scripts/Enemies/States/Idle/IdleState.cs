@@ -23,6 +23,10 @@ public class IdleState : EnemyState
 
     public override void FrameUpdate()
     {
+        if (enemy.isDead)
+        {
+            return;
+        }
         base.FrameUpdate();
         enemy.idleBaseReference.OnStateUpdate();
     }
