@@ -522,7 +522,7 @@ AnimationClip:
   m_Events:
   - time: 2.25
     functionName: SetAnimationDone
-    data: 
+    data: Die
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

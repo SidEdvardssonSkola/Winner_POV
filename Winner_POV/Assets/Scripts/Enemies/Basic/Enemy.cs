@@ -56,6 +56,8 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
         }
 
         cameraPunch = GameObject.FindWithTag("MainCamera").GetComponent<CameraPunchIn>();
+
+        isAnimationFinished.Add("Die", false);
     }
     #endregion
 
@@ -152,7 +154,6 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     }
 
     [HideInInspector] public bool isDead = false;
-    [HideInInspector] public bool isAnimationDone = false;
     public void Die()
     {
         if (!isDead)
@@ -197,7 +198,7 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
         }
 
         float safetyTimer = 7.5f;
-        while (!isAnimationDone)
+        while (!isAnimationFinished["Die"])
         {
             safetyTimer -= Time.deltaTime;
 
@@ -208,15 +209,16 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
 
             yield return null;
         }
-        isAnimationDone = false;
+        isAnimationFinished["Die"] = false;
 
         OnDeath?.Invoke();
         Destroy(gameObject);
     }
 
-    public void SetAnimationDone()
+    [HideInInspector] public Dictionary<string, bool> isAnimationFinished = new();
+    public void SetAnimationDone(string animation)
     {
-        isAnimationDone = true;
+        isAnimationFinished[animation] = true;
     }
     #endregion
 

@@ -70,6 +70,7 @@ public class ShootProjectile : AttackBase
                     if (animator.parameters[i].name == "Shoot")
                     {
                         hasTrigger = true;
+                        enemy.isAnimationFinished.Add("Shoot", false);
                         break;
                     }
                 }
@@ -93,11 +94,11 @@ public class ShootProjectile : AttackBase
 
     private IEnumerator WaitUntilAnimationIsDone()
     {
-        while (!enemy.isAnimationDone)
+        while (!enemy.isAnimationFinished["Shoot"])
         {
             yield return new WaitForEndOfFrame();
         }
-        enemy.isAnimationDone = false;
+        enemy.isAnimationFinished["Shoot"] = false;
 
         SpawnProjectile();
     }
