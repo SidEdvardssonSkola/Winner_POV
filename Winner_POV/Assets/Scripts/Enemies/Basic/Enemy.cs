@@ -152,7 +152,7 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
     }
 
     [HideInInspector] public bool isDead = false;
-    private bool isAnimationDone = false;
+    [HideInInspector] public bool isAnimationDone = false;
     public void Die()
     {
         if (!isDead)
