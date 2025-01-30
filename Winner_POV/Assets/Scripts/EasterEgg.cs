@@ -21,30 +21,24 @@ public class EasterEgg : MonoBehaviour
     {
         while (shouldLoop)
         {
-            print("beginListen");
 
             foreach (KeyCode k in combination)
             {
-                print("Waiting for release of key");
+
                 yield return new WaitUntil(() => !Input.anyKey);
 
-                print("Listening");
                 yield return new WaitUntil(() => Input.anyKey);
 
-                if (Input.GetKey(k))
+                if (!Input.GetKey(k))
                 {
-                    print("dading");
-                }
-                else
-                {
-                    print("restart");
+                    shouldLoop = true;
                     break;
                 }
 
                 shouldLoop = false;
             }
         }
-        print("success");
+
         onCombinationSucces.Invoke();
     }
 }
