@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a168f0f5988fbca4d8aa719b83c596bc, type: 3}
   m_Name: Float Towards Player - Drainer Guy
   m_EditorClassIdentifier: 
-  verticalSpeedMultiplier: 0.2
+  verticalSpeedMultiplier: 0.65
   horizontalSpeedMultiplier: 1

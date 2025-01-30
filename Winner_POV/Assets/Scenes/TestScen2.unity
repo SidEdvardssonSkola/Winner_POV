@@ -298,7 +298,6 @@ MonoBehaviour:
   minPopupOffset: {x: -1, y: 1}
   maxPopupOffset: {x: 1, y: 2}
   isDead: 0
-  isAnimationDone: 0
   <Speed>k__BackingField: 10
   <Acceleration>k__BackingField: 5
   <IsFacingRight>k__BackingField: 1
@@ -956,97 +955,12 @@ MonoBehaviour:
   minPopupOffset: {x: -1, y: 1}
   maxPopupOffset: {x: 1, y: 2}
   isDead: 0
-  isAnimationDone: 0
   <Speed>k__BackingField: 25
   <Acceleration>k__BackingField: 15
   <IsFacingRight>k__BackingField: 1
   idleBase: {fileID: 11400000, guid: f275fed96a9599e4fa7bcb72a8aaaf2d, type: 2}
   chaseBase: {fileID: 11400000, guid: d6e0e5fa597f3e746947b37f2d0effda, type: 2}
   attackBase: {fileID: 11400000, guid: db545d94d6623f640bf49642c59c7dcf, type: 2}
---- !u!1 &1012289505
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1012289506}
-  - component: {fileID: 1012289507}
-  m_Layer: 0
-  m_Name: Projectile Charge
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1012289506
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012289505}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.368, y: 0.156, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1561654854}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1012289507
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012289505}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 1641848433, guid: 6da6cccfc07d0d24a82075ee10043afe, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.25, y: 0.25}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &1057097019
 GameObject:
   m_ObjectHideFlags: 0
@@ -6590,11 +6504,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!4 &1561654854 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8423557925596930935, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
-  m_PrefabInstance: {fileID: 8476164666360629097}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1677813577
 GameObject:
   m_ObjectHideFlags: 0
@@ -7081,37 +6990,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1887995599
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1887995600}
-  m_Layer: 7
-  m_Name: Projectile Spawn Pos
-  m_TagString: Projectile Spawn Pos
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1887995600
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1887995599}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.368, y: 0.156, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1561654854}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1951418360
 GameObject:
   m_ObjectHideFlags: 0
@@ -7468,6 +7346,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8352394217858544199, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8782510520733161107, guid: 1d6611eefef9ff3408cc792893578fc4, type: 3}
       propertyPath: m_Name
       value: Draining Guy
@@ -7644,13 +7526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8423557925596930935, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 1887995600}
-    - targetCorrespondingSourceObject: {fileID: 8423557925596930935, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1012289506}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7413857707690522976, guid: 9c78069d8715ed246b4ac05efd96d36b, type: 3}
       insertIndex: -1

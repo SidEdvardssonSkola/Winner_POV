@@ -46,7 +46,11 @@ public class bora : MonoBehaviour
     public UnityEvent OnWallJump;
 
     private Rigidbody2D rb;
+
     private bool canJump = true;
+    [SerializeField] private int airJumps = 2;
+    private int remainingAirJumps;
+
     private bool isWallSliding = false;
     private bool canWallJump = false;
     private bool isDashing;
@@ -72,6 +76,7 @@ public class bora : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         originalLayer = gameObject.layer;
+        remainingAirJumps = airJumps;
     }
 
     void Update()
@@ -181,11 +186,20 @@ public class bora : MonoBehaviour
 
         //HandleWallJump(moveX);
 
-        if (Input.GetKey(KeyCode.Space) && canJump)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            canJump = false;
-            OnJump?.Invoke();
+            if (CanJump)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                canJump = false;
+                OnJump?.Invoke();
+            }
+            else if (remainingAirJumps > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                remainingAirJumps--;
+                OnJump?.Invoke();
+            }
         }
     }
 
@@ -296,6 +310,7 @@ public class bora : MonoBehaviour
         {
             bool wasGrounded = canJump;
             canJump = true;
+            remainingAirJumps = airJumps;
             isWallSliding = false;
             canWallJump = false;
             preservingMomentum = false;

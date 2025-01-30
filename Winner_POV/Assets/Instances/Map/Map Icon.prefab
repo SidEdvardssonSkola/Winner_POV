@@ -182,9 +182,9 @@ MonoBehaviour:
   - name: Enemy Spawnweight
     value: 100
   - name: Campfire Spawnweight
-    value: 25
+    value: 40
   - name: Miniboss Spawnweight
-    value: 15
+    value: 25
   - name: Boss Spawnweight
     value: 0
   - name: Lootroom Spawnweight
@@ -194,5 +194,5 @@ MonoBehaviour:
   map: map
   campfireIcon: {fileID: 21300000, guid: cd97d5068ec157b44a839114a946e121, type: 3}
   enemyIcon: {fileID: 21300000, guid: ebca9099eccae0244a248c201d0a0c83, type: 3}
-  bossIcon: {fileID: 21300000, guid: 207aaf202c2c4d744af4a22b22f09431, type: 3}
   CampfireUiName: Campfire
+  combatEnvironmentName: Combat

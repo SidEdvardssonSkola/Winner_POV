@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
@@ -14,6 +15,9 @@ public class ShootProjectile : AttackBase
     [SerializeField] private float floatiness = 0.5f;
 
     private Transform projectileSpawnPos;
+
+    private Animator animator;
+    private bool hasTrigger = false;
     public override void Init(GameObject gameObject, Enemy enemy)
     {
         base.Init(gameObject, enemy);
@@ -37,6 +41,21 @@ public class ShootProjectile : AttackBase
             Debug.Log("Warning! No Projectile Spawn Position Found at " + gameObject.name + "!");
             projectileSpawnPos = gameObject.transform;
         }
+
+        animator = gameObject.GetComponent<Animator>();
+
+        hasTrigger = false;
+        for (int i = 0; i < animator.parameters.Length; i++)
+        {
+            if (animator.parameters[i].name == "Shoot")
+            {
+                hasTrigger = true;
+                enemy.isAnimationFinished.Add("Shoot", false);
+                break;
+            }
+        }
+
+        timer = Random.Range(0, shootCooldown / 1.5f);
     }
 
     public override void OnStateEnter()
@@ -62,19 +81,6 @@ public class ShootProjectile : AttackBase
             timer = 0;
             try
             {
-                Animator animator = gameObject.GetComponent<Animator>();
-
-                bool hasTrigger = false;
-                for (int i = 0; i < animator.parameters.Length; i++)
-                {
-                    if (animator.parameters[i].name == "Shoot")
-                    {
-                        hasTrigger = true;
-                        enemy.isAnimationFinished.Add("Shoot", false);
-                        break;
-                    }
-                }
-
                 if (hasTrigger)
                 {
                     animator.SetTrigger("Shoot");
@@ -96,7 +102,7 @@ public class ShootProjectile : AttackBase
     {
         while (!enemy.isAnimationFinished["Shoot"])
         {
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
         enemy.isAnimationFinished["Shoot"] = false;
 

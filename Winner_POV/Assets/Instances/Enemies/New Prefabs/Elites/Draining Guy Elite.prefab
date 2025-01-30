@@ -292,6 +292,7 @@ MonoBehaviour:
   damagePopup: {fileID: 4318490056698701258, guid: 9516ce5a96704c1409966dd97b95c9e1, type: 3}
   minPopupOffset: {x: -1, y: 1}
   maxPopupOffset: {x: 1, y: 2}
+  isDead: 0
   <Speed>k__BackingField: 15
   <Acceleration>k__BackingField: 8
   <IsFacingRight>k__BackingField: 0
