@@ -16,7 +16,7 @@ public class DrawPaths : MonoBehaviour
     [SerializeField] private int maxBranchLength = 3;
     [SerializeField] private float branchOffset = 1.25f;
 
-    [Header("Branch Frequency = Antal Steg Innan en till Gren kan Skapas")]
+    [Tooltip("Antal Steg Innan en till Gren kan Skapas")]
     [SerializeField] private int branchFrequency = 2;
     private void Start()
     {
