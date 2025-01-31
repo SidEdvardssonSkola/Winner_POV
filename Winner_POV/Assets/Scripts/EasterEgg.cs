@@ -14,10 +14,10 @@ public class EasterEgg : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(CheckForKonamiCode());
+        StartCoroutine(CheckForCombination());
     }
 
-    private IEnumerator CheckForKonamiCode()
+    private IEnumerator CheckForCombination()
     {
         while (shouldLoop)
         {
