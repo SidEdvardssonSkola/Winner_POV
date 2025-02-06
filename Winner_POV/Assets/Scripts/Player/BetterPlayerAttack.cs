@@ -9,6 +9,8 @@ public class BetterPlayerAttack : MonoBehaviour
     bool canAttack = true;
     private bora movement;
 
+    [SerializeField] private AudioSource swoshSound;
+
     private void Start()
     {
         movement = GetComponent<bora>();
@@ -18,6 +20,9 @@ public class BetterPlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && canAttack)
         {
             canAttack = false;
+
+            swoshSound.pitch = Random.Range(0.75f, 1.25f);
+            swoshSound.Play();
 
             int direction = movement.FacingDirection;
 

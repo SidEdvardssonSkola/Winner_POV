@@ -8,6 +8,7 @@ TagManager:
   - Encounter Manager
   - Projectile
   - Projectile Spawn Pos
+  - Wall
   layers:
   - Default
   - TransparentFX

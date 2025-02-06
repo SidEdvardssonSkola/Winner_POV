@@ -8,6 +8,8 @@ public class HurtEnemy : MonoBehaviour
     [SerializeField] private CameraShake screenShake;
     private float actualDamage;
 
+    [SerializeField] private AudioSource clang;
+
     private void Start()
     {
         actualDamage = damage;
@@ -30,6 +32,12 @@ public class HurtEnemy : MonoBehaviour
         {
             screenShake.ShakeScreen(0.1f, 0.15f);
             collision.gameObject.GetComponent<IDamageable>().ChangeHealth(-actualDamage);
+        }
+
+        if (!collision.gameObject.CompareTag("Player") && collision.isTrigger == false)
+        {
+            clang.pitch = Random.Range(0.75f, 1.25f);
+            clang.Play();
         }
     }
 }
