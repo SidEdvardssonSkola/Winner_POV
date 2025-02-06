@@ -161,6 +161,8 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
             GameObject.FindWithTag("Player").GetComponent<XpSystem>().GiveXP(xpGiveAmmount, 2.5f);
 
             isDead = true;
+            OnDeath.Invoke();
+
             cameraPunch.StartEffect(0.1f, 0.25f);
 
             StartCoroutine(FinishDeath());

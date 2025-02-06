@@ -9,6 +9,7 @@ public class AttackBase : ScriptableObject
     protected Enemy enemy;
 
     protected Transform playerTransform;
+    protected PlayerHealth playerHealth;
 
     [SerializeField] protected float damage = 10f;
     [SerializeField] protected float damageIncreasePerLevelInPercent = 1.12f;
@@ -20,6 +21,7 @@ public class AttackBase : ScriptableObject
         this.enemy = enemy;
 
         playerTransform = GameObject.FindWithTag("Player").transform;
+        playerHealth = playerTransform.GetComponent<PlayerHealth>();
 
         GameObject encounterManager = GameObject.FindWithTag("Encounter Manager");
         if (encounterManager != null)
@@ -31,4 +33,9 @@ public class AttackBase : ScriptableObject
     public virtual void OnStateEnter() { }
     public virtual void OnStateExit() { }
     public virtual void OnStateUpdate() { }
+
+    public virtual void DamagePlayer(float damagePercentage, bool ignoreIFrames)
+    {
+        playerHealth.ChangeHealth(-damage * damagePercentage, ignoreIFrames);
+    }
 }

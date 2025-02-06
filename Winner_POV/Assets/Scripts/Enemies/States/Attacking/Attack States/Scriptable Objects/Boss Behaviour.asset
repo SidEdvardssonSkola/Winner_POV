@@ -9,7 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee9e0bd79bc681f4db0e01141438445d, type: 3}
-  m_Name: Run From Player While Shooting - Plague Doctor
+  m_Script: {fileID: 11500000, guid: 9a0ef4cd495122844a64cb16ff34ecd8, type: 3}
+  m_Name: Boss Behaviour
   m_EditorClassIdentifier: 
-  speedMultiplier: -0.35
+  damage: 10
+  damageIncreasePerLevelInPercent: 1.12
+  attacks:
+  - Attack
+  - Throw Spear
+  - Stomp
+  - Back Slash
+  - Roar
+  avaliableAttacks: 2
