@@ -115,7 +115,6 @@ public class ShootProjectile : AttackBase
         direction = direction.normalized;
 
         Projectile p = Instantiate(projectile, projectileSpawnPos.position, Quaternion.identity).GetComponent<Projectile>();
-        p.transform.Rotate(new Vector3(0, 0, Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x)));
         p.Init(direction, damage);
     }
     

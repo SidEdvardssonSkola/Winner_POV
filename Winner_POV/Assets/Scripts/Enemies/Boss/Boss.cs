@@ -15,6 +15,7 @@ public class Boss : Enemy
     [SerializeField] private Transform spearSpawnPos;
     public void SpawnSpear()
     {
-        Instantiate(spearPrefab, spearSpawnPos.position, spearPrefab.transform.rotation);
+        Projectile s = Instantiate(spearPrefab, spearSpawnPos.position, spearPrefab.transform.rotation).GetComponentInChildren<Projectile>();
+        s.Init(GameObject.FindWithTag("Player").transform.position - transform.position, attackBaseReference.damage);
     }
 }

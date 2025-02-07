@@ -11,7 +11,7 @@ public class AttackBase : ScriptableObject
     protected Transform playerTransform;
     protected PlayerHealth playerHealth;
 
-    [SerializeField] protected float damage = 10f;
+    [SerializeField] public float damage = 10f;
     [SerializeField] protected float damageIncreasePerLevelInPercent = 1.12f;
 
     public virtual void Init(GameObject gameObject, Enemy enemy)

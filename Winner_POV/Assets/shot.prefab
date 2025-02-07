@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8512182060191802909}
   - component: {fileID: -2085217407513054152}
   - component: {fileID: -970889735061536842}
+  - component: {fileID: -7489181513327452369}
   m_Layer: 10
   m_Name: shot
   m_TagString: Projectile
@@ -173,6 +174,7 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 25
   <IFramesInSeconds>k__BackingField: 0.25
   particle: {fileID: 4623758544541146020, guid: 6d52be1aff1838545a78ec29a6e31734, type: 3}
+  spawnSound: {fileID: 0}
 --- !u!95 &-970889735061536842
 Animator:
   serializedVersion: 5
@@ -194,3 +196,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-7489181513327452369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7927786967548621749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826775eeb48667c41bbd8edef456cb36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

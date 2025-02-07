@@ -19,17 +19,27 @@ public class Projectile : MonoBehaviour, IDamageable
 
     [SerializeField] private GameObject particle;
 
+    [SerializeField] private AudioSource spawnSound;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         Health = MaxHealth;
         Destroy(gameObject, lifetime); // Destroy the projectile after a set time
+
+        if (spawnSound != null)
+        {
+            spawnSound.pitch = Random.Range(0.75f, 1.25f);
+            spawnSound.Play();
+        }
     }
 
     public void Init(Vector2 direction, float damage)
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = direction * projectileSpeed;
+
+        transform.Rotate(new Vector3(0, 0, Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x)));
 
         this.damage = damage;
     }
@@ -43,7 +53,8 @@ public class Projectile : MonoBehaviour, IDamageable
         }
         else if (!collision.gameObject.CompareTag("Enemy"))
         { 
-            Instantiate(particle, transform.position, Quaternion.identity);
+            
+            if (particle != null) Instantiate(particle, transform.position, Quaternion.identity);
         
             Destroy(gameObject); // Destroy projectile if it hits a wall
         }
@@ -59,7 +70,7 @@ public class Projectile : MonoBehaviour, IDamageable
             IsIFrameActive = true;
             Invoke(nameof(RemoveIFrames), IFramesInSeconds);
 
-            Instantiate(particle, transform.position, Quaternion.identity);
+            if (particle != null) Instantiate(particle, transform.position, Quaternion.identity);
 
             OnDamageTaken.Invoke();
 
