@@ -28,6 +28,8 @@ public class BossAttackBehaviour : AttackBase
         }
 
         abilityCooldownTimer = abilityCooldown;
+
+        enemy.OnDamageTaken.AddListener(CheckifShouldChangePhases);
     }
 
     public override void OnStateEnter()
@@ -50,16 +52,21 @@ public class BossAttackBehaviour : AttackBase
 
         if (!canAttack) return;
 
-        if (Physics2D.OverlapCircle(transform.position, radius).CompareTag("Player")) inMeleeRange = true;
-        else inMeleeRange = false;
+        enemy.chaseState.FrameUpdate();
 
-        if (inMeleeRange && canAttack) enemy.StartCoroutine(Attack(attacks[0]));
+        inMeleeRange = false;
+        foreach (Collider2D c in Physics2D.OverlapCircleAll(transform.position, radius))
+        {
+            if (c.CompareTag("Player")) inMeleeRange = true;
+        }
 
         if (abilityCooldownTimer <= 0 && canAttack)
         {
             abilityCooldownTimer = abilityCooldown;
             enemy.StartCoroutine(Attack(attacks[Random.Range(1, avaliableAttacks)]));
         }
+
+        if (inMeleeRange && canAttack) enemy.StartCoroutine(Attack(attacks[0]));
     }
 
     private float safetyTimer;
@@ -67,24 +74,53 @@ public class BossAttackBehaviour : AttackBase
     {
         canAttack = false;
         safetyTimer = 10;
+
         animator.SetTrigger(attackTrigger);
 
-        while (!enemy.isAnimationFinished[attackTrigger] && safetyTimer < 10)
+        while (!enemy.isAnimationFinished[attackTrigger])
         {
             safetyTimer -= Time.deltaTime;
+            if (safetyTimer <= 0)
+            {
+                break;
+            }
+
             yield return new WaitForEndOfFrame();
         }
 
+        animator.SetTrigger("Walk");
+        enemy.isAnimationFinished[attackTrigger] = false;
         canAttack = true;
     }
 
+    [SerializeField] private float[] phaseThresholdInPercent;
+    private int phase = 0;
     public void CheckifShouldChangePhases()
     {
-
+        if (enemy.Health / enemy.MaxHealth < phaseThresholdInPercent[phase])
+        {
+            phase++;
+            ChangePhase(phase);
+        } 
     }
 
-    private void ChangePhase()
+    private void ChangePhase(int phase)
     {
+        switch (phase)
+        {
+            case 1:
+                abilityCooldown *= 0.85f;
+                avaliableAttacks = 3;
+                break;
 
+            case 2:
+                abilityCooldown *= 0.85f;
+                avaliableAttacks = 4;
+                break;
+
+            case 3:
+                abilityCooldown *= 0.7f;
+                break;
+        }
     }
 }

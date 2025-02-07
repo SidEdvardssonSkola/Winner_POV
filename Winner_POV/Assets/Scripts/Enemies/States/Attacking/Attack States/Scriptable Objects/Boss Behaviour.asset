@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0ef4cd495122844a64cb16ff34ecd8, type: 3}
   m_Name: Boss Behaviour
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 15
   damageIncreasePerLevelInPercent: 1.12
   attacks:
   - Attack
   - Throw Spear
   - Stomp
-  - Back Slash
   - Roar
   avaliableAttacks: 2
-  abilityCooldown: 5
-  meleeRange: 1.5
+  abilityCooldown: 6.5
+  radius: 6.5
+  phaseThresholdInPercent:
+  - 0.8
+  - 0.6
+  - 0.4
+  - -1

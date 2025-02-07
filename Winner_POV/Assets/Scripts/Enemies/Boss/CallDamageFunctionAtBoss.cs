@@ -6,6 +6,7 @@ public class CallDamageFunctionAtBoss : MonoBehaviour
 {
     [SerializeField] private float damagePercentage = 1f;
     [SerializeField] private bool ignoreIFrames = false;
+    [SerializeField] private bool isDPS = false;
 
     private AttackBase boss;
 
@@ -17,6 +18,11 @@ public class CallDamageFunctionAtBoss : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            if (isDPS)
+            {
+                boss.DamagePlayer(damagePercentage * Time.deltaTime, ignoreIFrames);
+                return;
+            }
             boss.DamagePlayer(damagePercentage, ignoreIFrames);
         }
     }
