@@ -37,6 +37,8 @@ public class Projectile : MonoBehaviour, IDamageable
     public void Init(Vector2 direction, float damage)
     {
         rb = GetComponent<Rigidbody2D>();
+
+        direction = direction.normalized;
         rb.velocity = direction * projectileSpeed;
 
         transform.Rotate(new Vector3(0, 0, Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x)));

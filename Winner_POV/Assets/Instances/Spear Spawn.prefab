@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037ac5c20a2991b4b83024265e9e4d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 5
+  projectileSpeed: 50
   lifetime: 5
   <OnDeath>k__BackingField:
     m_PersistentCalls:
