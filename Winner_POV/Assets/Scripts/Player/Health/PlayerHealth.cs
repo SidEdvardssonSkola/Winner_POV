@@ -68,6 +68,12 @@ public class PlayerHealth : MonoBehaviour
     {
         float oldHealth = health;
 
+        if (!ignoreIframes)
+        {
+            ChangeHealth(ammount);
+            return;
+        }
+
         if (ammount < 0)
         {
             Invoke(nameof(ResetIframes), iframesInSeconds);

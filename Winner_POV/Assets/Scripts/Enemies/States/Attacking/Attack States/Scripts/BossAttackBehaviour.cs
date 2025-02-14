@@ -54,10 +54,13 @@ public class BossAttackBehaviour : AttackBase
 
         enemy.chaseState.FrameUpdate();
 
-        inMeleeRange = false;
-        foreach (Collider2D c in Physics2D.OverlapCircleAll(transform.position, radius))
+        if (Vector2.Distance(playerTransform.position, transform.position) < radius)
         {
-            if (c.CompareTag("Player")) inMeleeRange = true;
+            inMeleeRange = true;
+        }
+        else
+        {
+            inMeleeRange = false;
         }
 
         if (abilityCooldownTimer <= 0 && canAttack)
