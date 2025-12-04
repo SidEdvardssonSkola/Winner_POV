@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Chase-Fly Towards Player", menuName = "Enemy/Behaviours/Chase States/Fly Towards Player")]

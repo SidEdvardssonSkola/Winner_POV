@@ -67,7 +67,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.18
 --- !u!114 &5903084192033734981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
   maxPopupOffset: {x: 1, y: 2}
   isDead: 0
   <Speed>k__BackingField: 15
-  <Acceleration>k__BackingField: 8
+  <Acceleration>k__BackingField: 10
   <IsFacingRight>k__BackingField: 0
   idleBase: {fileID: 11400000, guid: f275fed96a9599e4fa7bcb72a8aaaf2d, type: 2}
   chaseBase: {fileID: 11400000, guid: 8b268ad80faa3594f924491cb85c25a3, type: 2}

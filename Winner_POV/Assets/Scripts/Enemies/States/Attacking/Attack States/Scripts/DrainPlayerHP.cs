@@ -6,8 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Attack-HP Drain", menuName = "Enemy/Behaviours/Attack States/Drain Player Health")]
 public class DrainPlayerHP : AttackBase
 {
-    private PlayerHealth playerHealth;
-
     private float timer = 0;
     [SerializeField] private float appliesPerSecond = 5;
     private float damagePerApply;

@@ -6,12 +6,16 @@ public class PlaySound : MonoBehaviour
 {
     public void Play(AudioSource audio)
     {
+        if (audio == null) return;
+
         audio.pitch = 1f;
         audio.Play();
     }
 
     public void PlayWithRandomPitch(AudioSource audio)
     {
+        if (audio == null) return;
+
         audio.pitch = Random.Range(0.75f, 1.25f);
         audio.Play();
     }

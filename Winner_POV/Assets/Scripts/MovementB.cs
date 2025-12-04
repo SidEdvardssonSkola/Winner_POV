@@ -72,7 +72,7 @@ public class bora : MonoBehaviour
     public int FacingDirection => facingDirection;
     public bool CanJump => canJump;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         originalLayer = gameObject.layer;

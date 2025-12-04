@@ -48,7 +48,7 @@ public class BossAttackBehaviour : AttackBase
     {
         base.OnStateUpdate();
 
-        abilityCooldownTimer -= Time.deltaTime;
+        abilityCooldownTimer -= Time.fixedDeltaTime;
 
         if (!canAttack) return;
 
@@ -82,7 +82,7 @@ public class BossAttackBehaviour : AttackBase
 
         while (!enemy.isAnimationFinished[attackTrigger])
         {
-            safetyTimer -= Time.deltaTime;
+            safetyTimer -= Time.fixedDeltaTime;
             if (safetyTimer <= 0)
             {
                 break;

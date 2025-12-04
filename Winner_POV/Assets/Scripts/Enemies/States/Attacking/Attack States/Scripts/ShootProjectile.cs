@@ -75,7 +75,7 @@ public class ShootProjectile : AttackBase
         enemy.AddVelocity(new Vector2(Random.Range(-floatiness, floatiness) * enemy.Acceleration, Random.Range(-floatiness, floatiness) * enemy.Acceleration));
         enemy.CheckIfFacingLeftOrRight(playerTransform.position.x - transform.position.x);
 
-        timer += Time.deltaTime;
+        timer += Time.fixedDeltaTime;
         if (timer > shootCooldown)
         {
             timer = 0;

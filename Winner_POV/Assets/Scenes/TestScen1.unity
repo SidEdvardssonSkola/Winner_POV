@@ -594,26 +594,26 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 1
+  m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
-    - - {x: 1.3010237, y: -4.5177593}
-      - {x: 1.3010237, y: 1.129818}
-      - {x: 0.9241059, y: 1.1298445}
-      - {x: 0.8434955, y: 2.0952418}
-      - {x: -0.1940514, y: 2.0086567}
-      - {x: -0.2581505, y: 2.1448648}
-      - {x: -1.8327333, y: 1.4042522}
-      - {x: -2.2822971, y: 1.5844115}
-      - {x: -3.4027333, y: -1.2110783}
-      - {x: -1.6520004, y: -1.9128125}
-      - {x: -1.6519711, y: -4.5177593}
-  m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
-  m_UseDelaunayMesh: 0
+    - - {x: 1.301053, y: 1.1298199}
+      - {x: 0.924111, y: 1.1298199}
+      - {x: 0.8435276, y: 2.0952463}
+      - {x: -0.1940427, y: 2.0086412}
+      - {x: -0.258123, y: 2.1448777}
+      - {x: -1.8327236, y: 1.4042473}
+      - {x: -2.2822864, y: 1.5844377}
+      - {x: -3.4027605, y: -1.2110684}
+      - {x: -1.6520004, y: -1.9127948}
+      - {x: -1.6520004, y: -4.5177574}
+      - {x: 1.301053, y: -4.5177574}
+  m_VertexDistance: 1
+  m_OffsetDistance: 0
+  m_UseDelaunayMesh: 1
   m_CompositeGameObject: {fileID: 60042814}
 --- !u!50 &60042818
 Rigidbody2D:
@@ -1201,14 +1201,14 @@ MonoBehaviour:
   minPopupOffset: {x: -1, y: 1}
   maxPopupOffset: {x: 1, y: 2}
   isDead: 0
-  <Speed>k__BackingField: 25
-  <Acceleration>k__BackingField: 20
+  <Speed>k__BackingField: 35
+  <Acceleration>k__BackingField: 30
   <IsFacingRight>k__BackingField: 0
   idleBase: {fileID: 11400000, guid: f275fed96a9599e4fa7bcb72a8aaaf2d, type: 2}
   chaseBase: {fileID: 11400000, guid: d6e0e5fa597f3e746947b37f2d0effda, type: 2}
   attackBase: {fileID: 11400000, guid: 76be4fc94e7ceec488128a7d1e2991f1, type: 2}
   attackHurtBoxes: []
-  dashSpeedMultiplier: 75
+  dashSpeedMultiplier: 53.5
   spearPrefab: {fileID: 8937239363877958571, guid: 4e1d37e257862de458c13b2b033a93ad, type: 3}
   spearSpawnPos: {fileID: 1529644543}
   forward: {fileID: 84903818}
@@ -48720,7 +48720,7 @@ MonoBehaviour:
   fastFallMultiplier: 20
   dashSpeed: 30
   dashDuration: 0.2
-  dashCooldown: 0.5
+  dashCooldown: 1.2
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

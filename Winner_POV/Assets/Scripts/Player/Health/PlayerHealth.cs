@@ -58,7 +58,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(3);
         }
 
         OnHealthChange.Invoke();

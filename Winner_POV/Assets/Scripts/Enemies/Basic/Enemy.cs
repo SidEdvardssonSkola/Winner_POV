@@ -316,7 +316,7 @@ public class Enemy : MonoBehaviour, IDamageable, IBasicMovement
 
     #endregion
 
-    private void Update()
+    private void FixedUpdate()
     {
         enemyStateMachine.currentState.FrameUpdate();
     }

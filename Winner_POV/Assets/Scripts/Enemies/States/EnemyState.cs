@@ -24,6 +24,7 @@ public class EnemyState
 
     }
 
+    //Den är inte frameupdate utan fixedupdate, jag orkar inte ändra namnet på den överallt så det får vara lite missledande
     public virtual void FrameUpdate()
     {
 

@@ -21,9 +21,9 @@ MonoBehaviour:
   - Roar
   avaliableAttacks: 2
   abilityCooldown: 6.5
-  radius: 6.5
+  radius: 7.5
   phaseThresholdInPercent:
   - 0.8
-  - 0.6
-  - 0.4
+  - 0.65
+  - 0.5
   - -1
