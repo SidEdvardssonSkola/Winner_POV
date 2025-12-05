@@ -13,11 +13,11 @@ public class MapPanning : MonoBehaviour
     private int panDirection = 0;
     private void Update()
     {
-        if (Input.mousePosition.y > Screen.height * (1 - panThreshold))
+        if (Input.mousePosition.y > Screen.height * (1 - panThreshold) || Input.GetAxisRaw("Vertical") > 0)
         {
             panDirection = 1;
         }
-        else if (Input.mousePosition.y < Screen.height * panThreshold)
+        else if (Input.mousePosition.y < Screen.height * panThreshold || Input.GetAxisRaw("Vertical") < 0)
         {
             panDirection = -1;
         }
