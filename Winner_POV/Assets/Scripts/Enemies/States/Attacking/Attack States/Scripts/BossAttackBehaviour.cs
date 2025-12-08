@@ -117,12 +117,12 @@ public class BossAttackBehaviour : AttackBase
                 break;
 
             case 2:
-                abilityCooldown *= 0.85f;
+                abilityCooldown *= 0.65f;
                 avaliableAttacks = 4;
                 break;
 
             case 3:
-                abilityCooldown *= 0.7f;
+                abilityCooldown *= 0.4f;
                 break;
         }
     }

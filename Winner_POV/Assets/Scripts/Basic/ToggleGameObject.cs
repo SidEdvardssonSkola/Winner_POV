@@ -9,14 +9,7 @@ public class ToggleGameObject : MonoBehaviour
     {
         foreach (GameObject o in objectsToToggle)
         {
-            if (o)
-            {
-                o.SetActive(false);
-            }
-            else
-            {
-                o.SetActive(true);
-            }
+            o.SetActive(!o.activeSelf);
         }
     }
     public void HideObjects()

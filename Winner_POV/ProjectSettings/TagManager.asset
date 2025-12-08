@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Projectile Spawn Pos
   - Wall
+  - Settings Manager
   layers:
   - Default
   - TransparentFX

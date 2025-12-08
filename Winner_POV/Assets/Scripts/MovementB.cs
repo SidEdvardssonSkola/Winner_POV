@@ -81,8 +81,6 @@ public class bora : MonoBehaviour
 
     void Update()
     {
-        UpdateVelocityDisplay();
-
         if (isDashing)
         {
             HandleDash();
@@ -96,7 +94,7 @@ public class bora : MonoBehaviour
             
             if (horizontal != 0 || vertical != 0)
             {
-                dashDirection = new Vector2(horizontal, vertical).normalized;
+                dashDirection = new Vector2(horizontal, 0).normalized;
             }
             else
             {
@@ -184,8 +182,6 @@ public class bora : MonoBehaviour
                 rb.velocity.y);
         }
 
-        //HandleWallJump(moveX);
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (CanJump)
@@ -199,34 +195,6 @@ public class bora : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 remainingAirJumps--;
                 OnJump?.Invoke();
-            }
-        }
-    }
-
-    void HandleWallJump(float moveX)
-    {
-        if (isWallSliding)
-        {
-            bool holdingTowardsWall = (moveX * facingDirection) > 0;
-
-            if (holdingTowardsWall)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
-            }
-
-            if (Input.GetKey(KeyCode.Space) && canWallJump)
-            {
-                rb.velocity = new Vector2(-facingDirection * wallJumpDirectionForce, wallJumpForce);
-                
-                preservingMomentum = true;
-                momentumTimeLeft = momentumDuration;
-                
-                wallKeyDisableTimeLeft = wallKeyDisableTime;
-                disabledKey = facingDirection > 0 ? KeyCode.D : KeyCode.A;
-                
-                isWallSliding = false;
-                canWallJump = false;
-                OnWallJump?.Invoke();
             }
         }
     }
@@ -299,9 +267,6 @@ public class bora : MonoBehaviour
         
         animator.SetBool("IsFacingLeft", facingDirection < 0);
         animator.SetBool("IsFacingRight", facingDirection > 0);
-        
-        //animator.SetBool("IsWallSlideLeft", isWallSliding && isWallLeft);
-        //animator.SetBool("IsWallSlideRight", isWallSliding && isWallRight);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
