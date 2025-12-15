@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DisableMovement : MonoBehaviour
 {
-    [SerializeField] private bora movement;
+    [SerializeField] private PlayerMovement movement;
     [SerializeField] private BetterPlayerAttack attack;
     public void DisablePlayerMovement()
     {

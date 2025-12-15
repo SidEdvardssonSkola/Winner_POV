@@ -805,6 +805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: 0001
+  dropdown: {fileID: 0}
 --- !u!1 &124234925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,7 +1607,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 754cb91c3c9e6da42b6b0e07f3656200, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8131a075af83ad944a24fa69dd445d9f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4086,7 +4087,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 754cb91c3c9e6da42b6b0e07f3656200, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8131a075af83ad944a24fa69dd445d9f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4615,7 +4616,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 754cb91c3c9e6da42b6b0e07f3656200, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8131a075af83ad944a24fa69dd445d9f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -6125,6 +6126,7 @@ GameObject:
   - component: {fileID: 1302564725}
   - component: {fileID: 1302564724}
   - component: {fileID: 1302564727}
+  - component: {fileID: 1302564728}
   m_Layer: 5
   m_Name: Resolution Dropdown
   m_TagString: Untagged
@@ -6238,13 +6240,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1302564728}
+        m_TargetAssemblyTypeName: ResolutionDropdown, Assembly-CSharp
+        m_MethodName: OnValueChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6385,6 +6387,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1302564728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302564722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dcc749dbf1bd934ea44961f70fc8659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - {x: 1920, y: 1080}
+  - {x: 1440, y: 900}
+  - {x: 1366, y: 768}
+  - {x: 1280, y: 720}
+  - {x: 1600, y: 900}
+  - {x: 2560, y: 1440}
+  - {x: 3840, y: 2160}
+  - {x: 320, y: 480}
+  - {x: -1, y: -1}
 --- !u!1 &1331477763
 GameObject:
   m_ObjectHideFlags: 0
@@ -6571,6 +6595,7 @@ GameObject:
   - component: {fileID: 1341944543}
   - component: {fileID: 1341944542}
   - component: {fileID: 1341944545}
+  - component: {fileID: 1341944546}
   m_Layer: 5
   m_Name: Window Mode Dropdown
   m_TagString: Untagged
@@ -6655,14 +6680,24 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Windowed
       m_Image: {fileID: 0}
-    - m_Text: Borderless Window
-      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96606222}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1341944546}
+        m_TargetAssemblyTypeName: WindowModeDropdown, Assembly-CSharp
+        m_MethodName: OnValueChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6807,6 +6842,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1341944546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341944540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c3d3f50b9a8c24abc4f7f673d9e5da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options: 0100
 --- !u!1 &1371980200
 GameObject:
   m_ObjectHideFlags: 0
@@ -7008,10 +7056,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsFilePath: Settings.json
   defaultSettings:
-    resolution: {x: 0, y: 0}
-    fPS: 0
+    resolution: {x: -1, y: -1}
+    fPS: -1
     vSync: 0
-    fullScreenMode: 0
+    fullScreen: 0
     volume: 100
   mixer: {fileID: 24100000, guid: 754cb91c3c9e6da42b6b0e07f3656200, type: 2}
   minVolume: -80
@@ -18848,7 +18896,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1912816909}
-  - component: {fileID: 1912816908}
   m_Layer: 0
   m_Name: Song Manager
   m_TagString: Untagged
@@ -18856,102 +18903,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &1912816908
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912816907}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: a38bdcd3081cced4180d65e44b3a8316, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 2537d361c0c580e4593598302000d723, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &1912816909
 Transform:
   m_ObjectHideFlags: 0
@@ -24682,7 +24633,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 754cb91c3c9e6da42b6b0e07f3656200, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8131a075af83ad944a24fa69dd445d9f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

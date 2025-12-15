@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FPSDropdown : MonoBehaviour
 {
-    [SerializeField] private List<int> framerates;
-    private Dropdown dropdown;
+    [SerializeField] private List<int> framerates = new();
+    private TMP_Dropdown dropdown;
 
     private Settings settings;
 
     private void Start()
     {
-        dropdown = GetComponent<Dropdown>();
+        dropdown = GetComponent<TMP_Dropdown>();
         settings = GameObject.FindWithTag("Settings Manager").GetComponent<Settings>();
 
         int currentFPS = -1;
@@ -25,6 +26,7 @@ public class FPSDropdown : MonoBehaviour
                 currentFPS = Application.targetFrameRate;
             }
         }
+
         dropdown.value = framerates.IndexOf(currentFPS);
     }
 

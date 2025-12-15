@@ -52,12 +52,12 @@ public class Settings : MonoBehaviour
         SetNewFPS(settings.fPS);
         SetNewResolution(settings.resolution);
         ToggleVSync(settings.vSync);
-        SetNewWindowMode(settings.fullScreenMode);
+        SetNewWindowMode(settings.fullScreen);
     }
 
     public void LoadAudioSettings()
     {
-        
+        SetNewVolume(settings.volume);
     }
 
     public void SetNewFPS(int fPS)
@@ -70,6 +70,9 @@ public class Settings : MonoBehaviour
         {
             Application.targetFrameRate = fPS;
         }
+
+        settings.fPS = fPS;
+        SaveSettings();
     }
 
     public void SetNewResolution(Vector2 resolution)
@@ -81,6 +84,9 @@ public class Settings : MonoBehaviour
         }
 
         Screen.SetResolution((int)resolution.x, (int)resolution.y, Screen.fullScreenMode);
+
+        settings.resolution = resolution;
+        SaveSettings();
     }
 
     public void SetNewResolution(int xResolution, int yResolution)
@@ -92,11 +98,17 @@ public class Settings : MonoBehaviour
         }
 
         Screen.SetResolution(xResolution, yResolution, Screen.fullScreenMode);
+
+        settings.resolution = new(xResolution, yResolution);
+        SaveSettings();
     }
 
     public void ToggleVSync(bool vSync)
     {
         QualitySettings.vSyncCount = vSync ? 1 : 0;
+
+        settings.vSync = vSync;
+        SaveSettings();
     }
 
     public bool GetVsync()
@@ -104,9 +116,12 @@ public class Settings : MonoBehaviour
         return QualitySettings.vSyncCount > 0;
     }
 
-    public void SetNewWindowMode(FullScreenMode windowMode)
+    public void SetNewWindowMode(bool fullScreen)
     {
-        Screen.fullScreenMode = windowMode;
+        Screen.fullScreen = fullScreen;
+
+        settings.fullScreen = fullScreen;
+        SaveSettings();
     }
 
     public void SetNewVolume(float volume)
@@ -116,6 +131,9 @@ public class Settings : MonoBehaviour
         volume = Mathf.Clamp01(volume);
         float newVolume = ((maxVolume - minVolume) * volume) + minVolume;
         mixer.SetFloat("masterVolume", newVolume);
+
+        settings.volume = newVolume;
+        SaveSettings();
     }
 
     public float GetVolumePercentage()

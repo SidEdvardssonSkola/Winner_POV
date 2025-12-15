@@ -11839,7 +11839,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c0baf8ab086684f9e0f5be7c7008eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles: []
+  particles:
+  - {fileID: 478268573}
 --- !u!199 &478268572
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -48631,7 +48632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1248141428}
   - component: {fileID: 1248141427}
-  - component: {fileID: 1248141426}
+  - component: {fileID: 1248141438}
   - component: {fileID: 1248141424}
   - component: {fileID: 1248141429}
   - component: {fileID: 1248141432}
@@ -48694,64 +48695,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1248141426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248141423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a03d66debaf49d4a802939f7ca361a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  jumpForce: 15
-  wallJumpForce: 10
-  wallSlideSpeed: 2
-  wallJumpDirectionForce: 8
-  momentumDuration: 0.2
-  momentumControlMultiplier: 0.3
-  wallJumpBoostSpeed: 10
-  wallKeyDisableTime: 0.1
-  airControlForce: 40
-  airMaxSpeed: 8
-  fastFallMultiplier: 20
-  dashSpeed: 30
-  dashDuration: 0.2
-  dashCooldown: 1.2
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  animator: {fileID: 953892568}
-  velocityDisplay: {fileID: 0}
-  spriteRenderer: {fileID: 953892566}
-  OnDash:
-    m_PersistentCalls:
-      m_Calls: []
-  OnJump:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 478268571}
-        m_TargetAssemblyTypeName: PlayParticle, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 478268573}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnLand:
-    m_PersistentCalls:
-      m_Calls: []
-  OnWallJump:
-    m_PersistentCalls:
-      m_Calls: []
-  airJumps: 1
 --- !u!50 &1248141427
 Rigidbody2D:
   serializedVersion: 4
@@ -48934,7 +48877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a361c793e29014580555f20041b655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 1248141426}
+  movement: {fileID: 1248141438}
   attack: {fileID: 1248141434}
 --- !u!114 &1248141434
 MonoBehaviour:
@@ -49156,6 +49099,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1248141438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248141423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15053103868b1264d898faa21dc1268c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 10
+  airControl: 2.5
+  jumpForce: 15
+  jumps: 2
+  OnJump:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 478268571}
+        m_TargetAssemblyTypeName: PlayParticle, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 478268573}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  dashSpeed: 30
+  dashDuration: 0.2
+  dashCooldown: 0.5
+  playerAnimator: {fileID: 953892568}
+  playerSpriteRenderer: {fileID: 953892566}
 --- !u!1 &1262391661
 GameObject:
   m_ObjectHideFlags: 0

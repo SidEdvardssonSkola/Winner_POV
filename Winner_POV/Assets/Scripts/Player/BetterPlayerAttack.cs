@@ -7,13 +7,13 @@ public class BetterPlayerAttack : MonoBehaviour
     [SerializeField] private GameObject attack;
     [SerializeField] private float attackCooldown = 0.15f;
     bool canAttack = true;
-    private bora movement;
+    private PlayerMovement movement;
 
     [SerializeField] private AudioSource swoshSound;
 
     private void Start()
     {
-        movement = GetComponent<bora>();
+        movement = GetComponent<PlayerMovement>();
     }
     private void Update()
     {

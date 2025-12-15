@@ -16,7 +16,6 @@ public class VolumeSlider : MonoBehaviour
         settings = GameObject.FindWithTag("Settings Manager").GetComponent<Settings>();
 
         volumeSlider.value = settings.GetVolumePercentage();
-        OnValueChanged();
     }
 
     public void OnValueChanged()

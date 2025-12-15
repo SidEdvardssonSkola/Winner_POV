@@ -9,7 +9,7 @@ public class SavedSettings
     public Vector2 resolution;
     public int fPS;
     public bool vSync;
-    public FullScreenMode fullScreenMode;
+    public bool fullScreen;
 
     //Audio
     public float volume = 100;
